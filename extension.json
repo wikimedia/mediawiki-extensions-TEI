@@ -1,0 +1,25 @@
+{
+	"name": "TEI",
+	"author": [
+		"Thomas Pellissier Tanon"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:TEI",
+	"descriptionmsg": "tei-desc",
+	"license-name": "GPL-2.0-or-later",
+	"ContentHandlers": {
+		"tei": "MediaWiki\\Extension\\Tei\\TeiContentHandler"
+	},
+	"MessagesDirs": {
+		"TEI": [
+			"i18n"
+		]
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\Tei\\": "includes/"
+	},
+	"Hooks": {
+		"CodeEditorGetPageLanguage": "MediaWiki\\Extension\\Tei\\HooksHandler::onCodeEditorGetPageLanguage"
+	},
+	"callback": "MediaWiki\\Extension\\Tei\\HooksHandler::onRegister",
+	"manifest_version": 2
+}

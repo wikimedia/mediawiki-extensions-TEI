@@ -1,0 +1,6 @@
+{
+	"@metadata": {},
+	"tei-desc": "TEI content model definition",
+	"content-model-tei": "TEI",
+	"tei-libxml-error-message": "<span lang=\"en\" dir=\"auto\">$1</span> on line $2"
+}

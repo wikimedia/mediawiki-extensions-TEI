@@ -1,0 +1,6 @@
+{
+	"@metadata": {},
+	"tei-desc": "{{desc|name=TEI}}",
+	"content-model-tei": "The name for the TEI content model, used when describing what type of content a page contains.",
+	"tei-libxml-error-message": "Formats an XML parsing error from libxml. $1 is the error message in English and $2 is the line number."
+}
