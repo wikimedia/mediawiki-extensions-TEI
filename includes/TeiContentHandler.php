@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\Tei;
 
-use Content;
 use TextContentHandler;
 
 /**
@@ -31,10 +30,11 @@ class TeiContentHandler extends TextContentHandler {
 	/**
 	 * @see ContentHandler::makeEmptyContent
 	 *
-	 * @return Content
+	 * @return TeiContent
 	 */
 	public function makeEmptyContent() {
-		$class = $this->getContentClass();
-		return new $class( '<text><body><p></p></body></text>' );
+		return new TeiContent(
+			'<text xmlns="http://www.tei-c.org/ns/1.0"><body><p>Empty document</p></body></text>'
+		);
 	}
 }

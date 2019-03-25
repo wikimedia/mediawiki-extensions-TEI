@@ -3,13 +3,13 @@
 namespace MediaWiki\Extension\Tei;
 
 use ContentHandler;
-use MediaWikiTestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group TEI
  * @covers \MediaWiki\Extension\Tei\TeiContentHandler
  */
-class TeiContentHandlerTest extends MediaWikiTestCase {
+class TeiContentHandlerTest extends TestCase {
 
 	/**
 	 * @var ContentHandler

@@ -2,13 +2,12 @@
 
 namespace MediaWiki\Extension\Tei;
 
-use DOMDocument;
 use Html;
-use LibXMLError;
 use MWException;
 use ParserOptions;
 use ParserOutput;
 use Status;
+use StatusValue;
 use TextContent;
 use Title;
 use User;
@@ -22,16 +21,6 @@ use WikiPage;
 class TeiContent extends TextContent {
 
 	/**
-	 * @var DOMDocument|null
-	 */
-	private $domDocument;
-
-	/**
-	 * @var LibXMLError[]|null
-	 */
-	private $xmlValidationErrors;
-
-	/**
 	 * @param string $text
 	 * @param string $modelId
 	 * @throws MWException
@@ -41,31 +30,21 @@ class TeiContent extends TextContent {
 	}
 
 	/**
-	 * @return DOMDocument
+	 * @return StatusValue[DOMDocument]
 	 */
-	public function domDocument() {
-		if ( $this->domDocument === null ) {
-			$this->domDocument = $this->buildDomDocument();
-		}
-		return $this->domDocument;
+	public function getDOMDocumentStatus() {
+		return TeiExtension::getDefault()->getDOMDocumentFactory()
+			->buildFromXMLString( $this->getText() );
 	}
 
-	private function buildDomDocument() {
-		$oldUseInternalErrorsValue = libxml_use_internal_errors( true );
-
-		$oldDisableEntityLoaderValue = libxml_disable_entity_loader( true );
-		$dom = new DOMDocument( '1.0', 'UTF-8' );
-		$dom->loadXML( $this->getText() );
-		libxml_disable_entity_loader( $oldDisableEntityLoaderValue );
-
-		// We put the parsing error and warnings in the relevant property
-		$errors = libxml_get_errors();
-		libxml_clear_errors();
-		$this->xmlValidationErrors = $errors;
-
-		libxml_use_internal_errors( $oldUseInternalErrorsValue );
-
-		return $dom;
+	private function validateContent() {
+		$status = $this->getDOMDocumentStatus();
+		if ( $status->isOK() ) {
+			$status->merge(
+				TeiExtension::getDefault()->getValidator()->validateDOM( $status->getValue() )
+			);
+		}
+		return $status;
 	}
 
 	/**
@@ -74,27 +53,7 @@ class TeiContent extends TextContent {
 	 * @return bool
 	 */
 	public function isValid() {
-		return empty( $this->xmlValidationErrors() );
-	}
-
-	private function xmlValidationErrors() {
-		$this->domDocument();
-		return $this->xmlValidationErrors;
-	}
-
-	private function addLibxmlErrorToStatus( LibXMLError $error, Status $status ) {
-		switch ( $error->level ) {
-			case LIBXML_ERR_WARNING:
-				$status->warning( 'tei-libxml-error-message', trim( $error->message ), $error->line );
-				break;
-			case LIBXML_ERR_ERROR:
-				$status->error( 'tei-libxml-error-message', trim( $error->message ), $error->line );
-				break;
-			case LIBXML_ERR_FATAL:
-				$status->fatal( 'tei-libxml-error-message', trim( $error->message ), $error->line );
-				break;
-		}
-		return $status;
+		return $this->validateContent()->isGood();
 	}
 
 	/**
@@ -107,11 +66,15 @@ class TeiContent extends TextContent {
 	 * @throws MWException
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
-		if ( !$this->isValid() ) {
+		$status = $this->getDOMDocumentStatus();
+
+		if ( !$status->isOK() ) {
 			return $this;
 		}
 
-		$dom = $this->domDocument();
+		$dom = $status->getValue();
+		TeiExtension::getDefault()->getNormalizer()->normalizeDOM( $dom );
+
 		return new self( $dom->saveXML( $dom->documentElement ) );
 	}
 
@@ -125,15 +88,7 @@ class TeiContent extends TextContent {
 	 * @return Status
 	 */
 	public function prepareSave( WikiPage $page, $flags, $parentRevId, User $user ) {
-		return $this->xmlValidationStatus();
-	}
-
-	private function xmlValidationStatus() {
-		$status = Status::newGood();
-		foreach ( $this->xmlValidationErrors() as $error ) {
-			$this->addLibxmlErrorToStatus( $error, $status );
-		}
-		return $status;
+		return Status::wrap( $this->validateContent() );
 	}
 
 	/**
@@ -148,13 +103,15 @@ class TeiContent extends TextContent {
 	protected function fillParserOutput(
 		Title $title, $revId, ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
-		$status = $this->xmlValidationStatus();
+		$status = $this->getDOMDocumentStatus();
 		if ( !$status->isOK() ) {
-			$output->setText( Html::rawElement( 'div', [ 'class' => 'error' ],  $status->getHTML() ) );
+			$output->setText( Html::rawElement(
+				'div', [ 'class' => 'error' ], Status::wrap( $status )->getHTML()
+			) );
 			return;
 		}
 
-		$dom = $this->domDocument();
+		$dom = $status->getValue();
 		$output->setText( Html::element( 'pre', [], $dom->saveHTML( $dom->documentElement ) ) );
 	}
 }

@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Extension\Tei;
 
-use MediaWikiTestCase;
 use ParserOptions;
+use PHPUnit\Framework\TestCase;
 use Title;
 use User;
 use WikiPage;
@@ -12,7 +12,7 @@ use WikiPage;
  * @group TEI
  * @covers \MediaWiki\Extension\Tei\TeiContent
  */
-class TeiContentTest extends MediaWikiTestCase {
+class TeiContentTest extends TestCase {
 
 	public function testGetModel() {
 		$content = new TeiContent( '' );
@@ -34,8 +34,16 @@ class TeiContentTest extends MediaWikiTestCase {
 	public function isValidProvider() {
 		return [
 			[
-				new TeiContent( '<text xmlns="http://www.tei-c.org/ns/1.0"><body><p>Foo</p></body></text>' )
-			]
+				new TeiContent( '<text xmlns="http://www.tei-c.org/ns/1.0"> <body><p>Foo</p></body> </text>' )
+			],
+			[
+				new TeiContent( '<text xmlns="http://www.tei-c.org/ns/1.0"><front></front>
+									 <body><div><p>Foo</p></div></body><back></back></text>' )
+			],
+			[
+				new TeiContent( '<text xmlns="http://www.tei-c.org/ns/1.0">
+									  <body><p xml:id="p1" xml:lang="en">Foo</p></body> </text>' )
+			],
 		];
 	}
 
@@ -53,7 +61,7 @@ class TeiContentTest extends MediaWikiTestCase {
 		$page = WikiPage::factory( Title::makeTitle( NS_MAIN, 'Foo' ) );
 		$user = User::newFromName( 'Foo' );
 		$status = $content->prepareSave( $page, 0, -1, $user );
-		$this->assertTrue( $status->isGood() );
+		$this->assertTrue( $status->isGood(), $status->getWikiText() );
 	}
 
 	public function isNotValidProvider() {
@@ -63,7 +71,18 @@ class TeiContentTest extends MediaWikiTestCase {
 			],
 			[
 				new TeiContent( '<text>' )
-			]
+			],
+			[
+				new TeiContent( '<text><body><p>Foo</p></body> </text>' )
+			],
+			[
+				new TeiContent( '<text xmlns="http://www.tei-c.org/ns/1.0">
+									  <body><p xml:lang="l ">Foo</p></body> </text>' )
+			],
+			[
+				new TeiContent( '<text xmlns="http://www.tei-c.org/ns/1.0">
+									  <body><p xml:foo="bar">Foo</p></body> </text>' )
+			],
 		];
 	}
 
@@ -91,12 +110,19 @@ class TeiContentTest extends MediaWikiTestCase {
 				new TeiContent( 'foo' )
 			],
 			[
-				new TeiContent( '<text><body><p>Foo</p></body></text>' ),
-				new TeiContent( "<text><body><p>Foo</p></body></text>" )
+				new TeiContent( '<text  xmlns="http://www.tei-c.org/ns/1.0">
+									  <body> <p>Foo</p></body>  </text>' ),
+				new TeiContent( '<text xmlns="http://www.tei-c.org/ns/1.0">
+									  <body> <p>Foo</p></body>  </text>' )
 			],
 			[
-				new TeiContent( '<?xml version="1.0" encoding="UTF-8"?><text><body><p>Foo</p></body></text>' ),
-				new TeiContent( "<text><body><p>Foo</p></body></text>" )
+				new TeiContent( '<text><body><p>Foo</p></body></text>' ),
+				new TeiContent( '<text xmlns="http://www.tei-c.org/ns/1.0"><body><p>Foo</p></body></text>' )
+			],
+			[
+				new TeiContent( '<?xml version="1.0" encoding="UTF-8"?> 
+						              <text  xmlns="http://www.tei-c.org/ns/1.0"><body><p>Foo</p></body></text>' ),
+				new TeiContent( '<text xmlns="http://www.tei-c.org/ns/1.0"><body><p>Foo</p></body></text>' )
 			]
 		];
 	}
