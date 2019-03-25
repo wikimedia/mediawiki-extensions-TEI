@@ -35,6 +35,6 @@ class TeiContentHandler extends TextContentHandler {
 	 */
 	public function makeEmptyContent() {
 		$class = $this->getContentClass();
-		return new $class( '<body xmlns="http://www.tei-c.org/ns/1.0"><p></p></body>' );
+		return new $class( '<text><body><p></p></body></text>' );
 	}
 }

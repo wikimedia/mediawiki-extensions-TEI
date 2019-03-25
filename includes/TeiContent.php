@@ -51,12 +51,10 @@ class TeiContent extends TextContent {
 	}
 
 	private function buildDomDocument() {
-		libxml_use_internal_errors( true );
+		$oldUseInternalErrorsValue = libxml_use_internal_errors( true );
 
 		$oldDisableEntityLoaderValue = libxml_disable_entity_loader( true );
 		$dom = new DOMDocument( '1.0', 'UTF-8' );
-		$dom->preserveWhiteSpace = false;
-		$dom->formatOutput = true;
 		$dom->loadXML( $this->getText() );
 		libxml_disable_entity_loader( $oldDisableEntityLoaderValue );
 
@@ -64,6 +62,8 @@ class TeiContent extends TextContent {
 		$errors = libxml_get_errors();
 		libxml_clear_errors();
 		$this->xmlValidationErrors = $errors;
+
+		libxml_use_internal_errors( $oldUseInternalErrorsValue );
 
 		return $dom;
 	}
@@ -88,6 +88,8 @@ class TeiContent extends TextContent {
 				$status->warning( 'tei-libxml-error-message', trim( $error->message ), $error->line );
 				break;
 			case LIBXML_ERR_ERROR:
+				$status->error( 'tei-libxml-error-message', trim( $error->message ), $error->line );
+				break;
 			case LIBXML_ERR_FATAL:
 				$status->fatal( 'tei-libxml-error-message', trim( $error->message ), $error->line );
 				break;

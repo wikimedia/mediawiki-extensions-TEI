@@ -92,11 +92,11 @@ class TeiContentTest extends MediaWikiTestCase {
 			],
 			[
 				new TeiContent( '<text><body><p>Foo</p></body></text>' ),
-				new TeiContent( "<text>\n  <body>\n    <p>Foo</p>\n  </body>\n</text>" )
+				new TeiContent( "<text><body><p>Foo</p></body></text>" )
 			],
 			[
 				new TeiContent( '<?xml version="1.0" encoding="UTF-8"?><text><body><p>Foo</p></body></text>' ),
-				new TeiContent( "<text>\n  <body>\n    <p>Foo</p>\n  </body>\n</text>" )
+				new TeiContent( "<text><body><p>Foo</p></body></text>" )
 			]
 		];
 	}
