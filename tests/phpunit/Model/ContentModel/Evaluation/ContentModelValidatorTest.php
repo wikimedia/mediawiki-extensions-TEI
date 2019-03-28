@@ -14,9 +14,9 @@ use StatusValue;
 
 /**
  * @group TEI
- * @covers \MediaWiki\Extension\Tei\Model\\ContentModel\Evaluation\ContentModelValidator
- * @covers \MediaWiki\Extension\Tei\Model\\ContentModel\Evaluation\NondeteministicFiniteAutomaton
- * @covers \MediaWiki\Extension\Tei\Model\\ContentModel\Evaluation\ThompsonAutomatonBuilder
+ * @covers \MediaWiki\Extension\Tei\Model\ContentModel\Evaluation\ContentModelValidator
+ * @covers \MediaWiki\Extension\Tei\Model\ContentModel\Evaluation\NondeteministicFiniteAutomaton
+ * @covers \MediaWiki\Extension\Tei\Model\ContentModel\Evaluation\ThompsonAutomatonBuilder
  */
 class ContentModelValidatorTest extends TestCase {
 

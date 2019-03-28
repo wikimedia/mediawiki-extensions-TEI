@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\Tei;
 
+use MediaWiki\Extension\Tei\Converter\TeiToHtmlConverter;
 use MediaWiki\Extension\Tei\Model\Normalizer;
 use MediaWiki\Extension\Tei\Model\Validator;
 use PHPUnit\Framework\TestCase;
@@ -30,6 +31,13 @@ class TeiExtensionTest extends TestCase {
 		$this->assertInstanceOf(
 			DOMDocumentFactory::class,
 			TeiExtension::getDefault()->getDOMDocumentFactory()
+		);
+	}
+
+	public function testGetTeiToHtmlConverter() {
+		$this->assertInstanceOf(
+			TeiToHtmlConverter::class,
+			TeiExtension::getDefault()->getTeiToHtmlConverter()
 		);
 	}
 }

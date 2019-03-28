@@ -111,7 +111,8 @@ class TeiContent extends TextContent {
 			return;
 		}
 
-		$dom = $status->getValue();
-		$output->setText( Html::element( 'pre', [], $dom->saveHTML( $dom->documentElement ) ) );
+		$converter = TeiExtension::getDefault()->getTeiToHtmlConverter();
+		$html = $converter->convertToMediaWikiParserOutput( $status->getValue(), $title );
+		$output->setText( Html::rawElement( 'div', [ 'class' => 'mw-parser-output' ], $html ) );
 	}
 }

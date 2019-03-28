@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\Tei;
 
+use MediaWiki\Extension\Tei\Converter\TeiToHtmlConverter;
 use MediaWiki\Extension\Tei\Model\DefaultTeiRegistryBuilder;
 use MediaWiki\Extension\Tei\Model\Normalizer;
 use MediaWiki\Extension\Tei\Model\TeiRegistry;
@@ -21,6 +22,8 @@ class TeiExtension {
 	private $normalizer;
 
 	private $domDocumentFactory;
+
+	private $teiToHtmlConverter;
 
 	/**
 	 * @return TeiRegistry
@@ -60,6 +63,16 @@ class TeiExtension {
 			$this->domDocumentFactory = new DOMDocumentFactory();
 		}
 		return $this->domDocumentFactory;
+	}
+
+	/**
+	 * @return TeiToHtmlConverter
+	 */
+	public function getTeiToHtmlConverter() {
+		if ( $this->teiToHtmlConverter === null ) {
+			$this->teiToHtmlConverter = new TeiToHtmlConverter();
+		}
+		return $this->teiToHtmlConverter;
 	}
 
 	/**

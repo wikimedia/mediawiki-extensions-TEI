@@ -1,0 +1,11 @@
+!! test
+Unknown tag
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0">
+	<x-unknown></x-unknown>
+</text>
+!! html/php
+<article>
+	&lt;x-unknown xmlns="http://www.tei-c.org/ns/1.0"&gt;&lt;/x-unknown&gt;
+</article>
+!!end

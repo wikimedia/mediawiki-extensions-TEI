@@ -1,0 +1,77 @@
+!! test
+Most basic file
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0">
+	<body>
+		<div>
+			<p>Foo</p>
+		</div>
+	</body>
+</text>
+!! html/php
+<article>
+	<section>
+		<div>
+			<p>Foo</p>
+		</div>
+	</section>
+</article>
+!!end
+
+!! test
+Comment
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0">
+	<!-- comment -->
+	<body>
+		<div>
+			<p>Foo</p>
+		</div>
+	</body>
+</text>
+!! html/php
+<article>
+	<!-- comment -->
+	<section>
+		<div>
+			<p>Foo</p>
+		</div>
+	</section>
+</article>
+!!end
+
+!! test
+XML Attributes
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0">
+	<body xml:lang="en" xml:id="foo">
+		<div xml:lang="es" xml:id="bar">
+			<p xml:lang="pt" xml:id="baz">Foo</p>
+		</div>
+	</body>
+</text>
+!! html/php
+<article>
+	<section lang="en" id="foo">
+		<div lang="es" id="bar">
+			<p lang="pt" id="baz">Foo</p>
+		</div>
+	</section>
+</article>
+!!end
+
+!! test
+Front and Back
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0">
+	<front><div><p>Front</p></div></front>
+	<body><div><p>Body</p></div></body>
+	<back><div><p>Body</p></div></back>
+</text>
+!! html/php
+<article>
+	<header><div><p>Front</p></div></header>
+	<section><div><p>Body</p></div></section>
+	<footer><div><p>Body</p></div></footer>
+</article>
+!!end
