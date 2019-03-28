@@ -34,7 +34,7 @@ class TeiContentHandler extends TextContentHandler {
 	 */
 	public function makeEmptyContent() {
 		return new TeiContent(
-			'<text xmlns="http://www.tei-c.org/ns/1.0"><body><p>Empty document</p></body></text>'
+			'<text xmlns="http://www.tei-c.org/ns/1.0"><body><p></p></body></text>'
 		);
 	}
 }

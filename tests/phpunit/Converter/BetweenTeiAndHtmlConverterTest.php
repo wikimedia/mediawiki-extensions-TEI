@@ -10,8 +10,9 @@ use Title;
 /**
  * @group TEI
  * @covers \MediaWiki\Extension\Tei\Converter\TeiToHtmlConverter
+ * @covers \MediaWiki\Extension\Tei\Converter\HtmlToTeiConverter
  */
-class TeiToHtmlConverterTest extends TestCase {
+class BetweenTeiAndHtmlConverterTest extends TestCase {
 
 	/**
 	 * @var DOMDocumentFactory
@@ -23,11 +24,17 @@ class TeiToHtmlConverterTest extends TestCase {
 	 */
 	private $teiToHtmlConverter;
 
+	/**
+	 * @var HtmlToTeiConverter
+	 */
+	private $htmlToTeiConverter;
+
 	public function setUp() {
 		parent::setUp();
 
 		$this->domDocumentFactory = new DOMDocumentFactory();
 		$this->teiToHtmlConverter = new TeiToHtmlConverter();
+		$this->htmlToTeiConverter = new HtmlToTeiConverter();
 	}
 
 	private function readTestFile( $fileName ) {
@@ -47,6 +54,16 @@ class TeiToHtmlConverterTest extends TestCase {
 		);
 	}
 
+	private function assertHtmlToTeiConversionTest( $testDesc, $tei, $html ) {
+		$this->assertEquals(
+			$tei,
+			$this->htmlToTeiConverter->convertToTei(
+				$this->domDocumentFactory->buildFromXMLString( $html )->getValue()
+			),
+			$testDesc
+		);
+	}
+
 	public function roundtripTestProvider() {
 		return $this->readTestFile( 'roundtrip.txt' );
 	}
@@ -56,6 +73,7 @@ class TeiToHtmlConverterTest extends TestCase {
 	 */
 	public function testRountripConversion( $testDesc, $tei, $html ) {
 		$this->assertTeiToHtmlConversionTest( $testDesc, $tei, $html );
+		$this->assertHtmlToTeiConversionTest( $testDesc, $tei, $html );
 	}
 
 	public function teiToHtmlTestProvider() {
@@ -67,5 +85,16 @@ class TeiToHtmlConverterTest extends TestCase {
 	 */
 	public function testTeiToHtmlConversion( $testDesc, $tei, $html ) {
 		$this->assertTeiToHtmlConversionTest( $testDesc, $tei, $html );
+	}
+
+	public function html2teiTestProvider() {
+		return $this->readTestFile( 'html2tei.txt' );
+	}
+
+	/**
+	 * @dataProvider html2teiTestProvider
+	 */
+	public function testHtmlToTeiConversion( $testDesc, $tei, $html ) {
+		$this->assertHtmlToTeiConversionTest( $testDesc, $tei, $html );
 	}
 }

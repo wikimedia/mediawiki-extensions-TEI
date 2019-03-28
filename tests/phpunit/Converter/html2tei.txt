@@ -1,0 +1,89 @@
+!! test
+<html> root
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0">
+	<body>
+		<div>
+			<p>Foo</p>
+		</div>
+	</body>
+</text>
+!! html/php
+<html><body>
+<article>
+	<section>
+		<div>
+			<p>Foo</p>
+		</div>
+	</section>
+</article>
+</body></html>
+!!end
+
+!! test
+<body> root
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0">
+	<body>
+		<div>
+			<p>Foo</p>
+		</div>
+	</body>
+</text>
+!! html/php
+<body>
+<article>
+	<section>
+		<div>
+			<p>Foo</p>
+		</div>
+	</section>
+</article>
+</body>
+!!end
+
+!! test
+<section> root
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0"><body>
+	<p>Foo</p>
+</body></text>
+!! html/php
+<section>
+	<p>Foo</p>
+</section>
+!!end
+
+!! test
+<p> root
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0"><body><p>Foo</p></body></text>
+!! html/php
+<p>Foo</p>
+!!end
+
+!! test
+Empty document
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0"><body><p/></body></text>
+!! html/php
+foo
+!!end
+
+!! test
+invalid node
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0">
+	<body>
+		&lt;x-foo&gt;&lt;/x-foo&gt;
+	</body>
+</text>
+!! html/php
+<body>
+<article>
+	<section>
+		<x-foo></x-foo>
+	</section>
+</article>
+</body>
+!!end
