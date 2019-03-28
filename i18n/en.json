@@ -2,5 +2,15 @@
 	"@metadata": {},
 	"tei-desc": "TEI content model definition",
 	"content-model-tei": "TEI",
-	"tei-libxml-error-message": "<span lang=\"en\" dir=\"auto\">$1</span> on line $2"
+	"tei-libxml-error-message": "<span lang=\"en\" dir=\"auto\">$1</span> on line $2",
+	"apihelp-teiconvert-summary": "API module to convert content between TEI and HTML",
+	"apihelp-teiconvert-param-title": "If <var>$1text</var> is not set, the content of this page. If <var>$1text</var> is set use it as the title of the page during conversion. If it is not set, [[API]] will be used as the title.",
+	"apihelp-teiconvert-param-pageid": "Convert the content of this page.",
+	"apihelp-teiconvert-param-revid": "Convert the content of this revision.",
+	"apihelp-teiconvert-param-text": "Text to parse. Use <var>$1from</var> to control the content format.",
+	"apihelp-teiconvert-param-from": "Content format of <var>$1text</var>.",
+	"apihelp-teiconvert-param-to": "Content format to convert to.",
+	"apihelp-teiconvert-param-slot": "If <var>$1text</var> is not set, which slot to return data for.",
+	"apihelp-teiconvert-param-full": "If set, returns a full content, e.g. HTML with a head tag or TEI with a TEI header",
+	"apihelp-teiconvert-example-from-title-to-html": "Converts to HTML the content of [[TEI]]"
 }

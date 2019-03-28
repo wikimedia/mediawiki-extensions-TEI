@@ -9,6 +9,9 @@
 	"ContentHandlers": {
 		"tei": "MediaWiki\\Extension\\Tei\\TeiContentHandler"
 	},
+	"APIModules": {
+		"teiconvert": "MediaWiki\\Extension\\Tei\\Api\\ApiTeiConvert"
+	},
 	"MessagesDirs": {
 		"TEI": [
 			"i18n"

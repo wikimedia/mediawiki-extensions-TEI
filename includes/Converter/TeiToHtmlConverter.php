@@ -52,7 +52,7 @@ class TeiToHtmlConverter {
 	 * @param Title $pageTitle
 	 * @return string
 	 */
-	public function convertToMediaWikiParserOutput( DOMDocument $teiDocument, Title $pageTitle ) {
+	public function convertToHtmlBodyContent( DOMDocument $teiDocument, Title $pageTitle ) {
 		$this->buildHtmlDocument( $teiDocument, $pageTitle );
 		$html = '';
 		/**	@var DOMElement $body **/

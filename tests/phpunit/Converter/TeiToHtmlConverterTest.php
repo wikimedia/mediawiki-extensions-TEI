@@ -39,7 +39,7 @@ class TeiToHtmlConverterTest extends TestCase {
 	private function assertTeiToHtmlConversionTest( $testDesc, $tei, $html ) {
 		$this->assertEquals(
 			$html,
-			$this->teiToHtmlConverter->convertToMediaWikiParserOutput(
+			$this->teiToHtmlConverter->convertToHtmlBodyContent(
 				$this->domDocumentFactory->buildFromXMLString( $tei )->getValue(),
 				Title::makeTitle( NS_MAIN, 'Test' )
 			),

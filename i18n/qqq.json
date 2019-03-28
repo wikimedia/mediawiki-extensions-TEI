@@ -2,5 +2,15 @@
 	"@metadata": {},
 	"tei-desc": "{{desc|name=TEI}}",
 	"content-model-tei": "The name for the TEI content model, used when describing what type of content a page contains.",
-	"tei-libxml-error-message": "Formats an XML parsing error from libxml. $1 is the error message in English and $2 is the line number."
+	"tei-libxml-error-message": "Formats an XML parsing error from libxml. $1 is the error message in English and $2 is the line number.",
+	"apihelp-teiconvert-summary": "{{doc-apihelp-description|teiconvert}}",
+	"apihelp-teiconvert-param-title": "{{doc-apihelp-param|teiconvert|title}}",
+	"apihelp-teiconvert-param-pageid": "{{doc-apihelp-param|teiconvert|pageid}}",
+	"apihelp-teiconvert-param-revid": "{{doc-apihelp-param|teiconvert|revid}}",
+	"apihelp-teiconvert-param-text": "{{doc-apihelp-param|teiconvert|text}}",
+	"apihelp-teiconvert-param-from": "{{doc-apihelp-param|teiconvert|from}}",
+	"apihelp-teiconvert-param-to": "{{doc-apihelp-param|teiconvert|to}}",
+	"apihelp-teiconvert-param-slot": "{{doc-apihelp-param|teiconvert|slot}}",
+	"apihelp-teiconvert-param-full": "{{doc-apihelp-param|teiconvert|full}}",
+	"apihelp-teiconvert-example-from-title-to-html": "{{doc-apihelp-example|teiconvert}}"
 }
