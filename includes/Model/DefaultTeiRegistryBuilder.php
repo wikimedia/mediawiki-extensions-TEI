@@ -60,7 +60,7 @@ class DefaultTeiRegistryBuilder {
 		$registry->registerClass( 'model.global', [] );
 		$registry->registerClass( 'model.gLike', [] );
 		$registry->registerClass( 'model.inter', [ 'model.common' ] );
-		$registry->registerClass( 'model.listLike', [] );
+		$registry->registerClass( 'model.listLike', [ 'model.inter' ] );
 		$registry->registerClass( 'model.lLike', [ 'model.divPart' ] );
 		$registry->registerClass( 'model.phrase', [] );
 		$registry->registerClass( 'model.pLike', [ 'model.divPart' ] );
