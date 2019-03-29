@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\Tei\Api;
 use ApiBase;
 use ApiMain;
 use ApiUsageException;
+use MediaWiki\Extension\Tei\Converter\HtmlToTeiConverter;
 use MediaWiki\Extension\Tei\Converter\TeiToHtmlConverter;
 use MediaWiki\Extension\Tei\DOMDocumentFactory;
 use MediaWiki\Extension\Tei\TeiExtension;
@@ -41,10 +42,16 @@ class ApiTeiConvert extends ApiBase {
 	 * @var DOMDocumentFactory
 	 */
 	private $domDocumentFactory;
+
 	/**
 	 * @var TeiToHtmlConverter
 	 */
 	private $teiToHtmlConverter;
+
+	/**
+	 * @var HtmlToTeiConverter
+	 */
+	private $htmlToTeiConverter;
 
 	/**
 	 * ApiConvertTei constructor.
@@ -58,6 +65,7 @@ class ApiTeiConvert extends ApiBase {
 		$this->slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
 		$this->domDocumentFactory = TeiExtension::getDefault()->getDOMDocumentFactory();
 		$this->teiToHtmlConverter = TeiExtension::getDefault()->getTeiToHtmlConverter();
+		$this->htmlToTeiConverter = TeiExtension::getDefault()->getHtmlToTeiConverter();
 	}
 
 	/**
@@ -168,6 +176,16 @@ class ApiTeiConvert extends ApiBase {
 				return $full
 					? $this->teiToHtmlConverter->convertToStandaloneHtml( $status->getValue(), $title )
 					: $this->teiToHtmlConverter->convertToHtmlBodyContent( $status->getValue(), $title );
+			} else {
+				$this->dieStatus( $status );
+			}
+		}
+
+		if ( $from === CONTENT_FORMAT_HTML && $to === CONTENT_FORMAT_TEI_XML ) {
+			$status = $this->domDocumentFactory->buildFromXMLString( $text );
+			if ( $status->isOK() ) {
+				$this->addMessagesFromStatus( $status );
+				return $this->htmlToTeiConverter->convertToTei( $status->getValue(), $title );
 			} else {
 				$this->dieStatus( $status );
 			}
