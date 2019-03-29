@@ -20,6 +20,11 @@
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\Tei\\": "includes/"
 	},
+	"ResourceModules": {},
+	"ResourceFileModulePaths": {
+		"localBasePath": "modules",
+		"remoteExtPath": "TEI/modules"
+	},
 	"Hooks": {
 		"CodeEditorGetPageLanguage": "MediaWiki\\Extension\\Tei\\HooksHandler::onCodeEditorGetPageLanguage"
 	},
