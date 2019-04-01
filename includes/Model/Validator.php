@@ -145,8 +145,11 @@ class Validator {
 	private function nodeNames( DOMNodeList $list ) {
 		$names = [];
 		foreach ( $list as $node ) {
-			// We ignore whitespace elements
-			if ( $node instanceof DOMText && $node->isElementContentWhitespace() ) {
+			// We ignore whitespace elements and comments
+			if (
+				$node instanceof DOMText && $node->isElementContentWhitespace() ||
+				$node instanceof DOMComment
+			) {
 				continue;
 			}
 			$names[] = $node->nodeName;

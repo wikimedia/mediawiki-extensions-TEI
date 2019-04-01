@@ -24,6 +24,6 @@
 	"apihelp-teiconvert-param-from": "{{doc-apihelp-param|teiconvert|from}}",
 	"apihelp-teiconvert-param-to": "{{doc-apihelp-param|teiconvert|to}}",
 	"apihelp-teiconvert-param-slot": "{{doc-apihelp-param|teiconvert|slot}}",
-	"apihelp-teiconvert-param-full": "{{doc-apihelp-param|teiconvert|full}}",
+	"apihelp-teiconvert-param-normalize": "{{doc-apihelp-param|teiconvert|normalize}}",
 	"apihelp-teiconvert-example-from-title-to-html": "{{doc-apihelp-example|teiconvert}}"
 }

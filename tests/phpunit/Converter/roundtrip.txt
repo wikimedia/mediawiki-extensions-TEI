@@ -1,7 +1,7 @@
 !! test
-Most basic file
+Basic full file
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
+<text>
 	<body>
 		<div>
 			<p>Foo</p>
@@ -19,9 +19,30 @@ Most basic file
 !!end
 
 !! test
+<section> root
+!! wikitext
+<body>
+	<p>Foo</p>
+</body>
+!! html/php
+<section>
+	<p>Foo</p>
+</section>
+!!end
+
+
+!! test
+Empty document
+!! wikitext
+foo
+!! html/php
+foo
+!!end
+
+!! test
 Comment
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
+<text>
 	<!-- comment -->
 	<body>
 		<div>
@@ -43,7 +64,7 @@ Comment
 !! test
 XML Attributes
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
+<text>
 	<body xml:lang="en" xml:id="foo">
 		<div xml:lang="es" xml:id="bar">
 			<p xml:lang="pt" xml:id="baz">Foo</p>
@@ -63,7 +84,7 @@ XML Attributes
 !! test
 Front and Back
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
+<text>
 	<front><div><p>Front</p></div></front>
 	<body><div><p>Body</p></div></body>
 	<back><div><p>Body</p></div></back>
@@ -79,259 +100,155 @@ Front and Back
 !! test
 Lb
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
-	<body><p>Foo<lb/>Bar</p></body>
+<text>
+	<body><p>Foo<lb />Bar</p></body>
 </text>
 !! html/php
 <article>
-	<section><p>Foo<br/>Bar</p></section>
+	<section><p>Foo<br />Bar</p></section>
 </article>
 !!end
 
 !! test
 Unordered list
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
-	<body>
-		<list type="unordered">
-			<item>Foo</item>
-		</list>
-	</body>
-</text>
+<list type="unordered">
+	<item>Foo</item>
+</list>
 !! html/php
-<article>
-	<section>
-		<ul>
-			<li>Foo</li>
-		</ul>
-	</section>
-</article>
+<ul>
+	<li>Foo</li>
+</ul>
 !!end
 
 !! test
 Ordered list
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
-	<body>
-		<list type="ordered">
-			<item>Foo</item>
-		</list>
-	</body>
-</text>
+<list type="ordered">
+	<item>Foo</item>
+</list>
 !! html/php
-<article>
-	<section>
-		<ol>
-			<li>Foo</li>
-		</ol>
-	</section>
-</article>
+<ol>
+	<li>Foo</li>
+</ol>
 !!end
 
 !! test
 Hi
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
-	<body>
-		<p>Foo <hi>Bar</hi></p>
-	</body>
-</text>
+<p>Foo <hi>Bar</hi></p>
 !! html/php
-<article>
-	<section>
-		<p>Foo <span>Bar</span></p>
-	</section>
-</article>
+<p>Foo <span>Bar</span></p>
 !!end
 
 !! test
 Hi bold
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
-	<body>
-		<p>Foo <hi rend="bold">Bar</hi></p>
-	</body>
-</text>
+<p>Foo <hi rend="bold">Bar</hi></p>
 !! html/php
-<article>
-	<section>
-		<p>Foo <b>Bar</b></p>
-	</section>
-</article>
+<p>Foo <b>Bar</b></p>
 !!end
 
 !! test
 Hi italic
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
-	<body>
-		<p>Foo <hi rend="italic">Bar</hi></p>
-	</body>
-</text>
+<p>Foo <hi rend="italic">Bar</hi></p>
 !! html/php
-<article>
-	<section>
-		<p>Foo <i>Bar</i></p>
-	</section>
-</article>
+<p>Foo <i>Bar</i></p>
 !!end
 
 !! test
 Hi sub
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
-	<body>
-		<p>Foo <hi rend="sub">Bar</hi></p>
-	</body>
-</text>
+<p>Foo <hi rend="sub">Bar</hi></p>
 !! html/php
-<article>
-	<section>
-		<p>Foo <sub>Bar</sub></p>
-	</section>
-</article>
+<p>Foo <sub>Bar</sub></p>
 !!end
 
 !! test
 Hi sup
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
-	<body>
-		<p>Foo <hi rend="sup">Bar</hi></p>
-	</body>
-</text>
+<p>Foo <hi rend="sup">Bar</hi></p>
 !! html/php
-<article>
-	<section>
-		<p>Foo <sup>Bar</sup></p>
-	</section>
-</article>
+<p>Foo <sup>Bar</sup></p>
 !!end
 
 !! test
 Hi sup
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
-	<body>
-		<p>Foo <hi rend="small">Bar</hi></p>
-	</body>
-</text>
+<p>Foo <hi rend="small">Bar</hi></p>
 !! html/php
-<article>
-	<section>
-		<p>Foo <small>Bar</small></p>
-	</section>
-</article>
+<p>Foo <small>Bar</small></p>
 !!end
 
 !! test
 Hi sup
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
-	<body>
-		<p>Foo <hi rend="var">Bar</hi></p>
-	</body>
-</text>
+<p>Foo <hi rend="var">Bar</hi></p>
 !! html/php
-<article>
-	<section>
-		<p>Foo <var>Bar</var></p>
-	</section>
-</article>
+<p>Foo <var>Bar</var></p>
 !!end
 
 !! test
 Table
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
-	<body>
-		<table>
-			<row>
-				<cell role="label">Label</cell>
-				<cell>Foo</cell>
-				<cell>Bar</cell>
-			</row>
-		</table>
-	</body>
-</text>
+<table>
+	<row>
+		<cell role="label">Label</cell>
+		<cell>Foo</cell>
+		<cell>Bar</cell>
+	</row>
+</table>
 !! html/php
-<article>
-	<section>
-		<table>
-			<tr>
-				<th>Label</th>
-				<td>Foo</td>
-				<td>Bar</td>
-			</tr>
-		</table>
-	</section>
-</article>
+<table>
+	<tr>
+		<th>Label</th>
+		<td>Foo</td>
+		<td>Bar</td>
+	</tr>
+</table>
 !!end
 
 !! test
-Table with cols anr row
+Table with cols and rows
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
-	<body>
-		<table>
-			<row>
-				<cell role="label" rows="2">Label</cell>
-				<cell>Foo</cell>
-				<cell>Bar</cell>
-			</row>
-			<row>
-				<cell role="label">Label</cell>
-				<cell cols="2">Foo</cell>
-			</row>
-		</table>
-	</body>
-</text>
+<table>
+	<row>
+		<cell role="label" rows="2">Label</cell>
+		<cell>Foo</cell>
+		<cell>Bar</cell>
+	</row>
+	<row>
+		<cell role="label">Label</cell>
+		<cell cols="2">Foo</cell>
+	</row>
+</table>
 !! html/php
-<article>
-	<section>
-		<table>
-			<tr>
-				<th rowspan="2">Label</th>
-				<td>Foo</td>
-				<td>Bar</td>
-			</tr>
-			<tr>
-				<th>Label</th>
-				<td colspan="2">Foo</td>
-			</tr>
-		</table>
-	</section>
-</article>
+<table>
+	<tr>
+		<th rowspan="2">Label</th>
+		<td>Foo</td>
+		<td>Bar</td>
+	</tr>
+	<tr>
+		<th>Label</th>
+		<td colspan="2">Foo</td>
+	</tr>
+</table>
 !!end
 
 !! test
 Abbr
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
-	<body>
-		<p>Foo <abbr>TEI</abbr></p>
-	</body>
-</text>
+<p>Foo <abbr>TEI</abbr></p>
 !! html/php
-<article>
-	<section>
-		<p>Foo <abbr>TEI</abbr></p>
-	</section>
-</article>
+<p>Foo <abbr>TEI</abbr></p>
 !!end
 
 !! test
 Del
 !! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
-	<body>
-		<p>Foo <del>Bar</del></p>
-	</body>
-</text>
+<p>Foo <del>Bar</del></p>
 !! html/php
-<article>
-	<section>
-		<p>Foo <del>Bar</del></p>
-	</section>
-</article>
+<p>Foo <del>Bar</del></p>
 !!end

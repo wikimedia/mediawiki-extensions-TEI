@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Extension\Tei;
 
+use ExtensionRegistry;
+use OutputPage;
 use Title;
 
 /**
@@ -19,6 +21,23 @@ class HooksHandler {
 		// Content handler
 		define( 'CONTENT_MODEL_TEI', 'tei' );
 		define( 'CONTENT_FORMAT_TEI_XML', 'application/tei+xml' );
+	}
+
+	/**
+	 * Adds JavaScript to the page
+	 *
+	 * @param OutputPage $out
+	 * @return bool
+	 */
+	public static function onBeforePageDisplay( OutputPage $out ) {
+		if (
+			$out->getTitle()->getContentModel() === CONTENT_MODEL_TEI &&
+			ExtensionRegistry::getInstance()->isLoaded( 'VisualEditor' )
+		) {
+			$out->addModules( 'ext.tei.ve.pageTarget.init' );
+		}
+
+		return true;
 	}
 
 	/**
