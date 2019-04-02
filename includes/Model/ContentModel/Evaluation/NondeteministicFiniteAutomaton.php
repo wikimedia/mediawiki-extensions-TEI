@@ -120,7 +120,7 @@ class NondeteministicFiniteAutomaton {
 	 */
 	private function transitionsLabelsFromState( $state ) {
 		return array_filter( array_keys( $this->transitionsTable[$state] ), function ( $label ) {
-			return $label !== null;
+			return $label != null;
 		} );
 	}
 
@@ -131,7 +131,7 @@ class NondeteministicFiniteAutomaton {
 	 * @return mixed[]
 	 */
 	public function transitionsLabelsFromStates( array $states ) {
-		return array_unique( array_merge( array_map( function ( $state ) {
+		return array_unique( array_merge( ...array_map( function ( $state ) {
 			return $this->transitionsLabelsFromState( $state );
 		}, $states ) ) );
 	}

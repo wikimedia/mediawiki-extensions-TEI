@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\Tei\Model;
 use DOMAttr;
 use DOMComment;
 use DOMDocument;
-use DOMNamedNodeMap;
 use DOMNode;
 use DOMNodeList;
 use DOMText;
@@ -38,7 +37,7 @@ class Validator {
 		$this->registry = $registry;
 
 		$this->tagsContentModelValidator = new ContentModelValidator(
-			'tei-validation-tag-content-',
+			'tei-validation-element-content-',
 			function ( $groupId ) use ( $registry ) {
 				return $registry->getElementNamesInClass( $groupId );
 			}
@@ -65,59 +64,64 @@ class Validator {
 				'tei-validation-unexpected-root', $root->nodeName
 			);
 		}
-		$this->validateTag( $root, $status );
+		$this->validateNode( $root, $status );
 	}
 
-	private function validateTag( DOMNode $tag, StatusValue $status ) {
-		if ( $tag instanceof DOMText || $tag instanceof DOMComment ) {
+	private function validateNode( DOMNode $node, StatusValue $status ) {
+		if ( $node instanceof DOMText || $node instanceof DOMComment ) {
 			return;
 		}
 
 		// We validate namespace
-		if ( $tag->namespaceURI !== TeiRegistry::TEI_NAMESPACE ) {
-			$status->fatal( 'tei-validation-wrong-namespace' );
+		if ( $node->namespaceURI !== TeiRegistry::TEI_NAMESPACE ) {
+			$status->fatal( 'tei-validation-wrong-namespace', $node->namespaceURI, $node->getLineNo() );
 		}
 
 		// We validate the tag based on its definition
 		try {
-			$definition = $this->registry->getElementSpecFromName( $tag->nodeName );
-			$this->validateTagUsingDefinition( $tag, $definition, $status );
+			$definition = $this->registry->getElementSpecFromName( $node->nodeName );
+			$this->validateElementUsingDefinition( $node, $definition, $status );
 		} catch ( OutOfBoundsException $e ) {
 			$status->fatal(
-				'tei-validation-unknown-tag', $tag->nodeName
+				'tei-validation-unknown-tag', $node->nodeName
 			);
 		}
 
 		// We do a recursive call
-		foreach ( $tag->childNodes as $childNode ) {
-			$this->validateTag( $childNode, $status );
+		foreach ( $node->childNodes as $childNode ) {
+			$this->validateNode( $childNode, $status );
 		}
 	}
 
-	private function validateTagUsingDefinition(
-		DOMNode $tag, ElementSpec $definition, StatusValue $status
+	private function validateElementUsingDefinition(
+		DOMNode $node, ElementSpec $definition, StatusValue $status
 	) {
 		// Attributes
-		$this->validateAttributes( $tag->attributes, $definition->getName(), $status );
+		$this->validateAttributes( $node, $status );
 
 		// Children nodes
 		$status->merge(
 			$this->tagsContentModelValidator->validate(
 				$definition->getContentModel(),
-				$this->nodeNames( $tag->childNodes )
+				$this->nodeNames( $node->childNodes ),
+				$node->nodeName,
+				$node->getLineNo()
 			)
 		);
 	}
 
 	private function validateAttributes(
-		DOMNamedNodeMap $attributes, $elementName, StatusValue $status
+		DOMNode $node, StatusValue $status
 	) {
-		$attributesDef = $this->registry->getAllAttributesForElement( $elementName );
+		$attributesDef = $this->registry->getAllAttributesForElement( $node->nodeName );
 
 		/** @var DOMAttr $attr */
-		foreach ( $attributes as $attr ) {
+		foreach ( $node->attributes as $attr ) {
 			if ( !array_key_exists( $attr->nodeName, $attributesDef ) ) {
-				$status->fatal( 'tei-validation-unknown-attribute', $attr->nodeName, $elementName );
+				$status->fatal(
+					'tei-validation-unknown-attribute',
+					$attr->nodeName, $node->nodeName, $attr->getLineNo()
+				);
 				break;
 			}
 			$def = $attributesDef[$attr->nodeName];
@@ -126,9 +130,13 @@ class Validator {
 
 		// We valid
 		foreach ( $attributesDef as $attrDef ) {
-			if ( $attrDef->isMandatory() && $attributes->getNamedItem( $attrDef->getName() ) === null ) {
+			if (
+				$attrDef->isMandatory() &&
+				$node->attributes->getNamedItem( $attrDef->getName() ) === null
+			) {
 				$status->fatal(
-					'tei-validation-missing-mandatory-attribute', $attrDef->getName(), $elementName
+					'tei-validation-missing-mandatory-attribute',
+					$attrDef->getName(), $node->nodeName, $node->getLineNo()
 				);
 			}
 		}

@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\Tei\Model\ContentModel\Evaluation;
 
 use MediaWiki\Extension\Tei\Model\ContentModel\ContentModel;
+use RequestContext;
 use StatusValue;
 
 /**
@@ -32,9 +33,10 @@ class ContentModelValidator {
 	 *
 	 * @param ContentModel $contentModel
 	 * @param string[] $nodeLabels The label of text nodes should be #text
+	 * @param string ...$errorMessageArgs args to add to the error messages
 	 * @return StatusValue
 	 */
-	public function validate( ContentModel $contentModel, array $nodeLabels ) {
+	public function validate( ContentModel $contentModel, array $nodeLabels, ...$errorMessageArgs ) {
 		$automaton = ThompsonAutomatonBuilder::build( $contentModel, $this->getElementsForGroup );
 
 		$currentStates = $automaton->initialStates();
@@ -44,16 +46,27 @@ class ContentModelValidator {
 			// We have just read a tag that is not known
 			if ( empty( $currentStates ) ) {
 				if ( $nodeLabel === '#text' ) {
-					return StatusValue::newFatal( $this->messagePrefix . 'unexpected-text' );
+					return StatusValue::newFatal(
+						$this->messagePrefix . 'unexpected-text',
+						...$errorMessageArgs
+					);
 				} else {
-					return StatusValue::newFatal( $this->messagePrefix . 'unexpected-node', $nodeLabel );
+					return StatusValue::newFatal(
+						$this->messagePrefix . 'unexpected-node',
+						$nodeLabel, ...$errorMessageArgs
+					);
 				}
 			}
 		}
 
 		// We are not in an accepting state, some data is missing
 		if ( !$this->isInAcceptingState( $currentStates ) ) {
-			return StatusValue::newFatal( $this->messagePrefix . 'too-short' );
+			$expectedTags = $automaton->transitionsLabelsFromStates( $currentStates );
+			return StatusValue::newFatal(
+				$this->messagePrefix . 'too-short',
+				RequestContext::getMain()->getLanguage()->commaList( $expectedTags ),
+				...$errorMessageArgs
+			);
 		}
 
 		return StatusValue::newGood();

@@ -44,7 +44,7 @@ class ContentModelValidatorTest extends TestCase {
 			[
 				new ElementRefContentModel( 'foo' ),
 				[],
-				StatusValue::newFatal( 'too-short' )
+				StatusValue::newFatal( 'too-short', 'foo' )
 			],
 			[
 				new ElementRefContentModel( 'foo' ),
@@ -64,7 +64,7 @@ class ContentModelValidatorTest extends TestCase {
 			[
 				new TextNodeContentModel(),
 				[],
-				StatusValue::newFatal( 'too-short' )
+				StatusValue::newFatal( 'too-short', '#text' )
 			],
 			[
 				new TextNodeContentModel(),
@@ -90,7 +90,7 @@ class ContentModelValidatorTest extends TestCase {
 					new ElementRefContentModel( 'bar' )
 				),
 				[ 'foo' ],
-				StatusValue::newFatal( 'too-short' )
+				StatusValue::newFatal( 'too-short', 'bar' )
 			],
 			[
 				new SequenceContentModel(
@@ -130,7 +130,7 @@ class ContentModelValidatorTest extends TestCase {
 					new ElementRefContentModel( 'bar' )
 				),
 				[],
-				StatusValue::newFatal( 'too-short' )
+				StatusValue::newFatal( 'too-short', 'foo, bar' )
 			],
 			[
 				new AlternateContentModel(
@@ -183,7 +183,7 @@ class ContentModelValidatorTest extends TestCase {
 			[
 				new RepeatableContentModel( new TextNodeContentModel(), 1, null ),
 				[],
-				StatusValue::newFatal( 'too-short' )
+				StatusValue::newFatal( 'too-short', '#text' )
 			],
 			[
 				new RepeatableContentModel( new TextNodeContentModel(), 1, null ),
