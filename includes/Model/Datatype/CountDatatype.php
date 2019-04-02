@@ -2,18 +2,17 @@
 
 namespace MediaWiki\Extension\Tei\Model\Datatype;
 
-use Language;
 use StatusValue;
 
 /**
  * @license GPL-2.0-or-later
  *
- * Datatype of xml:id
+ * The value should be a positive integer
  */
-class LanguageDatatype extends Datatype {
+class CountDatatype extends Datatype {
 
 	public function __construct() {
-		parent::__construct( 'teidata.language' );
+		parent::__construct( 'teidata.count' );
 	}
 
 	/**
@@ -24,11 +23,11 @@ class LanguageDatatype extends Datatype {
 	 * @return StatusValue
 	 */
 	public function validate( $attributeName, $attributeValue ) {
-		if ( Language::isWellFormedLanguageTag( $attributeValue ) ) {
+		if ( (int)$attributeValue && $attributeValue > 0 ) {
 			return StatusValue::newGood();
 		} else {
 			return StatusValue::newFatal(
-				'tei-validation-language-invalid-value',
+				'tei-validation-count-invalid-value',
 				$attributeValue, $attributeName
 			);
 		}

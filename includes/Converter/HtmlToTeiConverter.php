@@ -16,20 +16,66 @@ use MediaWiki\Extension\Tei\Model\TeiRegistry;
  */
 class HtmlToTeiConverter {
 
+	const TAG = 'tag';
+
 	private static $tagsMapping = [
-		'footer' => 'back',
-		'section' => 'body',
+		'abbr' => 'abbr',
+		'article' => 'text',
+		'b' => [
+			self::TAG => 'hi',
+			'rend' => 'bold'
+		],
+		'br' => 'lb',
+		'del' => 'del',
 		'div' => 'div',
+		'footer' => 'back',
 		'header' => 'front',
+		'i' => [
+			self::TAG => 'hi',
+			'rend' => 'italic'
+		],
 		'li' => 'item',
-		'ul' => 'list',
+		'ol' => [
+			self::TAG => 'list',
+			'type' => 'ordered'
+		],
 		'p' => 'p',
-		'article' => 'text'
+		'section' => 'body',
+		'sub' => [
+			self::TAG => 'hi',
+			'rend' => 'sub'
+		],
+		'sup' => [
+			self::TAG => 'hi',
+			'rend' => 'sup'
+		],
+		'small' => [
+			self::TAG => 'hi',
+			'rend' => 'small'
+		],
+		'span' => 'hi',
+		'table' => 'table',
+		'td' => 'cell',
+		'th' => [
+			self::TAG => 'cell',
+			'role' => 'label'
+		],
+		'tr' => 'row',
+		'ul' => [
+			self::TAG => 'list',
+			'type' => 'unordered'
+		],
+		'var' => [
+			self::TAG => 'hi',
+			'rend' => 'var'
+		]
 	];
 
 	private static $attributesMapping = [
 		'lang' => 'xml:lang',
-		'id' => 'xml:id'
+		'id' => 'xml:id',
+		'colspan' => 'cols',
+		'rowspan' => 'rows',
 	];
 
 	/**
@@ -150,7 +196,18 @@ class HtmlToTeiConverter {
 			return $this->teiDocument->createTextNode( $htmlElement->C14N() );
 		}
 
-		$teiElement = $this->createTeiElement( self::$tagsMapping[$htmlElement->localName] );
+		$teiTag = self::$tagsMapping[$htmlElement->localName];
+		if ( is_array( $teiTag ) ) {
+			$teiElement = $this->createTeiElement( $teiTag[self::TAG] );
+			foreach ( $teiTag as $attributeName => $attributeValue ) {
+				if ( $attributeName !== self::TAG ) {
+					$teiElement->setAttribute( $attributeName, $attributeValue );
+				}
+
+			}
+		} else {
+			$teiElement = $this->createTeiElement( $teiTag );
+		}
 		$this->convertAndAddChildrenNode( $htmlElement, $teiElement );
 		$this->convertAndAddGlobalAttributes( $htmlElement, $teiElement );
 		return $teiElement;

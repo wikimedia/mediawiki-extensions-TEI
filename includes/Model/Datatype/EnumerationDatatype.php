@@ -2,21 +2,22 @@
 
 namespace MediaWiki\Extension\Tei\Model\Datatype;
 
+use RequestContext;
 use StatusValue;
 
 /**
  * @license GPL-2.0-or-later
  */
-abstract class EnumerationDatatype extends Datatype {
+class EnumerationDatatype extends Datatype {
 
 	/**
 	 * @var string[]
 	 */
 	private $possibleValues;
 	/**
-	 * @param string[] $possibleValues
+	 * @param string ...$possibleValues
 	 */
-	public function __construct( array $possibleValues ) {
+	public function __construct( ...$possibleValues ) {
 		parent::__construct( 'teidata.enumerated' );
 
 		$this->possibleValues = $possibleValues;
@@ -30,11 +31,13 @@ abstract class EnumerationDatatype extends Datatype {
 	 * @return StatusValue
 	 */
 	public function validate( $attributeName, $attributeValue ) {
-		if ( is_array( $attributeValue, $this->possibleValues ) ) {
+		if ( in_array( $attributeValue, $this->possibleValues ) ) {
 			return StatusValue::newGood();
 		} else {
 			return StatusValue::newFatal(
-				'tei-validation-enumeration-unknown-value', $attributeName, $attributeValue
+				'tei-validation-enumeration-unknown-value',
+				$attributeValue, $attributeName,
+				RequestContext::getMain()->getLanguage()->commaList( $this->possibleValues )
 			);
 		}
 	}

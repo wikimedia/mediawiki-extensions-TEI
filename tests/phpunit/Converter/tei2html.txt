@@ -9,3 +9,66 @@ Unknown tag
 	&lt;x-unknown xmlns="http://www.tei-c.org/ns/1.0"&gt;&lt;/x-unknown&gt;
 </article>
 !!end
+
+!! test
+No namespace
+!! wikitext
+<text>
+	<body>
+		<p>Foo</p>
+	</body>
+</text>
+!! html/php
+<article>
+	<section>
+		<p>Foo</p>
+	</section>
+</article>
+!!end
+
+!! test
+List no type
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0">
+	<body>
+		<list>
+			<item>Foo</item>
+		</list>
+	</body>
+</text>
+!! html/php
+<article>
+	<section>
+		<ul>
+			<li>Foo</li>
+		</ul>
+	</section>
+</article>
+!!end
+
+!! test
+Table role data
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0">
+	<body>
+		<table>
+			<row>
+				<cell role="data">Foo</cell>
+				<cell>Bar</cell>
+			</row>
+		</table>
+	</body>
+</text>
+!! html/php
+<article>
+	<section>
+		<table>
+			<tr>
+				<td>Foo</td>
+				<td>Bar</td>
+			</tr>
+		</table>
+	</section>
+</article>
+!!end
+

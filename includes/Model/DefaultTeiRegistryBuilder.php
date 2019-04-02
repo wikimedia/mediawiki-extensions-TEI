@@ -5,9 +5,12 @@ namespace MediaWiki\Extension\Tei\Model;
 use MediaWiki\Extension\Tei\Model\ContentModel\AlternateContentModel;
 use MediaWiki\Extension\Tei\Model\ContentModel\ClassRefContentModel;
 use MediaWiki\Extension\Tei\Model\ContentModel\ElementRefContentModel;
+use MediaWiki\Extension\Tei\Model\ContentModel\EmptyContentModel;
 use MediaWiki\Extension\Tei\Model\ContentModel\RepeatableContentModel;
 use MediaWiki\Extension\Tei\Model\ContentModel\SequenceContentModel;
 use MediaWiki\Extension\Tei\Model\ContentModel\TextNodeContentModel;
+use MediaWiki\Extension\Tei\Model\Datatype\CountDatatype;
+use MediaWiki\Extension\Tei\Model\Datatype\EnumerationDatatype;
 use MediaWiki\Extension\Tei\Model\Datatype\IDDatatype;
 use MediaWiki\Extension\Tei\Model\Datatype\LanguageDatatype;
 
@@ -41,14 +44,24 @@ class DefaultTeiRegistryBuilder {
 			new AttributeDef( 'xml:id', new IDDatatype() ),
 			new AttributeDef( 'xml:lang', new LanguageDatatype() )
 		] );
+		$registry->registerClass( 'att.breaking', [] );
 		$registry->registerClass( 'att.declaring', [] );
+		$registry->registerClass( 'att.ranging', [] );
+		$registry->registerClass( 'att.dimensions', [ 'att.ranging' ] );
+		$registry->registerClass( 'att.edition', [] );
 		$registry->registerClass( 'att.fragmentable', [] );
 		$registry->registerClass( 'att.sortable', [] );
+		$registry->registerClass( 'att.spanning', [] );
+		$registry->registerClass( 'att.tableDecoration', [] );
+		$registry->registerClass( 'att.transcriptional', [] );
 		$registry->registerClass( 'att.typed', [] );
 		$registry->registerClass( 'att.written', [] );
 		$registry->registerClass( 'att.divLike', [ 'att.fragmentable' ] );
 
 		$registry->registerClass( 'model.common', [] );
+		$registry->registerClass( 'model.choicePart', [] );
+		$registry->registerClass( 'model.phrase', [] );
+		$registry->registerClass( 'model.limitedPhrase', [] );
 		$registry->registerClass( 'model.frontPart', [] );
 		$registry->registerClass( 'model.divBottom', [] );
 		$registry->registerClass( 'model.divBottomPart', [ 'model.divBottom' ] );
@@ -59,12 +72,21 @@ class DefaultTeiRegistryBuilder {
 		$registry->registerClass( 'model.divTop', [] );
 		$registry->registerClass( 'model.global', [] );
 		$registry->registerClass( 'model.gLike', [] );
+		$registry->registerClass( 'model.highlighted', [ 'model.phrase' ] );
+		$registry->registerClass( 'model.hiLike', [ 'model.highlighted', 'model.limitedPhrase' ] );
 		$registry->registerClass( 'model.inter', [ 'model.common' ] );
 		$registry->registerClass( 'model.listLike', [ 'model.inter' ] );
 		$registry->registerClass( 'model.lLike', [ 'model.divPart' ] );
-		$registry->registerClass( 'model.phrase', [] );
+		$registry->registerClass( 'model.milestoneLike', [ 'model.global' ] );
 		$registry->registerClass( 'model.pLike', [ 'model.divPart' ] );
 		$registry->registerClass( 'model.pLike.front', [] );
+		$registry->registerClass( 'model.pPart.edit', [ 'model.phrase' ] );
+		$registry->registerClass(
+			'model.pPart.editorial',
+			[ 'model.pPart.edit', 'model.limitedPhrase' ]
+		);
+		$registry->registerClass( 'model.pPart.transcriptional', [ 'model.pPart.edit' ] );
+		$registry->registerClass( 'model.qLike', [ 'model.inter' ] );
 		$registry->registerClass( 'model.resourceLike', [] );
 
 		// macro.paraContent
@@ -88,10 +110,24 @@ class DefaultTeiRegistryBuilder {
 			new ClassRefContentModel( 'model.global' )
 		), 0, null );
 
+		$macroPhraseSeq = new RepeatableContentModel( new AlternateContentModel(
+			new TextNodeContentModel(),
+			new ClassRefContentModel( 'model.gLike' ),
+			new ClassRefContentModel( 'model.qLike' ),
+			new ClassRefContentModel( 'model.phrase' ),
+			new ClassRefContentModel( 'model.global' )
+		), 0, null );
+
 		// <classRef key="model.global" minOccurs="0" maxOccurs="unbounded"/>
 		$anyTimeModelGlobal = new RepeatableContentModel(
 			new ClassRefContentModel( 'model.global' ),
 			0, null
+		);
+
+		$registry->registerElement(
+			'abbr',
+			[ 'att.global', 'model.pPart.editorial', 'model.choicePart', 'att.typed' ],
+			$macroPhraseSeq
 		);
 
 		$registry->registerElement(
@@ -198,6 +234,29 @@ class DefaultTeiRegistryBuilder {
 		);
 
 		$registry->registerElement(
+			'cell',
+			[ 'att.global', 'att.tableDecoration' ],
+			$macroSpecialPara,
+			[
+				new AttributeDef( 'role', new EnumerationDatatype( 'data', 'label' ) ),
+				new AttributeDef( 'cols', new CountDatatype() ),
+				new AttributeDef( 'rows', new CountDatatype() )
+			]
+		);
+
+		$registry->registerElement(
+			'del',
+			[
+				'att.global',
+				'model.pPart.transcriptional',
+				'att.transcriptional',
+				'att.typed',
+				'att.dimensions'
+			],
+			$macroParaContent
+		);
+
+		$registry->registerElement(
 			'div',
 			[ 'att.global', 'att.divLike', 'att.typed', 'att.declaring', 'att.written', 'model.divLike' ],
 			new SequenceContentModel(
@@ -277,22 +336,65 @@ class DefaultTeiRegistryBuilder {
 		);
 
 		$registry->registerElement(
+			'hi',
+			[ 'att.global', 'model.hiLike', 'att.written' ],
+			$macroParaContent,
+			[
+				new AttributeDef( 'rend', new EnumerationDatatype(
+					'bold', 'italic', 'small', 'sub', 'sup', 'var'
+				) )
+			]
+		);
+
+		$registry->registerElement(
 			'item',
 			[ 'att.global', 'att.sortable' ],
 			$macroSpecialPara
 		);
 
 		$registry->registerElement(
+			'lb',
+			[
+				'att.global',
+				'model.milestoneLike',
+				'att.typed',
+				'att.edition',
+				'att.spanning',
+				'att.breaking'
+			],
+			new EmptyContentModel()
+		);
+
+		$registry->registerElement(
 			'list',
 			[ 'att.global', 'att.sortable', 'att.typed', 'model.listLike' ],
 			// TODO: limited: HTML <ul> only supports the child <li>
-			new RepeatableContentModel( new ElementRefContentModel( 'item' ), 1, null )
+			new RepeatableContentModel( new ElementRefContentModel( 'item' ), 1, null ),
+			[
+				new AttributeDef( 'type', new EnumerationDatatype( 'ordered', 'unordered' ) )
+			]
 		);
 
 		$registry->registerElement(
 			'p',
 			[ 'att.global', 'model.pLike', 'att.declaring', 'att.fragmentable', 'att.written' ],
 			$macroParaContent
+		);
+
+		$registry->registerElement(
+			'row',
+			[ 'att.global', 'att.tableDecoration' ],
+			new RepeatableContentModel( new ElementRefContentModel( 'cell' ), 1, null )
+		);
+
+		$registry->registerElement(
+			'table',
+			[ 'att.global', 'model.listLike', 'att.typed' ],
+			// TODO: limited: HTML <table> only supports one <caption> and then <tr>s
+			new SequenceContentModel(
+				// TODO <caption>
+				new RepeatableContentModel( new ElementRefContentModel( 'row' ), 1, null )
+			)
 		);
 
 		$registry->registerElement(

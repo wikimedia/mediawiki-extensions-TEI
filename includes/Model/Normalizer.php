@@ -22,7 +22,7 @@ class Normalizer {
 	private function addXmlnsNamespace( DOMDocument $document ) {
 		$namespace = $document->documentElement->namespaceURI;
 		if ( $namespace !== null ) {
-			return $document;
+			return;
 		}
 
 		$document->documentElement->setAttribute( 'xmlns', TeiRegistry::TEI_NAMESPACE );
