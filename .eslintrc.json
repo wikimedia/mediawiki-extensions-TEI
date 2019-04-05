@@ -7,7 +7,8 @@
 	"globals": {
 		"OO": false,
 		"mw": false,
-		"ve": false
+		"ve": false,
+		"CodeMirror": false
 	},
 	"rules": {
 		"max-len": "off",

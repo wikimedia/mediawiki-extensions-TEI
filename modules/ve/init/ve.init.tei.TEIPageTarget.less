@@ -1,0 +1,67 @@
+/**
+ * Code From CodeMirror ve.ui.CodeMirror.init.less
+ */
+.ve-init-teiDesktopPageTarget {
+	.ve-ui-teiSourceSurface .ve-ce-documentNode {
+		padding: 0 1.8em;
+	}
+
+	.CodeMirror {
+		height: auto;
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		pointer-events: none;
+		background: transparent;
+
+		padding: 0 1.8em;
+	}
+
+	.CodeMirror pre,
+	.CodeMirror-lines {
+		padding: 0;
+	}
+
+	.CodeMirror-scroll {
+		margin-right: 0;
+		overflow: auto !important; /* stylelint-disable-line declaration-no-important */
+	}
+
+	.CodeMirror-sizer {
+		border-right: 0;
+	}
+
+	// Ensure surfaces are using identical font rules
+	.CodeMirror-code,
+	.CodeMirror-code *,
+	.ve-ui-teiSourceSurface .ve-ce-paragraphNode {
+		// The following are already set by mw-editfont-monospace on the parent: font-size, font-family
+		line-height: 1.5em;
+		word-wrap: break-word;
+		white-space: pre-wrap;
+		word-break: normal;
+		-webkit-hyphens: manual;
+		-moz-hyphens: manual;
+		-ms-hyphens: manual;
+		hyphens: manual;
+		-webkit-font-variant-ligatures: contextual;
+		font-variant-ligatures: contextual;
+
+		// Monospace fonts can change width when bold
+		// stylelint-disable-next-line declaration-no-important
+		font-weight: normal !important;
+	}
+}
+
+.ve-ce-documentNode-codeEditor-hide {
+	opacity: 0.4;
+}
+
+.ve-ce-documentNode-codeEditor-webkit-hide {
+	-webkit-text-fill-color: transparent;
+}

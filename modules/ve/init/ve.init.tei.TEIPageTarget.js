@@ -28,7 +28,7 @@ ve.init.tei.TEIPageTarget = function VeInitSaTarget( config ) {
 	ve.init.tei.TEIPageTarget.super.call( this, config );
 
 	this.$element
-		.addClass( 've-init-tei-target' )
+		.addClass( 've-init-teiDesktopPageTarget' )
 		.attr( 'lang', ve.init.platform.getUserLanguages()[ 0 ] );
 };
 
@@ -111,7 +111,7 @@ ve.init.tei.TEIPageTarget.static.actionGroups = [
 		icon: 'menu',
 		indicator: null,
 		title: ve.msg( 'visualeditor-pagemenu-tooltip' ),
-		include: [ 'findAndReplace', 'commandHelp' ]
+		include: [ 'codeMirror', 'findAndReplace', 'commandHelp' ]
 	},
 	{
 		name: 'editMode',

@@ -48,19 +48,25 @@
 				"ve/dm/ve.dm.tei.TEISourceSurfaceFragment.js",
 				"ve/ui/ve.ui.tei.js",
 				"ve/ui/ve.ui.tei.TEISourceSurface.js",
+				"ve/ui/ve.ui.CodeMirrorAction.js",
+				"ve/ui/ve.ui.CodeMirrorTool.js",
 				"ve/init/ve.init.tei.TEIPageTarget.js",
 				"ve/init/ve.init.tei.TEIPageEditDialog.js",
 				"../../VisualEditor/modules/ve-mw/ui/tools/ve.ui.MWEditModeTool.js"
+			],
+			"styles": [
+				"ve/init/ve.init.tei.TEIPageTarget.less"
 			],
 			"dependencies": [
 				"ext.visualEditor.mediawiki",
 				"ext.visualEditor.core.desktop",
 				"ext.visualEditor.switching",
-				"ext.visualEditor.icons"
+				"ext.visualEditor.icons",
+				"ext.CodeMirror.lib",
+				"ext.CodeMirror.lib.mode.xml"
 			],
 			"messages": [
-				"create",
-				"edit"
+				"codemirror-toggle-label"
 			]
 		}
 	},

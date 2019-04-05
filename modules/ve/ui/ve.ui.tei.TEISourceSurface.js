@@ -14,6 +14,10 @@
  */
 ve.ui.tei.TEISourceSurface = function VeUiTEISourceSurface() {
 	ve.ui.tei.TEISourceSurface.super.apply( this, arguments );
+
+	this.$element.addClass( 've-ui-teiSourceSurface' );
+	this.getView().$element.addClass( 'mw-editfont-' + mw.user.options.get( 'editfont' ) );
+	this.$placeholder.addClass( 'mw-editfont-' + mw.user.options.get( 'editfont' ) );
 };
 
 /* Inheritance */
