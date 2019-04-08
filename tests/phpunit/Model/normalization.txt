@@ -1,0 +1,36 @@
+!! test
+Missing xmlns
+!! wikitext
+<text>
+	<body>
+		<p>foo</p>
+	</body>
+</text>
+!! html/php
+<text xmlns="http://www.tei-c.org/ns/1.0">
+	<body>
+		<p>foo</p>
+	</body>
+</text>
+!!end
+
+!! test
+<body> root
+!! wikitext
+<body>
+	<p>foo</p>
+</body>
+!! html/php
+<text xmlns="http://www.tei-c.org/ns/1.0"><body>
+	<p>foo</p>
+</body></text>
+!!end
+
+!! test
+<p> root
+!! wikitext
+<p>foo</p>
+!! html/php
+<text xmlns="http://www.tei-c.org/ns/1.0"><body><p>foo</p></body></text>
+!!end
+

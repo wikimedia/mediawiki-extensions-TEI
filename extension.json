@@ -23,12 +23,53 @@
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\Tei\\": "includes/"
 	},
-	"ResourceModules": {},
+	"ResourceModules": {
+		"ext.tei.ve.pageTarget.init": {
+			"scripts": [
+				"ve/init/ve.init.tei.TEIPageTarget.init.js"
+			],
+			"styles": [
+				"ve/init/ve.init.tei.TEIPageTarget.init.css"
+			],
+			"dependencies": [
+				"oojs-ui"
+			],
+			"messages": [
+				"create",
+				"edit"
+			]
+		},
+		"ext.tei.ve.pageTarget": {
+			"scripts": [
+				"ve/init/ve.init.tei.js",
+				"ve/init/ve.init.tei.TEIContentConverter.js",
+				"ve/dm/ve.dm.tei.js",
+				"ve/dm/ve.dm.tei.TEISourceSurface.js",
+				"ve/dm/ve.dm.tei.TEISourceSurfaceFragment.js",
+				"ve/ui/ve.ui.tei.js",
+				"ve/ui/ve.ui.tei.TEISourceSurface.js",
+				"ve/init/ve.init.tei.TEIPageTarget.js",
+				"ve/init/ve.init.tei.TEIPageEditDialog.js",
+				"../../VisualEditor/modules/ve-mw/ui/tools/ve.ui.MWEditModeTool.js"
+			],
+			"dependencies": [
+				"ext.visualEditor.mediawiki",
+				"ext.visualEditor.core.desktop",
+				"ext.visualEditor.switching",
+				"ext.visualEditor.icons"
+			],
+			"messages": [
+				"create",
+				"edit"
+			]
+		}
+	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "modules",
 		"remoteExtPath": "TEI/modules"
 	},
 	"Hooks": {
+		"BeforePageDisplay": "MediaWiki\\Extension\\Tei\\HooksHandler::onBeforePageDisplay",
 		"CodeEditorGetPageLanguage": "MediaWiki\\Extension\\Tei\\HooksHandler::onCodeEditorGetPageLanguage"
 	},
 	"callback": "MediaWiki\\Extension\\Tei\\HooksHandler::onRegister",

@@ -1,0 +1,23 @@
+/* stylelint-disable selector-max-id */
+
+.ve-tei-loading #content {
+	position: relative;
+}
+
+.ve-init-mw-teiPageTarget-loading-overlay {
+	position: absolute;
+	top: 1.25em;
+	left: 20%;
+	right: 20%;
+	z-index: 1;
+	margin-top: -0.5em;
+}
+
+.ve-tei-loading #content > :not( .ve-init-mw-teiPageTarget-loading-overlay ) {
+	pointer-events: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	opacity: 0.5;
+}

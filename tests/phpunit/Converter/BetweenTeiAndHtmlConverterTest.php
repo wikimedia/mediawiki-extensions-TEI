@@ -5,12 +5,15 @@ namespace MediaWiki\Extension\Tei\Converter;
 use MediaWiki\Extension\Tei\DOMDocumentFactory;
 use PHPUnit\Framework\TestCase;
 use TestFileReader;
-use Title;
 
 /**
  * @group TEI
  * @covers \MediaWiki\Extension\Tei\Converter\TeiToHtmlConverter
  * @covers \MediaWiki\Extension\Tei\Converter\HtmlToTeiConverter
+ * @covers \MediaWiki\Extension\Tei\Converter\TagMapper
+ * @covers \MediaWiki\Extension\Tei\Converter\TagsMappingSerializer
+ * @covers \MediaWiki\Extension\Tei\Converter\TeiToHtmlTagMapper
+ * @covers \MediaWiki\Extension\Tei\Converter\HtmlToTeiTagMapper
  */
 class BetweenTeiAndHtmlConverterTest extends TestCase {
 
@@ -43,25 +46,14 @@ class BetweenTeiAndHtmlConverterTest extends TestCase {
 		}
 	}
 
-	private function assertTeiToHtmlConversionTest( $testDesc, $tei, $html ) {
-		$this->assertEquals(
-			$html,
-			$this->teiToHtmlConverter->convertToHtmlBodyContent(
-				$this->domDocumentFactory->buildFromXMLString( $tei )->getValue(),
-				Title::makeTitle( NS_MAIN, 'Test' )
-			),
-			$testDesc
-		);
+	private function assertTeiToHtmlConversionTest( $testDesc, $tei, $expectedHtml ) {
+		$actualHtml = $this->teiToHtmlConverter->convert( $tei );
+		$this->assertEquals( $expectedHtml, $actualHtml, $testDesc );
 	}
 
-	private function assertHtmlToTeiConversionTest( $testDesc, $tei, $html ) {
-		$this->assertEquals(
-			$tei,
-			$this->htmlToTeiConverter->convertToTei(
-				$this->domDocumentFactory->buildFromXMLString( $html )->getValue()
-			),
-			$testDesc
-		);
+	private function assertHtmlToTeiConversionTest( $testDesc, $expectedTei, $html ) {
+		$actualTei = $this->htmlToTeiConverter->convert( $html );
+		$this->assertEquals( $expectedTei, $actualTei, $testDesc );
 	}
 
 	public function roundtripTestProvider() {

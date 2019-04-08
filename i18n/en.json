@@ -24,6 +24,6 @@
 	"apihelp-teiconvert-param-from": "Content format of <var>$1text</var>.",
 	"apihelp-teiconvert-param-to": "Content format to convert to.",
 	"apihelp-teiconvert-param-slot": "If <var>$1text</var> is not set, which slot to return data for.",
-	"apihelp-teiconvert-param-full": "If set, returns a full content, e.g. HTML with a head tag or TEI with a TEI header",
+	"apihelp-teiconvert-param-normalize": "If set, normalizes TEI content",
 	"apihelp-teiconvert-example-from-title-to-html": "Converts to HTML the content of [[TEI]]"
 }
