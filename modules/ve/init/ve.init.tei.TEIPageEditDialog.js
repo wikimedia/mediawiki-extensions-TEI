@@ -22,7 +22,10 @@ ve.init.tei.TeiPageEditDialog = function ( target, config ) {
 OO.inheritClass( ve.init.tei.TeiPageEditDialog, OO.ui.ProcessDialog );
 
 ve.init.tei.TeiPageEditDialog.static.name = 've-tei-editor';
-ve.init.tei.TeiPageEditDialog.static.title = 'Process dialog';
+ve.init.tei.TeiPageEditDialog.static.title = function () {
+	var message = mw.config.get( 'wgArticleId' ) === 0 ? 'creating' : 'editing';
+	return ve.msg( message, mw.config.get( 'wgPageName' ) );
+};
 ve.init.tei.TeiPageEditDialog.static.actions = [
 	{
 		action: 'save',
@@ -61,12 +64,10 @@ ve.init.tei.TeiPageEditDialog.prototype.getSetupProcess = function ( data ) {
 // Use the getActionProcess() method to specify a process to handle the
 // actions (for the 'save' action, in this example).
 ve.init.tei.TeiPageEditDialog.prototype.getActionProcess = function ( action ) {
-	var self = this;
 	if ( action === 'save' ) {
 		return new OO.ui.Process( this.target.saveSurface().then( function () {
-			self.close( {
-				action: action
-			} );
+			document.location.reload();
+			// TODO: avoid a page reload
 		} ) );
 	}
 	return ve.init.tei.TeiPageEditDialog.super.prototype.getActionProcess.call( this, action );
