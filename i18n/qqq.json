@@ -1,5 +1,5 @@
 {
-	"@metadata": {},
+	"@metadata": [],
 	"tei-desc": "{{desc|name=TEI}}",
 	"content-model-tei": "The name for the TEI content model, used when describing what type of content a page contains.",
 	"tei-libxml-empty-document": "Error message raised when XML document or page is empty.",

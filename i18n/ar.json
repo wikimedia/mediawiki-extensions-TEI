@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"ديفيد"
+		]
+	},
+	"tei-desc": "تعريف نموذج محتوى TEI",
+	"tei-libxml-empty-document": "مستند XML فارغ.",
+	"tei-libxml-error-message": "$1 على الخط $2.",
+	"tei-validation-element-content-unexpected-node": "<code>$1</code> غير مسموح به باعتباره ابن <code lang=\"ar\">$2</code> على السطر $3.",
+	"tei-validation-element-content-unexpected-text": "<code>$1</code> يجب ألا يحتوي على نص على السطر <$2.",
+	"tei-validation-element-content-too-short": "هناك وسم مثل $1 مفقود باعتباره ابن <code>$2</code> على الخط $3.",
+	"tei-validation-no-root": "محتوى TEI XML لا يحتوي على وسم جذر.",
+	"tei-validation-unexpected-root": "يجب أن يكون وسم جذر محتوى <code>text</code> أو <code>body</code>، وجد <code>$1</code>.",
+	"tei-validation-wrong-namespace": "يجب أن يكون نطاق TEI XML <code>http://www.tei-c.org/ns/1.0</code>، وجد <code>$1</code> على السطر $2.",
+	"tei-validation-unknown-tag": "<code>$1</code> ليس وسم TEI معتمدا على السطر $2.",
+	"tei-validation-unknown-attribute": "<code>$1</code> ليست سمة معتمدة للوسم <code>$2</code> على السطر $3.",
+	"tei-validation-missing-mandatory-attribute": "سمة الوسم <code>$1</code> <code>$2</code> مفقودة في السطر $3.",
+	"tei-validation-count-invalid-value": "يجب أن تكون قيمة <code>$2</code> عددا صحيحا موجبا، موجود <code>$1</code>.",
+	"tei-validation-enumeration-unknown-value": "<code>$1</code> ليست قيمة معتمدة ل<code>$2</code>، القيم المحتملة هي: $3.",
+	"tei-validation-language-invalid-value": "يجب أن تكون قيمة <code>$2</code> وسم لغة صالحا، وقد تم العثور على  <code>$1</code> found.",
+	"apihelp-teiconvert-summary": "وحدة API لتحويل المحتوى بين TEI وHTML",
+	"apihelp-teiconvert-param-title": "إذا لم يتم تعيين <var>$1text</var> ، فسيكون محتوى هذه الصفحة، إذا تم تعيين <var>$1text</var>، فاستخدمه كعنوان للصفحة أثناء التحويل، إذا لم يتم تعيينه، فسيتم استخدام [[API]] كعنوان.",
+	"apihelp-teiconvert-param-pageid": "تحويل محتوى هذه الصفحة.",
+	"apihelp-teiconvert-param-revid": "تحويل محتوى هذه المراجعة.",
+	"apihelp-teiconvert-param-text": "النص لتحليلهـ استخدم <var>$1from</var> للتحكم في تنسيق المحتوى.",
+	"apihelp-teiconvert-param-from": "تنسيق محتوى <var>$1text</var>.",
+	"apihelp-teiconvert-param-to": "تنسيق المحتوى للتحويل إليه.",
+	"apihelp-teiconvert-param-slot": "إذا لم يتم تعيين <var>$1text</var>، فما الفتحة لإرجاع البيانات إليها.",
+	"apihelp-teiconvert-param-normalize": "في حالة التعيين، يقوم بتطبيع محتوى TEI",
+	"apihelp-teiconvert-example-from-title-to-html": "يحول إلى HTML محتوى [[TEI]]"
+}

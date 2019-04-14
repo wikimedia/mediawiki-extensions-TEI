@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eduardo Addad de Oliveira",
+			"Metalhead64"
+		]
+	},
+	"tei-desc": "Definition des TEI-Inhaltsmodells",
+	"tei-libxml-empty-document": "Das XML-Dokument ist leer.",
+	"tei-libxml-error-message": "$1 in Zeile $2.",
+	"tei-validation-element-content-unexpected-node": "<code>$1</code> ist als Kind von <code lang=\"de\">$2</code> in Zeile $3 nicht erlaubt.",
+	"tei-validation-element-content-unexpected-text": "<code>$1</code> sollte in Zeile $2 keinen Text enthalten.",
+	"tei-validation-element-content-too-short": "Ein Tag wie $1 fehlt als Kind von <code>$2</code> in Zeile $3.",
+	"tei-validation-no-root": "Der TEI-XML-Inhalt hat kein Stammtag.",
+	"tei-validation-unexpected-root": "Das TEI-XML-Inhalts-Stammtag sollte <code>text</code> oder <code>body</code> sein, es wurde <code>$1</code> gefunden.",
+	"tei-validation-wrong-namespace": "Der TEI-XML-Namensraum sollte <code>http://www.tei-c.org/ns/1.0</code> sein, es wurde <code>$1</code> in Zeile $2 gefunden.",
+	"tei-validation-unknown-tag": "<code>$1</code> ist in Zeile $2 kein unterstütztes TEI-Tag.",
+	"tei-validation-unknown-attribute": "<code>$1</code> ist kein unterstütztes Attribut des Tags <code>$2</code> in Zeile $3.",
+	"tei-validation-missing-mandatory-attribute": "Das Attribut <code>$1</code> des Tags <code>$2</code> fehlt in Zeile $3.",
+	"tei-validation-count-invalid-value": "Der Wert von <code>$2</code> sollte eine positive Ganzzahl sein, es wurde <code>$1</code> gefunden.",
+	"tei-validation-enumeration-unknown-value": "<code>$1</code> ist kein unterstützter Wert des <code>$2</code>. Die möglichen Werte sind: $3.",
+	"tei-validation-language-invalid-value": "Der Wert von <code>$2</code> sollte ein gültiges Sprachtag sein, es wurde <code>$1</code> gefunden."
+}

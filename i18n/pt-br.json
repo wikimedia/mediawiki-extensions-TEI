@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eduardo Addad de Oliveira"
+		]
+	},
+	"tei-desc": "Definição do modelo de conteúdo TEI",
+	"tei-libxml-empty-document": "O documento XML está vazio.",
+	"tei-libxml-error-message": "$1 na linha $2.",
+	"tei-validation-element-content-unexpected-node": "<code>$1</code> não é permitido como grupo de <code lang = \"pt-br\">$2</code> na linha $3.",
+	"tei-validation-element-content-unexpected-text": "<code>$1</code> não deve conter texto na linha $2.",
+	"tei-validation-element-content-too-short": "Uma etiqueta como $1 está faltando como grupo de <code>$2</code> na linha $3.",
+	"tei-validation-no-root": "O conteúdo XML do TEI não possui uma tag raiz.",
+	"tei-validation-unexpected-root": "A etiqueta de raiz de conteúdo TEI XML deve ser <code>texto</code> ou <code>corpo</code>, encontrado <code>$1</code>.",
+	"tei-validation-wrong-namespace": "O espaço nominal TEI XML deve ser <code>http://www.tei-c.org/ns/1.0</code>, encontrado <code>$1</code> na linha $2.",
+	"tei-validation-unknown-tag": "<code>$1</code> não é uma etiqueta TEI suportada na linha $2.",
+	"tei-validation-unknown-attribute": "<code>$1</code> não é um atributo suportado da etiqueta <code>$2</code> na linha $3.",
+	"tei-validation-missing-mandatory-attribute": "<code>$1</code> atributo da etiqueta <code>$2</code> está faltando na linha $3.",
+	"tei-validation-count-invalid-value": "O valor de <code>$2</code> deve ser um inteiro positivo, <code>$1</code> encontrado.",
+	"tei-validation-enumeration-unknown-value": "<code>$1</code> não é um valor suportado do <code>$2</code>. Os valores possíveis são: $3.",
+	"tei-validation-language-invalid-value": "O valor de <code>$2</code> deve ser uma etiqueta de idioma válida, <code>$1</code> encontrado.",
+	"apihelp-teiconvert-summary": "Módulo API para converter conteúdo entre TEI e HTML",
+	"apihelp-teiconvert-param-title": "Se <var>$1text</var> não está definido, o conteúdo desta página. E se <var>$1text</var> está definido, use-o como o título da página durante a conversão. Se não estiver definido, [[API]] será usado como título.",
+	"apihelp-teiconvert-param-pageid": "Converta o conteúdo desta página.",
+	"apihelp-teiconvert-param-revid": "Converta o conteúdo desta revisão.",
+	"apihelp-teiconvert-param-text": "Texto para analisar. Usar <var>$1from</var> para controlar o formato do conteúdo.",
+	"apihelp-teiconvert-param-from": "Formato de conteúdo de <var>$1text</var>.",
+	"apihelp-teiconvert-param-to": "Formato de conteúdo para converter para.",
+	"apihelp-teiconvert-param-slot": "Se <var>$1text</var> não está definido, para qual slot retornar dados.",
+	"apihelp-teiconvert-param-normalize": "Se definido, normaliza o conteúdo do TEI",
+	"apihelp-teiconvert-example-from-title-to-html": "Converte para HTML o conteúdo de [[TEI]]"
+}

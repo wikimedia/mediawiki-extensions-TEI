@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby"
+		]
+	},
+	"tei-libxml-empty-document": "D'XML-Dokument ass eidel.",
+	"apihelp-teiconvert-param-pageid": "Den Inhalt vun dëser Säit ëmwandelen",
+	"apihelp-teiconvert-param-revid": "Den Inhalt vun dëser Versioun ëmwandelen",
+	"apihelp-teiconvert-example-from-title-to-html": "Wandelt den Inhalt vun [[TEI]] an HTML ëm"
+}
