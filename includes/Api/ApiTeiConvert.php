@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\Tei\Api;
 use ApiBase;
 use ApiMain;
 use ApiUsageException;
+use ContentHandler;
 use DOMDocument;
 use MediaWiki\Extension\Tei\Converter\HtmlToTeiConverter;
 use MediaWiki\Extension\Tei\Converter\TeiToHtmlConverter;
@@ -105,39 +106,7 @@ class ApiTeiConvert extends ApiBase {
 				$title = Title::makeTitle( NS_MAIN, 'API' );
 			}
 		} else {
-			$this->requireAtLeastOneParameter( $params, 'title', 'pageid', 'revid' );
-
-			$revId = isset( $params['revid'] ) ? $params['revid'] : 0;
-			if ( isset( $params['title'] ) ) {
-				$title = $this->parseTitle( $params['title'] );
-				$revision = $this->revisionLookup->getRevisionByTitle( $title, $revId );
-				if ( $revision === null ) {
-					$this->dieWithError( [
-						'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() )
-					], 'missingrev' );
-				}
-			} elseif ( isset( $params['pageid'] ) ) {
-				$revision = $this->revisionLookup->getRevisionByPageId( $params['pageid'], $revId );
-				if ( $revision === null ) {
-					$this->dieWithError( [ 'apierror-missingrev-pageid', $params['pageid'] ], 'missingrev' );
-				}
-				$title = Title::newFromID( $revision->getPageId() );
-			} else {
-				$revision = $this->revisionLookup->getRevisionById( $revId );
-				if ( $revision === null ) {
-					$this->dieWithError( [ 'apierror-missingcontent-revid', $revId ] );
-				}
-				$title = Title::newFromID( $revision->getPageId() );
-			}
-
-			$content = $revision->getContent(
-				$params['slot'],
-				RevisionRecord::FOR_THIS_USER,
-				$this->getUser()
-			);
-			if ( $content === null ) {
-				$this->dieWithError( [ 'apierror-missingcontent-revid', $revision->getId() ] );
-			}
+			list( $title, $content ) = $this->getTitleAndContent( $params );
 
 			if ( $from === null ) {
 				$from = $content->getDefaultFormat();
@@ -160,7 +129,7 @@ class ApiTeiConvert extends ApiBase {
 		] );
 	}
 
-	private function getOptionalTitleFromTitleOrPageId( $params ) {
+	private function getOptionalTitleFromTitleOrPageId( array $params ) {
 		$this->requireMaxOneParameter( $params, 'title', 'pageid' );
 
 		if ( isset( $params['title'] ) ) {
@@ -177,6 +146,54 @@ class ApiTeiConvert extends ApiBase {
 			return $title;
 		}
 		return null;
+	}
+
+	private function getTitleAndContent( array $params ) {
+		if ( isset( $params['title'] ) ) {
+			$title = $this->parseTitle( $params['title'] );
+
+			if ( isset( $params['revid'] ) ) {
+				if ( $params['revid'] === 0 ) {
+					// Default content
+					return [ $title, ContentHandler::getForTitle( $title )->makeEmptyContent() ];
+				} else {
+					$revision = $this->revisionLookup->getRevisionByTitle( $title, $params['revid'] );
+				}
+			} else {
+				$revision = $this->revisionLookup->getRevisionByTitle( $title );
+			}
+			if ( $revision === null ) {
+				$this->dieWithError( [
+					'apierror-missingrev-title', wfEscapeWikiText( $title->getPrefixedText() )
+				], 'missingrev' );
+			}
+		} elseif ( isset( $params['pageid'] ) ) {
+			$revId = isset( $params['revid'] ) ? $params['revid'] : 0;
+			$revision = $this->revisionLookup->getRevisionByPageId( $params['pageid'], $revId );
+			if ( $revision === null ) {
+				$this->dieWithError( [ 'apierror-missingrev-pageid', $params['pageid'] ], 'missingrev' );
+			}
+			$title = Title::newFromID( $revision->getPageId() );
+		} elseif ( isset( $params['revid'] ) ) {
+			$revision = $this->revisionLookup->getRevisionById( $params['revid'] );
+			if ( $revision === null ) {
+				$this->dieWithError( [ 'apierror-missingcontent-revid', $params['revid'] ] );
+			}
+			$title = Title::newFromID( $revision->getPageId() );
+		} else {
+			$this->requireAtLeastOneParameter( $params, 'title', 'pageid', 'revid' );
+		}
+
+		$content = $revision->getContent(
+			$params['slot'],
+			RevisionRecord::FOR_THIS_USER,
+			$this->getUser()
+		);
+		if ( $content === null ) {
+			$this->dieWithError( [ 'apierror-missingcontent-revid', $revision->getId() ] );
+		}
+
+		return [ $title, $content ];
 	}
 
 	private function convert( $text, Title $title, $from, $to, $normalize ) {

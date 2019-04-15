@@ -1,7 +1,8 @@
 $( function () {
-	var $editSource = $( '#ca-edit' ),
-		$editSourceLink = $( '#ca-edit a' ),
-		$editLink = $( '<a>' ).text( mw.message( 'edit' ).plain() ),
+	var editMessage = mw.config.get( 'wgArticleId' ) > 0 ? 'edit' : 'create',
+		$editSource = $( '#ca-edit' ),
+		$editSourceLink = $( '#ca-edit a' ).text( mw.message( 'visualeditor-ca-' + editMessage + 'source' ).plain() ),
+		$editLink = $( '<a>' ).text( mw.message( editMessage ).plain() ),
 		$edit = $( '<li>' ).append( $( '<span>' ).append( $editLink ) ),
 		windowManager = null,
 		editDialog = null,
@@ -56,7 +57,7 @@ $( function () {
 
 	function createEditDialog() {
 		var target = new ve.init.tei.TEIPageTarget( {
-			pageTitle: mw.Title.newFromText( mw.config.get( 'wgTitle' ) ),
+			pageTitle: mw.Title.newFromText( mw.config.get( 'wgPageName' ) ),
 			revId: mw.config.get( 'wgRevisionId' ),
 			lang: mw.config.get( 'wgPageContentLanguage' ),
 			dir: 'ltr', // TODO: configure
