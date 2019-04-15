@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gomoko"
+		]
+	},
+	"tei-desc": "Définition du modèle de contenu TEI",
+	"tei-libxml-empty-document": "Le document XML est vide.",
+	"tei-libxml-error-message": "$1 à la ligne $2.",
+	"tei-validation-element-content-unexpected-node": "<code>$1</code> n’est pas autorisé comme enfant de <code lang=\"en\">$2</code> à la ligne $3.",
+	"tei-validation-element-content-unexpected-text": "<code>$1</code> ne devrait pas contenir de texte à la ligne $2.",
+	"tei-validation-element-content-too-short": "Une balise telle que $1 manque comme enfant de <code>$2</code> à la ligne $3.",
+	"tei-validation-no-root": "Le contenu du XML TEI n’a pas de balise racine.",
+	"tei-validation-unexpected-root": "La balise racine du contenu XML TEI devrait être <code>text</code> ou <code>body</code>, <code>$1</code> trouvé.",
+	"tei-validation-wrong-namespace": "L’espace de noms du XML TEI devrait être <code>http://www.tei-c.org/ns/1.0</code>, <code>$1</code> trouvé à la ligne $2.",
+	"tei-validation-unknown-tag": "<code>$1</code> n’est pas une balise TEI supportée à la ligne $2.",
+	"tei-validation-unknown-attribute": "<code>$1</code> n’est pas un attribut supporté de la balise <code>$2</code> à la ligne $3.",
+	"tei-validation-missing-mandatory-attribute": "L’attribut <code>$1</code> de la balise <code>$2</code> est absent à la ligne $3.",
+	"tei-validation-count-invalid-value": "La valeur de <code>$2</code> doit être un entier positif, <code>$1</code> trouvé.",
+	"tei-validation-enumeration-unknown-value": "<code>$1</code> n’est pas une valeur supportée de <code>$2</code>. Les valeurs possibles sont : $3.",
+	"tei-validation-language-invalid-value": "La valeur de <code>$2</code> doit être une balise de langue valide, <code>$1</code> trouvé.",
+	"apihelp-teiconvert-summary": "Module de l’API pour convertir du contenu entre TEI et HTML",
+	"apihelp-teiconvert-param-title": "Si <var>$1text</var> n’est pas défini, le contenu de cette page. Si <var>$1text</var> est défini, l’utiliser comme titre de la page lors de la conversion. S’il n’est pas défini, [[API]] sera utilisé comme titre.",
+	"apihelp-teiconvert-param-pageid": "Convertir le contenu de cette page.",
+	"apihelp-teiconvert-param-revid": "Convertir le contenu de cette révision.",
+	"apihelp-teiconvert-param-text": "Texte à analyser. Utiliser <var>$1from</var> pour contrôler le format du contenu.",
+	"apihelp-teiconvert-param-from": "Format du contenu de <var>$1text</var>.",
+	"apihelp-teiconvert-param-to": "Format vers lequel convertir le contenu.",
+	"apihelp-teiconvert-param-slot": "Si <var>$1text</var> n’est pas défini, pour quel emplacement renvoyer les données.",
+	"apihelp-teiconvert-param-normalize": "Si défini, normalise le contenu TEI",
+	"apihelp-teiconvert-example-from-title-to-html": "Convertit en HTML le contenu de [[TEI]]"
+}

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"apihelp-teiconvert-summary": "用來在 TEI 與 HTML 之間轉換內容的 API 模組",
+	"apihelp-teiconvert-param-pageid": "轉換此頁面內容。",
+	"apihelp-teiconvert-param-revid": "轉換此修訂內容。"
+}
