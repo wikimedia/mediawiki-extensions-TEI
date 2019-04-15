@@ -24,6 +24,13 @@ class EnumerationDatatype extends Datatype {
 	}
 
 	/**
+	 * @return string[]
+	 */
+	public function getPossibleValues() {
+		return $this->possibleValues;
+	}
+
+	/**
 	 * @see Datatype::validate
 	 *
 	 * @param string $attributeName

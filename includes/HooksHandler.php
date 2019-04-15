@@ -4,7 +4,6 @@ namespace MediaWiki\Extension\Tei;
 
 use ExtensionRegistry;
 use OutputPage;
-use Title;
 
 /**
  * Hooks handler
@@ -30,28 +29,18 @@ class HooksHandler {
 	 * @return bool
 	 */
 	public static function onBeforePageDisplay( OutputPage $out ) {
-		if (
-			$out->getTitle()->getContentModel() === CONTENT_MODEL_TEI &&
-			ExtensionRegistry::getInstance()->isLoaded( 'VisualEditor' )
-		) {
-			$out->addModules( 'ext.tei.ve.pageTarget.init' );
+		if ( $out->getTitle()->getContentModel() !== CONTENT_MODEL_TEI ) {
+			return true;
+		}
+		$action = $out->getRequest()->getVal( 'action' );
+		$isEdit = ( $action === 'edit' || $action === 'submit' );
+
+		if ( !$isEdit && ExtensionRegistry::getInstance()->isLoaded( 'VisualEditor' ) ) {
+			$out->addModules( 'ext.tei.ve.pageTarget.init.mw' );
 		}
 
-		return true;
-	}
-
-	/**
-	 * Loads CodeEditor
-	 *
-	 * @param Title $title
-	 * @param string &$lang
-	 * @param string $model
-	 * @param string $format
-	 * @return bool
-	 */
-	public static function onCodeEditorGetPageLanguage( Title $title, &$lang, $model, $format ) {
-		if ( $model === CONTENT_MODEL_TEI ) {
-			$lang = 'xml';
+		if ( $isEdit && ExtensionRegistry::getInstance()->isLoaded( 'CodeMirror' ) ) {
+			$out->addModules( 'ext.tei.editor' );
 		}
 
 		return true;

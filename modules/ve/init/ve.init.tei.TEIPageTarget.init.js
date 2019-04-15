@@ -1,10 +1,5 @@
 $( function () {
-	var editMessage = mw.config.get( 'wgArticleId' ) > 0 ? 'edit' : 'create',
-		$editSource = $( '#ca-edit' ),
-		$editSourceLink = $( '#ca-edit a' ).text( mw.message( 'visualeditor-ca-' + editMessage + 'source' ).plain() ),
-		$editLink = $( '<a>' ).text( mw.message( editMessage ).plain() ),
-		$edit = $( '<li>' ).append( $( '<span>' ).append( $editLink ) ),
-		windowManager = null,
+	var windowManager = null,
 		editDialog = null,
 		isLoading = false,
 		$loading = null;
@@ -14,7 +9,7 @@ $( function () {
 	 * @copyright 2011-2019 VisualEditor Team and others; see AUTHORS.txt
 	 * @license The MIT License (MIT); see LICENSE.txt
 	 */
-	function showLoading( mode ) {
+	function showLoading() {
 		var $content, windowHeight, clientTop, top, bottom, middle, progressBar;
 
 		if ( isLoading ) {
@@ -32,17 +27,13 @@ $( function () {
 		}
 
 		$content = $( '#content' );
-		if ( mode !== 'source' ) {
-			// Center within visible part of the target
-			windowHeight = window.innerHeight;
-			clientTop = $content[ 0 ].offsetTop - window.pageYOffset;
-			top = Math.max( clientTop, 0 );
-			bottom = Math.min( clientTop + $content[ 0 ].offsetHeight, windowHeight );
-			middle = ( bottom - top ) / 2;
-			$loading.css( 'top', middle + Math.max( -clientTop, 0 ) );
-		} else {
-			$loading.css( 'top', '' );
-		}
+		// Center within visible part of the target
+		windowHeight = window.innerHeight;
+		clientTop = $content[ 0 ].offsetTop - window.pageYOffset;
+		top = Math.max( clientTop, 0 );
+		bottom = Math.min( clientTop + $content[ 0 ].offsetHeight, windowHeight );
+		middle = ( bottom - top ) / 2;
+		$loading.css( 'top', middle + Math.max( -clientTop, 0 ) );
 
 		$content.prepend( $loading );
 	}
@@ -71,7 +62,7 @@ $( function () {
 		windowManager.addWindows( [ editDialog ] );
 	}
 
-	function openEditDialog( mode ) {
+	mw.openVeTeiEditDialog = function ( mode, content ) {
 		showLoading();
 		mw.loader.using( 'ext.tei.ve.pageTarget', function () {
 			if ( editDialog === null ) {
@@ -79,21 +70,10 @@ $( function () {
 			}
 
 			windowManager.openWindow( editDialog, {
-				mode: mode
+				mode: mode,
+				content: content
 			} );
 			clearLoading();
 		} );
-	}
-
-	// Setup edit tabs
-	$editSourceLink.on( 'click', function ( event ) {
-		event.preventDefault();
-		openEditDialog( 'source' );
-	} );
-
-	$edit.insertBefore( $editSource );
-	$editLink.on( 'click', function ( event ) {
-		event.preventDefault();
-		openEditDialog( 'visual' );
-	} );
+	};
 } );

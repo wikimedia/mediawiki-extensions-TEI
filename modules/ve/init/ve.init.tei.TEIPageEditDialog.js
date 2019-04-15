@@ -57,7 +57,7 @@ ve.init.tei.TeiPageEditDialog.prototype.getSetupProcess = function ( data ) {
 	var self = this;
 
 	return ve.init.tei.TeiPageEditDialog.super.prototype.getSetupProcess.call( this, data ).next( function () {
-		return self.target.generateSurface( data.mode );
+		return self.target.generateSurface( data.mode, data.content );
 	} );
 };
 

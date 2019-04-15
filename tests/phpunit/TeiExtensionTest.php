@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\Tei;
 
 use MediaWiki\Extension\Tei\Converter\TeiToHtmlConverter;
+use MediaWiki\Extension\Tei\Model\CodeMirrorSchemaBuilder;
 use MediaWiki\Extension\Tei\Model\Normalizer;
 use MediaWiki\Extension\Tei\Model\Validator;
 use PHPUnit\Framework\TestCase;
@@ -38,6 +39,13 @@ class TeiExtensionTest extends TestCase {
 		$this->assertInstanceOf(
 			TeiToHtmlConverter::class,
 			TeiExtension::getDefault()->getTeiToHtmlConverter()
+		);
+	}
+
+	public function testGetCodeMirrorSchemaBuilder() {
+		$this->assertInstanceOf(
+			CodeMirrorSchemaBuilder::class,
+			TeiExtension::getDefault()->getCodeMirrorSchemaBuilder()
 		);
 	}
 }

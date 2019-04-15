@@ -33,6 +33,14 @@
 			],
 			"dependencies": [
 				"oojs-ui"
+			]
+		},
+		"ext.tei.ve.pageTarget.init.mw": {
+			"scripts": [
+				"ve/init/ve.init.tei.TEIPageTarget.init.mw.js"
+			],
+			"dependencies": [
+				"ext.tei.ve.pageTarget.init"
 			],
 			"messages": [
 				"create",
@@ -45,16 +53,10 @@
 			"scripts": [
 				"ve/init/ve.init.tei.js",
 				"ve/init/ve.init.tei.TEIContentConverter.js",
-				"ve/dm/ve.dm.tei.js",
-				"ve/dm/ve.dm.tei.TEISourceSurface.js",
-				"ve/dm/ve.dm.tei.TEISourceSurfaceFragment.js",
-				"ve/ui/ve.ui.tei.js",
-				"ve/ui/ve.ui.tei.TEISourceSurface.js",
-				"ve/ui/ve.ui.CodeMirrorAction.js",
-				"ve/ui/ve.ui.CodeMirrorTool.js",
 				"ve/init/ve.init.tei.TEIPageTarget.js",
 				"ve/init/ve.init.tei.TEIPageEditDialog.js",
-				"../../VisualEditor/modules/ve-mw/ui/tools/ve.ui.MWEditModeTool.js"
+				"ve/ui/MWEditModeSourceTool.js",
+				"ve/ui/MWEditModeVisualTool.js"
 			],
 			"styles": [
 				"ve/init/ve.init.tei.TEIPageTarget.less"
@@ -63,14 +65,54 @@
 				"ext.visualEditor.mediawiki",
 				"ext.visualEditor.core.desktop",
 				"ext.visualEditor.switching",
-				"ext.visualEditor.icons",
-				"ext.CodeMirror.lib",
-				"ext.CodeMirror.lib.mode.xml"
+				"ext.visualEditor.icons"
 			],
 			"messages": [
 				"creating",
 				"editing",
 				"codemirror-toggle-label"
+			]
+		},
+		"ext.tei.editor": {
+			"scripts": [
+				"edit/editor.js",
+				"edit/MWEditModeSourceTool.js",
+				"edit/MWEditModeVisualTool.js",
+				"edit/EncapsulationTool.js",
+				"edit/Editor.js",
+				"edit/editor.init.js"
+			],
+			"dependencies": [
+				"ext.CodeMirror.lib",
+				"ext.CodeMirror.lib.mode.xml",
+				"ext.tei.lib.codemirror.hint",
+				"ext.tei.ve.pageTarget.init",
+				"ext.tei.editor.teiSchema",
+				"ext.visualEditor.switching",
+				"oojs-ui"
+			],
+			"messages": [
+				"visualeditor-annotationbutton-bold-tooltip",
+				"visualeditor-annotationbutton-italic-tooltip",
+				"visualeditor-annotationbutton-superscript-tooltip",
+				"visualeditor-annotationbutton-subscript-tooltip",
+				"visualeditor-annotationbutton-language-tooltip",
+				"visualeditor-annotationbutton-small-tooltip"
+			]
+		},
+		"ext.tei.editor.teiSchema": {
+			"class": "MediaWiki\\Extension\\Tei\\ResourceLoaderTeiSchemaModule"
+		},
+		"ext.tei.lib.codemirror.hint": {
+			"scripts": [
+				"lib/codemirror/show-hint.js",
+				"lib/codemirror/xml-hint.js"
+			],
+			"styles": [
+				"lib/codemirror/show-hint.css"
+			],
+			"dependencies": [
+				"ext.CodeMirror.lib"
 			]
 		}
 	},
@@ -79,8 +121,7 @@
 		"remoteExtPath": "TEI/modules"
 	},
 	"Hooks": {
-		"BeforePageDisplay": "MediaWiki\\Extension\\Tei\\HooksHandler::onBeforePageDisplay",
-		"CodeEditorGetPageLanguage": "MediaWiki\\Extension\\Tei\\HooksHandler::onCodeEditorGetPageLanguage"
+		"BeforePageDisplay": "MediaWiki\\Extension\\Tei\\HooksHandler::onBeforePageDisplay"
 	},
 	"callback": "MediaWiki\\Extension\\Tei\\HooksHandler::onRegister",
 	"manifest_version": 2
