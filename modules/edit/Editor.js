@@ -22,6 +22,8 @@ mw.teiEditor.Editor = function ( config ) {
 		disabled: readOnly
 	} );
 
+	this.api = new mw.Api();
+
 	// Toolbar
 	config.$textarea.before( toolbar.$element );
 	toolbar.setup( mw.teiEditor.Editor.static.toolbarGroups );
@@ -32,7 +34,7 @@ mw.teiEditor.Editor = function ( config ) {
 	actions.initialize();
 	actions.emit( 'updateState' );
 
-	// Code mirror editor
+	// Code mirror autocomplete
 	function completeAfter( cm, pred ) {
 		if ( !pred || pred() ) {
 			setTimeout( function () {
@@ -62,6 +64,7 @@ mw.teiEditor.Editor = function ( config ) {
 		} );
 	}
 
+	// CodeMirror itself
 	codeMirror = CodeMirror.fromTextArea( textarea, {
 		mode: 'xml',
 		lineNumbers: true,
@@ -75,8 +78,13 @@ mw.teiEditor.Editor = function ( config ) {
 			"'='": completeIfInTag,
 			'Ctrl-Space': 'autocomplete'
 		},
+		gutters: [ 'CodeMirror-lint-markers' ],
 		hintOptions: {
 			schemaInfo: mw.teiEditorSchema
+		},
+		lint: {
+			getAnnotations: mw.teiEditor.Editor.prototype.lint.bind( this ),
+			async: true
 		}
 	} );
 	config.$textarea.textSelection( 'register', {
@@ -138,3 +146,20 @@ mw.teiEditor.Editor.static.actionGroups = [
 		include: [ 'teiEditModeVisual', 'teiEditModeSource' ]
 	}
 ];
+
+mw.teiEditor.Editor.prototype.lint = function ( text, callback ) {
+	return this.api.post( {
+		action: 'teivalidate',
+		text: text
+	} ).done( function ( data ) {
+		callback( data.validation.map( function ( message ) {
+			return {
+				from: CodeMirror.Pos( ( message.line || 1 ) - 1, 0 ),
+				to: CodeMirror.Pos( ( message.line || 1 ) - 1, 0 ),
+				message: message.message,
+				severity: message.type
+			};
+		} ) );
+	} );
+};
+mw.teiEditor.Editor.prototype.lint.async = true;

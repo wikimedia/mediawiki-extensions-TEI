@@ -25,5 +25,7 @@
 	"apihelp-teiconvert-param-to": "Content format to convert to.",
 	"apihelp-teiconvert-param-slot": "If <var>$1text</var> is not set, which slot to return data for.",
 	"apihelp-teiconvert-param-normalize": "If set, normalizes TEI content",
-	"apihelp-teiconvert-example-from-title-to-html": "Converts to HTML the content of [[TEI]]"
+	"apihelp-teiconvert-example-from-title-to-html": "Converts to HTML the content of [[TEI]]",
+	"apihelp-teivalidate-summary": "API module to validate a TEI document",
+	"apihelp-teivalidate-param-text": "Text to validate."
 }

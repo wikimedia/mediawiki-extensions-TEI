@@ -13,7 +13,8 @@
 		"tei": "MediaWiki\\Extension\\Tei\\TeiContentHandler"
 	},
 	"APIModules": {
-		"teiconvert": "MediaWiki\\Extension\\Tei\\Api\\ApiTeiConvert"
+		"teiconvert": "MediaWiki\\Extension\\Tei\\Api\\ApiTeiConvert",
+		"teivalidate": "MediaWiki\\Extension\\Tei\\Api\\ApiTeiValidate"
 	},
 	"MessagesDirs": {
 		"TEI": [
@@ -106,10 +107,12 @@
 		"ext.tei.lib.codemirror.hint": {
 			"scripts": [
 				"lib/codemirror/show-hint.js",
-				"lib/codemirror/xml-hint.js"
+				"lib/codemirror/xml-hint.js",
+				"lib/codemirror/lint.js"
 			],
 			"styles": [
-				"lib/codemirror/show-hint.css"
+				"lib/codemirror/show-hint.css",
+				"lib/codemirror/lint.css"
 			],
 			"dependencies": [
 				"ext.CodeMirror.lib"
