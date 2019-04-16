@@ -38,7 +38,7 @@ OO.inheritClass( ve.init.tei.TEIPageTarget, ve.init.Target );
 
 /* Static properties */
 
-ve.init.tei.TEIPageTarget.static.modes = [ 'visual', 'source' ];
+ve.init.tei.TEIPageTarget.static.modes = [ 'visual' ];
 
 ve.init.tei.TEIPageTarget.static.toolbarGroups = [
 	{
@@ -131,10 +131,7 @@ ve.init.tei.TEIPageTarget.static.actionGroups = [
 /**
  * @inheritdoc
  */
-ve.init.tei.TEIPageTarget.prototype.createSurface = function ( dmDoc, config ) {
-	if ( config && config.mode === 'source' ) {
-		return new ve.ui.tei.TEISourceSurface( dmDoc, this.getSurfaceConfig( config ) );
-	}
+ve.init.tei.TEIPageTarget.prototype.createSurface = function () {
 	return ve.init.tei.TEIPageTarget.super.prototype.createSurface.apply( this, arguments );
 };
 
@@ -142,18 +139,14 @@ ve.init.tei.TEIPageTarget.prototype.createSurface = function ( dmDoc, config ) {
  * Adds a new surface for the page
  *
  * @param {string} [mode] Edit mode
+ * @param {string|undefined} [content] Content to edit
  * @return {Promise<ve.ui.Surface>}
  */
-ve.init.tei.TEIPageTarget.prototype.generateSurface = function ( mode ) {
-	var self = this, targetFormat = mode === 'visual' ? 'text/html' : 'application/tei+xml';
+ve.init.tei.TEIPageTarget.prototype.generateSurface = function ( mode, content ) {
+	var self = this;
 
-	return this.api.get( {
-		action: 'teiconvert',
-		title: this.pageTitle.toString(),
-		revid: this.revId,
-		to: targetFormat
-	} ).then( function ( data ) {
-		return self.generateSurfaceForContent( data.convert.text, mode );
+	return ve.init.tei.teiContentConverter.getHtmlFromTei( content, true, this.pageTitle ).then( function ( content ) {
+		return self.generateSurfaceForContent( content, mode );
 	}, function ( error ) {
 		self.emit( 'error', error );
 	} );
@@ -204,7 +197,7 @@ ve.init.tei.TEIPageTarget.prototype.saveSurface = function () {
 	switch ( surface.getMode() ) {
 		case 'visual':
 			return ve.init.tei.teiContentConverter.getTeiFromHtml(
-				this.getSurface().getHtml(), true
+				this.getSurface().getHtml(), true, this.pageTitle
 			).then( function ( pageContent ) {
 				return self.saveTeiContent( pageContent );
 			} );
@@ -218,34 +211,38 @@ ve.init.tei.TEIPageTarget.prototype.saveSurface = function () {
  * @return {Promise}
  */
 ve.init.tei.TEIPageTarget.prototype.saveTeiContent = function ( pageContent ) {
-	return this.api.postWithEditToken( {
-		action: 'edit',
-		title: this.pageTitle.toString(),
-		nocreate: true,
-		text: pageContent
-	} ).catch( function ( code, data ) {
-		throw new OO.ui.Error( data.error.info );
-	} );
+	this.submit( pageContent );
+	return ve.createDeferred().resolve().promise();
 };
 
 ve.init.tei.TEIPageTarget.prototype.editSource = function () {
 	var self = this;
+
 	ve.init.tei.teiContentConverter.getTeiFromHtml(
-		this.getSurface().getHtml(), true
+		this.getSurface().getHtml(), true, this.pageTitle
 	).then( function ( pageContent ) {
-		self.generateSurfaceForContent( pageContent, 'source' );
+		self.submit( pageContent, { wpDiff: true } );
 	}, function ( error ) {
 		self.emit( 'error', error );
 	} );
 };
 
-ve.init.tei.TEIPageTarget.prototype.switchToVisualEditor = function () {
-	var self = this;
-	ve.init.tei.teiContentConverter.getHtmlFromTei(
-		this.getSurface().getHtml(), true
-	).then( function ( pageContent ) {
-		self.generateSurfaceForContent( pageContent, 'visual' );
-	}, function ( error ) {
-		self.emit( 'error', error );
-	} );
+ve.init.tei.TEIPageTarget.prototype.submit = function ( wikitext, params ) {
+	var key, $form = $( '<form>' ).attr( { method: 'post', enctype: 'multipart/form-data' } ).addClass( 'oo-ui-element-hidden' );
+	params = ve.extendObject( {
+		format: 'application/tei+xml',
+		model: 'tei',
+		oldid: this.revId,
+		wpTextbox1: wikitext,
+		wpEditToken: mw.user.tokens.get( 'editToken' ),
+		wpUnicodeCheck: 'ℳ𝒲♥𝓊𝓃𝒾𝒸ℴ𝒹ℯ',
+		wpUltimateParam: true
+	}, params );
+	for ( key in params ) {
+		$form.append( $( '<input>' ).attr( { type: 'hidden', name: key, value: params[ key ] } ) );
+	}
+	$form.attr( 'action', mw.util.getUrl( this.pageTitle.toString(), {
+		action: 'submit'
+	} ) ).appendTo( 'body' ).trigger( 'submit' );
+	return true;
 };

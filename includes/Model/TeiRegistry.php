@@ -31,6 +31,13 @@ class TeiRegistry {
 	private $elementsInClasses = [];
 
 	/**
+	 * @return ElementSpec[]
+	 */
+	public function getAllElementsSpec() {
+		return array_values( $this->elements );
+	}
+
+	/**
 	 * @param string $elementName
 	 * @return ElementSpec
 	 * @throws OutOfBoundsException If the element is not registered

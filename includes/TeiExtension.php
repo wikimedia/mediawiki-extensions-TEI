@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\Tei;
 
 use MediaWiki\Extension\Tei\Converter\HtmlToTeiConverter;
 use MediaWiki\Extension\Tei\Converter\TeiToHtmlConverter;
+use MediaWiki\Extension\Tei\Model\CodeMirrorSchemaBuilder;
 use MediaWiki\Extension\Tei\Model\DefaultTeiRegistryBuilder;
 use MediaWiki\Extension\Tei\Model\Normalizer;
 use MediaWiki\Extension\Tei\Model\TeiRegistry;
@@ -27,6 +28,8 @@ class TeiExtension {
 	private $teiToHtmlConverter;
 
 	private $htmlToTeiConverter;
+
+	private $codeMirrorSchemaBuilder;
 
 	/**
 	 * @return TeiRegistry
@@ -86,6 +89,16 @@ class TeiExtension {
 			$this->htmlToTeiConverter = new HtmlToTeiConverter();
 		}
 		return $this->htmlToTeiConverter;
+	}
+
+	/**
+	 * @return CodeMirrorSchemaBuilder
+	 */
+	public function getCodeMirrorSchemaBuilder() {
+		if ( $this->codeMirrorSchemaBuilder === null ) {
+			$this->codeMirrorSchemaBuilder = new CodeMirrorSchemaBuilder( $this->getRegistry() );
+		}
+		return $this->codeMirrorSchemaBuilder;
 	}
 
 	/**
