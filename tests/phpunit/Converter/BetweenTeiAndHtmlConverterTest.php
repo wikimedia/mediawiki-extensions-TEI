@@ -47,12 +47,14 @@ class BetweenTeiAndHtmlConverterTest extends TestCase {
 	}
 
 	private function assertTeiToHtmlConversionTest( $testDesc, $tei, $expectedHtml ) {
-		$actualHtml = $this->teiToHtmlConverter->convert( $tei );
+		$teiDocument = $this->domDocumentFactory->buildFromXMLString( $tei )->getValue();
+		$actualHtml = $this->teiToHtmlConverter->convertToHtml( $teiDocument );
 		$this->assertEquals( $expectedHtml, $actualHtml, $testDesc );
 	}
 
 	private function assertHtmlToTeiConversionTest( $testDesc, $expectedTei, $html ) {
-		$actualTei = $this->htmlToTeiConverter->convert( $html );
+		$htmlDocument = $this->domDocumentFactory->buildFromXMLString( $html )->getValue();
+		$actualTei = $this->htmlToTeiConverter->convertToTei( $htmlDocument );
 		$this->assertEquals( $expectedTei, $actualTei, $testDesc );
 	}
 

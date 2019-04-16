@@ -1,12 +1,28 @@
 !! test
 Unknown tag
 !! wikitext
-<text>
+<text xmlns="http://www.tei-c.org/ns/1.0">
 	<x-unknown></x-unknown>
 </text>
 !! html/php
 <article>
-	&lt;x-unknown&gt;&lt;/x-unknown&gt;
+	&lt;x-unknown xmlns="http://www.tei-c.org/ns/1.0"&gt;&lt;/x-unknown&gt;
+</article>
+!!end
+
+!! test
+No namespace
+!! wikitext
+<text>
+	<body>
+		<p>Foo</p>
+	</body>
+</text>
+!! html/php
+<article>
+	<section>
+		<p>Foo</p>
+	</section>
 </article>
 !!end
 
@@ -39,4 +55,3 @@ Table role data
 	</tr>
 </table>
 !!end
-

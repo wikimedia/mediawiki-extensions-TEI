@@ -1,7 +1,7 @@
 !! test
 invalid node
 !! wikitext
-<text>
+<text xmlns="http://www.tei-c.org/ns/1.0">
 	<body>
 		&lt;x-foo&gt;&lt;/x-foo&gt;
 	</body>
@@ -17,7 +17,7 @@ invalid node
 !! test
 Table with tbody
 !! wikitext
-<table>
+<table xmlns="http://www.tei-c.org/ns/1.0">
 	<row>
 		<cell role="label">Label</cell>
 		<cell>Foo</cell>
@@ -32,4 +32,26 @@ Table with tbody
 		<td>Bar</td>
 	</tr>
 </tbody></table>
+!!end
+
+!! test
+<html> root
+!! wikitext
+<p xmlns="http://www.tei-c.org/ns/1.0">Foo</p>
+!! html/php
+<html>
+	<body>
+		<p>Foo</p>
+	</body>
+</html>
+!!end
+
+!! test
+<body> root
+!! wikitext
+<p xmlns="http://www.tei-c.org/ns/1.0">Foo</p>
+!! html/php
+<body>
+	<p>Foo</p>
+</body>
 !!end

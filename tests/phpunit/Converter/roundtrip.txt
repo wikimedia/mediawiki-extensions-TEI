@@ -1,7 +1,7 @@
 !! test
 Basic full file
 !! wikitext
-<text>
+<text xmlns="http://www.tei-c.org/ns/1.0">
 	<body>
 		<div>
 			<p>Foo</p>
@@ -21,7 +21,7 @@ Basic full file
 !! test
 <section> root
 !! wikitext
-<body>
+<body xmlns="http://www.tei-c.org/ns/1.0">
 	<p>Foo</p>
 </body>
 !! html/php
@@ -30,19 +30,10 @@ Basic full file
 </section>
 !!end
 
-
-!! test
-Empty document
-!! wikitext
-foo
-!! html/php
-foo
-!!end
-
 !! test
 Comment
 !! wikitext
-<text>
+<text xmlns="http://www.tei-c.org/ns/1.0">
 	<!-- comment -->
 	<body>
 		<div>
@@ -64,7 +55,7 @@ Comment
 !! test
 XML Attributes
 !! wikitext
-<text>
+<text xmlns="http://www.tei-c.org/ns/1.0">
 	<body xml:lang="en" xml:id="foo">
 		<div xml:lang="es" xml:id="bar">
 			<p xml:lang="pt" xml:id="baz">Foo</p>
@@ -84,7 +75,7 @@ XML Attributes
 !! test
 Front and Back
 !! wikitext
-<text>
+<text xmlns="http://www.tei-c.org/ns/1.0">
 	<front><div><p>Front</p></div></front>
 	<body><div><p>Body</p></div></body>
 	<back><div><p>Body</p></div></back>
@@ -100,19 +91,19 @@ Front and Back
 !! test
 Lb
 !! wikitext
-<text>
-	<body><p>Foo<lb />Bar</p></body>
+<text xmlns="http://www.tei-c.org/ns/1.0">
+	<body><p>Foo<lb/>Bar</p></body>
 </text>
 !! html/php
 <article>
-	<section><p>Foo<br />Bar</p></section>
+	<section><p>Foo<br/>Bar</p></section>
 </article>
 !!end
 
 !! test
 Unordered list
 !! wikitext
-<list type="unordered">
+<list xmlns="http://www.tei-c.org/ns/1.0" type="unordered">
 	<item>Foo</item>
 </list>
 !! html/php
@@ -124,7 +115,7 @@ Unordered list
 !! test
 Ordered list
 !! wikitext
-<list type="ordered">
+<list xmlns="http://www.tei-c.org/ns/1.0" type="ordered">
 	<item>Foo</item>
 </list>
 !! html/php
@@ -136,7 +127,7 @@ Ordered list
 !! test
 Hi
 !! wikitext
-<p>Foo <hi>Bar</hi></p>
+<p xmlns="http://www.tei-c.org/ns/1.0">Foo <hi>Bar</hi></p>
 !! html/php
 <p>Foo <span>Bar</span></p>
 !!end
@@ -144,7 +135,7 @@ Hi
 !! test
 Hi bold
 !! wikitext
-<p>Foo <hi rend="bold">Bar</hi></p>
+<p xmlns="http://www.tei-c.org/ns/1.0">Foo <hi rend="bold">Bar</hi></p>
 !! html/php
 <p>Foo <b>Bar</b></p>
 !!end
@@ -152,7 +143,7 @@ Hi bold
 !! test
 Hi italic
 !! wikitext
-<p>Foo <hi rend="italic">Bar</hi></p>
+<p xmlns="http://www.tei-c.org/ns/1.0">Foo <hi rend="italic">Bar</hi></p>
 !! html/php
 <p>Foo <i>Bar</i></p>
 !!end
@@ -160,7 +151,7 @@ Hi italic
 !! test
 Hi sub
 !! wikitext
-<p>Foo <hi rend="sub">Bar</hi></p>
+<p xmlns="http://www.tei-c.org/ns/1.0">Foo <hi rend="sub">Bar</hi></p>
 !! html/php
 <p>Foo <sub>Bar</sub></p>
 !!end
@@ -168,7 +159,7 @@ Hi sub
 !! test
 Hi sup
 !! wikitext
-<p>Foo <hi rend="sup">Bar</hi></p>
+<p xmlns="http://www.tei-c.org/ns/1.0">Foo <hi rend="sup">Bar</hi></p>
 !! html/php
 <p>Foo <sup>Bar</sup></p>
 !!end
@@ -176,7 +167,7 @@ Hi sup
 !! test
 Hi sup
 !! wikitext
-<p>Foo <hi rend="small">Bar</hi></p>
+<p xmlns="http://www.tei-c.org/ns/1.0">Foo <hi rend="small">Bar</hi></p>
 !! html/php
 <p>Foo <small>Bar</small></p>
 !!end
@@ -184,7 +175,7 @@ Hi sup
 !! test
 Hi sup
 !! wikitext
-<p>Foo <hi rend="var">Bar</hi></p>
+<p xmlns="http://www.tei-c.org/ns/1.0">Foo <hi rend="var">Bar</hi></p>
 !! html/php
 <p>Foo <var>Bar</var></p>
 !!end
@@ -192,7 +183,7 @@ Hi sup
 !! test
 Table
 !! wikitext
-<table>
+<table xmlns="http://www.tei-c.org/ns/1.0">
 	<row>
 		<cell role="label">Label</cell>
 		<cell>Foo</cell>
@@ -212,7 +203,7 @@ Table
 !! test
 Table with cols and rows
 !! wikitext
-<table>
+<table xmlns="http://www.tei-c.org/ns/1.0">
 	<row>
 		<cell role="label" rows="2">Label</cell>
 		<cell>Foo</cell>
@@ -240,7 +231,7 @@ Table with cols and rows
 !! test
 Abbr
 !! wikitext
-<p>Foo <abbr>TEI</abbr></p>
+<p xmlns="http://www.tei-c.org/ns/1.0">Foo <abbr>TEI</abbr></p>
 !! html/php
 <p>Foo <abbr>TEI</abbr></p>
 !!end
@@ -248,7 +239,7 @@ Abbr
 !! test
 Del
 !! wikitext
-<p>Foo <del>Bar</del></p>
+<p xmlns="http://www.tei-c.org/ns/1.0">Foo <del>Bar</del></p>
 !! html/php
 <p>Foo <del>Bar</del></p>
 !!end
