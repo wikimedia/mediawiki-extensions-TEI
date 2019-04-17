@@ -16,13 +16,32 @@ class DatatypeFactory {
 	 * @return Datatype
 	 */
 	public static function build( array $attribute ) {
-		if ( array_key_exists( 'key', $attribute['datatype']['dataRef'] ) ) {
-			$datatypeId = $attribute['datatype']['dataRef']['key'];
-		} elseif ( array_key_exists( 'name', $attribute['datatype']['dataRef'] ) ) {
-			$datatypeId = $attribute['datatype']['dataRef']['name'];
+		$datatype = self::buildFromDataRefAndValList(
+			$attribute['datatype']['dataRef'],
+			array_key_exists( 'valList', $attribute ) ? $attribute['valList'] : []
+		);
+
+		$minOccurs = array_key_exists( 'minOccurs', $attribute['datatype'] )
+			? $attribute['datatype']['minOccurs']
+			: 1;
+		$maxOccurs = array_key_exists( 'maxOccurs', $attribute['datatype'] )
+			? $attribute['datatype']['maxOccurs']
+			: 1;
+		if ( $minOccurs !== 1 || $maxOccurs !== 1 ) {
+			$datatype = new MultipleValuesDatatype( $datatype, $minOccurs, $maxOccurs );
+		}
+
+		return $datatype;
+	}
+
+	private static function buildFromDataRefAndValList( array $dataRef, array $valList ) {
+		if ( array_key_exists( 'key', $dataRef ) ) {
+			$datatypeId = $dataRef['key'];
+		} elseif ( array_key_exists( 'name', $dataRef ) ) {
+			$datatypeId = $dataRef['name'];
 		} else {
 			throw new InvalidArgumentException(
-				'No datatype id found in ' . json_encode( $attribute )
+				'No datatype id found in ' . json_encode( $dataRef )
 			);
 		}
 
@@ -33,8 +52,8 @@ class DatatypeFactory {
 				return new CountDatatype();
 			case 'teidata.enumerated':
 				return new EnumerationDatatype(
-					$attribute['valList']['type'] === 'closed',
-					array_keys( $attribute['valList']['items'] )
+					$valList['type'] === 'closed',
+					array_keys( $valList['items'] )
 				);
 			case 'teidata.language':
 				return new LanguageDatatype();
@@ -46,7 +65,7 @@ class DatatypeFactory {
 				return new WordDatatype();
 			default:
 				throw new InvalidArgumentException(
-					'Not supported datatype for in ' . json_encode( $attribute )
+					'Not supported datatype for in ' . json_encode( $dataRef )
 				);
 		}
 	}

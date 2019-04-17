@@ -59,7 +59,7 @@ class ApiTeiValidate extends ApiBase {
 		$errors = array_values( array_unique( array_map( function ( $error ) {
 			return [
 				'type' => $error['type'],
-				'message' => $this->msg( $error['message'], ...$error['params'] )->plain(),
+				'message' => $this->msg( $error['message'], ...$error['params'] )->parse(),
 				'line' => is_int( end( $error['params'] ) ) ? end( $error['params'] ) : null
 			];
 		}, $status->getErrors() ) ) );

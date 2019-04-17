@@ -18,6 +18,8 @@
 	"tei-validation-language-invalid-value": "Error when an attribute value is invalid. $1 is the wrong attribute value and $2 is the attribute name.",
 	"tei-validation-pointer-invalid-value": "Error when an attribute value is invalid. $1 is the wrong attribute value and $2 is the attribute name.",
 	"tei-validation-word-invalid-value": "Error when an attribute value is invalid. $1 is the wrong attribute value and $2 is the attribute name.",
+	"tei-validation-multiple-too-few-values": "Error when an attribute value contains not enough parts. $1 is the wrong attribute value, $2 is the attribute name, $3 is the expected number of values and $4 the actual number.",
+	"tei-validation-multiple-too-many-values": "Error when an attribute value contains too many parts. $1 is the wrong attribute value, $2 is the attribute name, $3 is the expected number of values and $4 the actual number.",
 	"apihelp-teiconvert-summary": "{{doc-apihelp-description|teiconvert}}",
 	"apihelp-teiconvert-param-title": "{{doc-apihelp-param|teiconvert|title}}",
 	"apihelp-teiconvert-param-pageid": "{{doc-apihelp-param|teiconvert|pageid}}",
