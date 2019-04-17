@@ -68,7 +68,7 @@ class ContentValidatorFactory {
 	private function addPart(
 		array $part, $startState, $endState, NondeteministicFiniteAutomaton $automaton
 	) {
-		$minOccurs = array_key_exists( 'minOccurs', $part ) ? $part['minOccurs'] : 1;
+		$minOccurs = $part['minOccurs'] ?? 1;
 		$maxOccurs = array_key_exists( 'maxOccurs', $part ) ? $part['maxOccurs'] : 1;
 
 		// Special case: $maxOccurs == 1

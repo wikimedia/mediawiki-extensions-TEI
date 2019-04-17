@@ -157,5 +157,5 @@ mw.teiEditor.LanguageAnnotationTool.static.name = 'language';
 mw.teiEditor.LanguageAnnotationTool.static.group = 'meta';
 mw.teiEditor.LanguageAnnotationTool.static.icon = 'language';
 mw.teiEditor.LanguageAnnotationTool.static.title = OO.ui.deferMsg( 'visualeditor-annotationbutton-language-tooltip' );
-mw.teiEditor.LanguageAnnotationTool.static.encapsulate = { pre: '<hi xml:lang="">', post: '</hi>' };
+mw.teiEditor.LanguageAnnotationTool.static.encapsulate = { pre: '<foreign xml:lang="">', post: '</foreign>' };
 mw.teiEditor.toolFactory.register( mw.teiEditor.LanguageAnnotationTool );

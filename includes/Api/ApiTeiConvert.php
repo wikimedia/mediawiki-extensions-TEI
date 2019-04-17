@@ -96,9 +96,9 @@ class ApiTeiConvert extends ApiBase {
 		// We filter some disallowed combinations
 		$this->requireMaxOneParameter( $params, 'pageid', 'revid', 'text' );
 
-		$text = isset( $params['text'] ) ? $params['text'] : null;
+		$text = $params['text'] ?? null;
 		$title = $this->getOptionalTitleFromTitleOrPageId( $params );
-		$from = isset( $params['from'] ) ? $params['from'] : null;
+		$from = $params['from'] ?? null;
 		$to = $params['to'];
 
 		if ( $text !== null ) {
@@ -168,7 +168,7 @@ class ApiTeiConvert extends ApiBase {
 				], 'missingrev' );
 			}
 		} elseif ( isset( $params['pageid'] ) ) {
-			$revId = isset( $params['revid'] ) ? $params['revid'] : 0;
+			$revId = $params['revid'] ?? 0;
 			$revision = $this->revisionLookup->getRevisionByPageId( $params['pageid'], $revId );
 			if ( $revision === null ) {
 				$this->dieWithError( [ 'apierror-missingrev-pageid', $params['pageid'] ], 'missingrev' );
@@ -216,7 +216,7 @@ class ApiTeiConvert extends ApiBase {
 			case CONTENT_FORMAT_TEI_XML:
 				return $text;
 			case CONTENT_FORMAT_HTML:
-				return $this->teiToHtmlConverter->convertToHtml( $this->parseXml( $text ) );
+				return $this->teiToHtmlConverter->convert( $this->parseXml( $text ), $title )->getHtml();
 			default:
 				$this->dieWithError( [ 'apierror-teiconvert-invalid-fromto', CONTENT_FORMAT_TEI_XML, $to ] );
 		}
@@ -225,7 +225,7 @@ class ApiTeiConvert extends ApiBase {
 	private function convertFromHtml( $text, Title $title, $to, $normalize ) {
 		switch ( $to ) {
 			case CONTENT_FORMAT_TEI_XML:
-				$text = $this->htmlToTeiConverter->convertToTei( $this->parseXml( $text ) );
+				$text = $this->htmlToTeiConverter->convert( $this->parseHtml( $text ) )->getXml();
 				if ( $normalize ) {
 					$text = $this->normalizeTeiXml( $text );
 				}
@@ -253,6 +253,19 @@ class ApiTeiConvert extends ApiBase {
 	 */
 	private function parseXml( $text ) {
 		$status = $this->domDocumentFactory->buildFromXMLString( $text );
+		if ( !$status->isOK() ) {
+			$this->dieStatus( $status );
+		}
+		$this->addMessagesFromStatus( $status );
+		return $status->getValue();
+	}
+
+	/**
+	 * @param string $text
+	 * @return DOMDocument
+	 */
+	private function parseHtml( $text ) {
+		$status = $this->domDocumentFactory->buildFromHTMLString( $text );
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
 		}

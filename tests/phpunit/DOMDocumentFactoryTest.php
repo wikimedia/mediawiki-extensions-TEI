@@ -36,11 +36,12 @@ class DOMDocumentFactoryTest extends TestCase {
 
 	public function htmlParsingProvider() {
 		$cases = [
-			[ '', StatusValue::newFatal( 'tei-libxml-empty-document' ) ],
-			[ '<html></html>', StatusValue::newGood() ]
+			[ '', StatusValue::newGood() ],
+			[ '<html></html>', StatusValue::newGood() ],
+			[ '<p>Foo</p>', StatusValue::newGood() ]
 		];
 		$parsingError = StatusValue::newGood();
-		$parsingError->error( 'tei-libxml-error-message', 'End tag : expected \'>\'', 1 );
+		$parsingError->error( 'tei-remex-error-message', 'unexpected end of file inside tag', 12 );
 		$cases[] = [ '<html></html', $parsingError ];
 
 		return $cases;

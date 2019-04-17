@@ -112,7 +112,20 @@ class TeiContent extends TextContent {
 		}
 
 		$converter = TeiExtension::getDefault()->getTeiToHtmlConverter();
-		$html = $converter->convertToHtml( $status->getValue() );
-		$output->setText( Html::rawElement( 'div', [ 'class' => 'mw-parser-output' ], $html ) );
+		$conversion = $converter->convert( $status->getValue(), $title );
+
+		$output->setText( Html::rawElement(
+			'div', [ 'class' => 'mw-parser-output' ], $conversion->getHtml()
+		) );
+		foreach ( $conversion->getWarnings() as $warning ) {
+			$output->addWarning( $warning );
+		}
+		foreach ( $conversion->getExternalLinksUrls() as $externalLink ) {
+			$output->addExternalLink( $externalLink );
+		}
+		foreach ( $conversion->getIncludedFiles() as $file ) {
+			$output->addImage( $file->getTitle()->getDBkey(), $file->getTimestamp(), $file->getSha1() );
+		}
+		$output->addModuleStyles( 'ext.tei.style' );
 	}
 }

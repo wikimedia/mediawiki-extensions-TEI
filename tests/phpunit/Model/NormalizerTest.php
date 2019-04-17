@@ -38,7 +38,7 @@ class NormalizerTest extends TestCase {
 	/**
 	 * @dataProvider normalizationProvider
 	 */
-	public function testRountripConversion( $testDesc, $input, $expected ) {
+	public function testNormalization( $testDesc, $input, $expected ) {
 		$dom = $this->domDocumentFactory->buildFromXMLString( $input )->getValue();
 		$this->normalizer->normalizeDOM( $dom );
 		$actual = $dom->saveXml( $dom->documentElement );
