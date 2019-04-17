@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="en">
+	<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title>TEI MediaWiki customization</title>
+			</titleStmt>
+			<publicationStmt>
+				<publisher>TEI MediaWiki extension team</publisher>
+				<availability status="free">
+					<licence target="http://creativecommons.org/publicdomain/zero/1.0/">Distributed
+						under a Licence Creative Commons Zero 1.0 Universal.
+					</licence>
+				</availability>
+			</publicationStmt>
+			<sourceDesc>
+				<bibl/>
+			</sourceDesc>
+		</fileDesc>
+	</teiHeader>
+	<text>
+		<body>
+			<div>
+				<schemaSpec ident="tei_mediawiki" start="text">
+					<moduleRef key="tei"/>
+					<moduleRef key="core" include="abbr del hi item lb list p"/>
+					<moduleRef key="textstructure" include="back body div front text"/>
+					<moduleRef key="figures" include="cell row table"/>
+
+					<classSpec ident="att.global" type="atts" module="tei" mode="change">
+						<attList>
+							<attDef ident="xml:base" mode="delete"/>
+							<attDef ident="xml:space" mode="delete"/>
+							<attDef ident="n" mode="delete"/>
+						</attList>
+					</classSpec>
+					<classSpec ident="att.global.rendition" type="atts" module="tei" mode="change">
+						<attList>
+							<attDef ident="style" mode="delete"/>
+							<attDef ident="rendition" mode="delete"/>
+							<attDef ident="n" mode="delete"/>
+						</attList>
+					</classSpec>
+					<classSpec ident="att.ascribed" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.ascribed.directed" type="atts" module="tei"
+							   mode="delete"/>
+					<classSpec ident="att.canonical" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.ranging" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.dimensions" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.written" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.damaged" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.breaking" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.cReferencing" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.datable.w3c" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.datable" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.datcat" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.declarable" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.declaring" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.fragmentable" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.divLike" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.docStatus" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.duration.w3c" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.global.responsibility" type="atts" module="tei"
+							   mode="delete"/>
+					<classSpec ident="att.editLike" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.global.source" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.handFeatures" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.media" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.resourced" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.interpLike" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.measurement" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.naming" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.notated" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.placement" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.typed" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.pointing" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.pointing.group" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.scoping" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.segLike" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.sortable" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.edition" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.spanning" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.styleDef" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.timed" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.transcriptional" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.translatable" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.citing" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.partials" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.personal" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.duration.iso" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.milestoneUnit" type="atts" module="core" mode="delete"/>
+
+					<elementSpec ident="list" module="core" mode="change">
+						<content>
+							<sequence maxOccurs="unbounded">
+								<elementRef key="item"/>
+							</sequence>
+						</content>
+					</elementSpec>
+
+					<elementSpec ident="row" module="figures" mode="change">
+						<classes>
+							<memberOf key="att.tableDecoration" mode="delete"/>
+						</classes>
+					</elementSpec>
+
+					<elementSpec ident="table" module="figures" mode="change">
+						<content>
+							<sequence maxOccurs="unbounded">
+								<elementRef key="row"/>
+							</sequence>
+						</content>
+						<attList>
+							<attDef ident="rows" mode="delete"/>
+							<attDef ident="cols" mode="delete"/>
+						</attList>
+					</elementSpec>
+				</schemaSpec>
+			</div>
+		</body>
+	</text>
+</TEI>

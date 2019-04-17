@@ -11,15 +11,23 @@ use StatusValue;
 class EnumerationDatatype extends Datatype {
 
 	/**
+	 * @var boolean
+	 */
+	private $closed;
+
+	/**
 	 * @var string[]
 	 */
 	private $possibleValues;
+
 	/**
-	 * @param string ...$possibleValues
+	 * @param bool $closed
+	 * @param string[] $possibleValues
 	 */
-	public function __construct( ...$possibleValues ) {
+	public function __construct( $closed, array $possibleValues ) {
 		parent::__construct( 'teidata.enumerated' );
 
+		$this->closed = $closed;
 		$this->possibleValues = $possibleValues;
 	}
 
@@ -38,14 +46,26 @@ class EnumerationDatatype extends Datatype {
 	 * @return StatusValue
 	 */
 	public function validate( $attributeName, $attributeValue ) {
-		if ( in_array( $attributeValue, $this->possibleValues ) ) {
-			return StatusValue::newGood();
+		if ( $this->closed ) {
+			if ( in_array( $attributeValue, $this->possibleValues ) ) {
+				return StatusValue::newGood();
+			} else {
+				return StatusValue::newFatal(
+					'tei-validation-enumeration-unknown-value',
+					$attributeValue, $attributeName,
+					RequestContext::getMain()->getLanguage()->commaList( $this->possibleValues )
+				);
+			}
 		} else {
-			return StatusValue::newFatal(
-				'tei-validation-enumeration-unknown-value',
-				$attributeValue, $attributeName,
-				RequestContext::getMain()->getLanguage()->commaList( $this->possibleValues )
-			);
+			if ( preg_match( '/^(\p{L}|\p{N}|\p{P}|\p{S})+$/', $attributeValue ) ) {
+				return StatusValue::newGood();
+			} else {
+				return StatusValue::newFatal(
+					'tei-validation-word-invalid-value',
+					$attributeValue, $attributeName
+				);
+			}
+
 		}
 	}
 }

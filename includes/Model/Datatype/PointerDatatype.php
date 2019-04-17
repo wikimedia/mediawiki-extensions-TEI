@@ -2,16 +2,15 @@
 
 namespace MediaWiki\Extension\Tei\Model\Datatype;
 
-use Language;
 use StatusValue;
 
 /**
  * @license GPL-2.0-or-later
  */
-class LanguageDatatype extends Datatype {
+class PointerDatatype extends Datatype {
 
 	public function __construct() {
-		parent::__construct( 'teidata.language' );
+		parent::__construct( 'teidata.pointer' );
 	}
 
 	/**
@@ -22,11 +21,11 @@ class LanguageDatatype extends Datatype {
 	 * @return StatusValue
 	 */
 	public function validate( $attributeName, $attributeValue ) {
-		if ( $attributeValue === '' || Language::isWellFormedLanguageTag( $attributeValue ) ) {
+		if ( filter_var( $attributeValue, FILTER_VALIDATE_URL ) ) {
 			return StatusValue::newGood();
 		} else {
 			return StatusValue::newFatal(
-				'tei-validation-language-invalid-value',
+				'tei-validation-pointer-invalid-value',
 				$attributeValue, $attributeName
 			);
 		}

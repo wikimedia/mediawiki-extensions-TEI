@@ -1,0 +1,1788 @@
+{
+    "classes": {
+        "att.global": {
+            "attributes": {
+                "xml:id": {
+                    "datatype": {
+                        "dataRef": {
+                            "name": "ID"
+                        }
+                    },
+                    "usage": "opt"
+                },
+                "xml:lang": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.language"
+                        }
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [
+                "att.global.rendition",
+                "att.global.linking",
+                "att.global.analytic",
+                "att.global.facs",
+                "att.global.change",
+                "att.global.responsibility",
+                "att.global.source"
+            ],
+            "module": "tei"
+        },
+        "att.global.rendition": {
+            "attributes": {
+                "rend": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.word"
+                        },
+                        "maxOccurs": null
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [],
+            "module": "tei"
+        },
+        "att.internetMedia": {
+            "attributes": {
+                "mimeType": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.word"
+                        },
+                        "maxOccurs": null,
+                        "minOccurs": 1
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [],
+            "module": "tei"
+        },
+        "att.tableDecoration": {
+            "attributes": {
+                "cols": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.count"
+                        }
+                    },
+                    "usage": "opt"
+                },
+                "role": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt",
+                    "valList": {
+                        "items": {
+                            "data": [],
+                            "label": []
+                        },
+                        "type": "semi"
+                    }
+                },
+                "rows": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.count"
+                        }
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [],
+            "module": "figures"
+        },
+        "model.addrPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.addressLike": {
+            "attributes": [],
+            "classes": [
+                "model.pPart.data",
+                "model.correspActionPart"
+            ],
+            "module": "tei"
+        },
+        "model.applicationLike": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.availabilityPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.biblLike": {
+            "attributes": [],
+            "classes": [
+                "model.inter",
+                "model.personPart",
+                "model.msItemPart"
+            ],
+            "module": "tei"
+        },
+        "model.biblPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.castItemPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.catDescPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.certLike": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.choicePart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.common": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.correspActionPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.correspContextPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.correspDescPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.dateLike": {
+            "attributes": [],
+            "classes": [
+                "model.pPart.data",
+                "model.recordingPart",
+                "model.correspActionPart"
+            ],
+            "module": "tei"
+        },
+        "model.descLike": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.dimLike": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.div1Like": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.div2Like": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.div3Like": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.div4Like": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.div5Like": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.div6Like": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.div7Like": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.divBottom": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.divBottomPart": {
+            "attributes": [],
+            "classes": [
+                "model.divBottom"
+            ],
+            "module": "tei"
+        },
+        "model.divGenLike": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.divLike": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.divPart": {
+            "attributes": [],
+            "classes": [
+                "model.common"
+            ],
+            "module": "tei"
+        },
+        "model.divTop": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.divTopPart": {
+            "attributes": [],
+            "classes": [
+                "model.divTop"
+            ],
+            "module": "tei"
+        },
+        "model.divWrapper": {
+            "attributes": [],
+            "classes": [
+                "model.divTop",
+                "model.divBottom"
+            ],
+            "module": "tei"
+        },
+        "model.editorialDeclPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.egLike": {
+            "attributes": [],
+            "classes": [
+                "model.inter"
+            ],
+            "module": "tei"
+        },
+        "model.emphLike": {
+            "attributes": [],
+            "classes": [
+                "model.highlighted",
+                "model.limitedPhrase"
+            ],
+            "module": "tei"
+        },
+        "model.encodingDescPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.entryPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.entryPart.top": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.eventLike": {
+            "attributes": [],
+            "classes": [
+                "model.personPart",
+                "model.orgPart"
+            ],
+            "module": "tei"
+        },
+        "model.featureVal": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.featureVal.complex": {
+            "attributes": [],
+            "classes": [
+                "model.featureVal"
+            ],
+            "module": "tei"
+        },
+        "model.featureVal.single": {
+            "attributes": [],
+            "classes": [
+                "model.featureVal"
+            ],
+            "module": "tei"
+        },
+        "model.frontPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.frontPart.drama": {
+            "attributes": [],
+            "classes": [
+                "model.frontPart"
+            ],
+            "module": "tei"
+        },
+        "model.gLike": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.global": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.global.edit": {
+            "attributes": [],
+            "classes": [
+                "model.global"
+            ],
+            "module": "tei"
+        },
+        "model.global.meta": {
+            "attributes": [],
+            "classes": [
+                "model.global"
+            ],
+            "module": "tei"
+        },
+        "model.glossLike": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.graphicLike": {
+            "attributes": [],
+            "classes": [
+                "model.phrase"
+            ],
+            "module": "tei"
+        },
+        "model.headLike": {
+            "attributes": [],
+            "classes": [
+                "model.divTopPart"
+            ],
+            "module": "tei"
+        },
+        "model.hiLike": {
+            "attributes": [],
+            "classes": [
+                "model.highlighted",
+                "model.limitedPhrase",
+                "model.linePart"
+            ],
+            "module": "tei"
+        },
+        "model.highlighted": {
+            "attributes": [],
+            "classes": [
+                "model.phrase"
+            ],
+            "module": "tei"
+        },
+        "model.imprintPart": {
+            "attributes": [],
+            "classes": [
+                "model.biblPart"
+            ],
+            "module": "tei"
+        },
+        "model.inter": {
+            "attributes": [],
+            "classes": [
+                "model.common"
+            ],
+            "module": "tei"
+        },
+        "model.lLike": {
+            "attributes": [],
+            "classes": [
+                "model.divPart"
+            ],
+            "module": "tei"
+        },
+        "model.lPart": {
+            "attributes": [],
+            "classes": [
+                "model.phrase"
+            ],
+            "module": "tei"
+        },
+        "model.labelLike": {
+            "attributes": [],
+            "classes": [
+                "model.inter"
+            ],
+            "module": "tei"
+        },
+        "model.limitedPhrase": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.linePart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.listLike": {
+            "attributes": [],
+            "classes": [
+                "model.inter"
+            ],
+            "module": "tei"
+        },
+        "model.measureLike": {
+            "attributes": [],
+            "classes": [
+                "model.pPart.data"
+            ],
+            "module": "tei"
+        },
+        "model.milestoneLike": {
+            "attributes": [],
+            "classes": [
+                "model.global"
+            ],
+            "module": "tei"
+        },
+        "model.msItemPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.msQuoteLike": {
+            "attributes": [],
+            "classes": [
+                "model.msItemPart"
+            ],
+            "module": "tei"
+        },
+        "model.nameLike": {
+            "attributes": [],
+            "classes": [
+                "model.addrPart",
+                "model.pPart.data",
+                "model.correspActionPart"
+            ],
+            "module": "tei"
+        },
+        "model.nameLike.agent": {
+            "attributes": [],
+            "classes": [
+                "model.nameLike"
+            ],
+            "module": "tei"
+        },
+        "model.noteLike": {
+            "attributes": [],
+            "classes": [
+                "model.global"
+            ],
+            "module": "tei"
+        },
+        "model.objectLike": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.oddDecl": {
+            "attributes": [],
+            "classes": [
+                "model.inter"
+            ],
+            "module": "tei"
+        },
+        "model.oddRef": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.offsetLike": {
+            "attributes": [],
+            "classes": [
+                "model.nameLike"
+            ],
+            "module": "tei"
+        },
+        "model.orgPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.orgStateLike": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.pLike": {
+            "attributes": [],
+            "classes": [
+                "model.divPart",
+                "model.correspContextPart"
+            ],
+            "module": "tei"
+        },
+        "model.pLike.front": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.pPart.data": {
+            "attributes": [],
+            "classes": [
+                "model.phrase",
+                "model.limitedPhrase"
+            ],
+            "module": "tei"
+        },
+        "model.pPart.edit": {
+            "attributes": [],
+            "classes": [
+                "model.phrase"
+            ],
+            "module": "tei"
+        },
+        "model.pPart.editorial": {
+            "attributes": [],
+            "classes": [
+                "model.pPart.edit",
+                "model.limitedPhrase"
+            ],
+            "module": "tei"
+        },
+        "model.pPart.msdesc": {
+            "attributes": [],
+            "classes": [
+                "model.phrase",
+                "model.limitedPhrase"
+            ],
+            "module": "tei"
+        },
+        "model.pPart.transcriptional": {
+            "attributes": [],
+            "classes": [
+                "model.pPart.edit"
+            ],
+            "module": "tei"
+        },
+        "model.persStateLike": {
+            "attributes": [],
+            "classes": [
+                "model.personPart"
+            ],
+            "module": "tei"
+        },
+        "model.personLike": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.personPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.phrase": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.phrase.xml": {
+            "attributes": [],
+            "classes": [
+                "model.phrase",
+                "model.limitedPhrase"
+            ],
+            "module": "tei"
+        },
+        "model.placeLike": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.placeNamePart": {
+            "attributes": [],
+            "classes": [
+                "model.placeStateLike"
+            ],
+            "module": "tei"
+        },
+        "model.placeStateLike": {
+            "attributes": [],
+            "classes": [
+                "model.nameLike"
+            ],
+            "module": "tei"
+        },
+        "model.profileDescPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.ptrLike": {
+            "attributes": [],
+            "classes": [
+                "model.phrase",
+                "model.limitedPhrase",
+                "model.correspContextPart",
+                "model.publicationStmtPart.detail"
+            ],
+            "module": "tei"
+        },
+        "model.publicationStmtPart.agency": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.publicationStmtPart.detail": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.qLike": {
+            "attributes": [],
+            "classes": [
+                "model.inter"
+            ],
+            "module": "tei"
+        },
+        "model.quoteLike": {
+            "attributes": [],
+            "classes": [
+                "model.qLike",
+                "model.msItemPart"
+            ],
+            "module": "tei"
+        },
+        "model.resourceLike": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.respLike": {
+            "attributes": [],
+            "classes": [
+                "model.biblPart",
+                "model.msItemPart"
+            ],
+            "module": "tei"
+        },
+        "model.segLike": {
+            "attributes": [],
+            "classes": [
+                "model.phrase"
+            ],
+            "module": "tei"
+        },
+        "model.settingPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.sourceDescPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.specDescLike": {
+            "attributes": [],
+            "classes": [
+                "model.phrase"
+            ],
+            "module": "tei"
+        },
+        "model.stageLike": {
+            "attributes": [],
+            "classes": [
+                "model.inter"
+            ],
+            "module": "tei"
+        },
+        "model.teiHeaderPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.textDescPart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        },
+        "model.titlepagePart": {
+            "attributes": [],
+            "classes": [],
+            "module": "tei"
+        }
+    },
+    "elements": {
+        "abbr": {
+            "attributes": {
+                "type": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "valList": {
+                        "items": {
+                            "acronym": [],
+                            "brevigraph": [],
+                            "contraction": [],
+                            "geographic": [],
+                            "organization": [],
+                            "superscription": [],
+                            "suspension": [],
+                            "title": []
+                        },
+                        "type": "open"
+                    }
+                }
+            },
+            "classes": [
+                "att.global",
+                "model.pPart.editorial",
+                "model.choicePart",
+                "att.typed"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "back": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.declaring"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "content": [
+                            {
+                                "key": "model.frontPart",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.pLike.front",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.pLike",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.listLike",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "alternate"
+                    },
+                    {
+                        "content": [
+                            {
+                                "content": [
+                                    {
+                                        "key": "model.div1Like",
+                                        "type": "classRef"
+                                    },
+                                    {
+                                        "content": [
+                                            {
+                                                "key": "model.frontPart",
+                                                "type": "classRef"
+                                            },
+                                            {
+                                                "key": "model.div1Like",
+                                                "type": "classRef"
+                                            },
+                                            {
+                                                "key": "model.global",
+                                                "type": "classRef"
+                                            }
+                                        ],
+                                        "maxOccurs": null,
+                                        "minOccurs": 0,
+                                        "type": "alternate"
+                                    }
+                                ],
+                                "type": "sequence"
+                            },
+                            {
+                                "content": [
+                                    {
+                                        "key": "model.divLike",
+                                        "type": "classRef"
+                                    },
+                                    {
+                                        "content": [
+                                            {
+                                                "key": "model.frontPart",
+                                                "type": "classRef"
+                                            },
+                                            {
+                                                "key": "model.divLike",
+                                                "type": "classRef"
+                                            },
+                                            {
+                                                "key": "model.global",
+                                                "type": "classRef"
+                                            }
+                                        ],
+                                        "maxOccurs": null,
+                                        "minOccurs": 0,
+                                        "type": "alternate"
+                                    }
+                                ],
+                                "type": "sequence"
+                            }
+                        ],
+                        "minOccurs": 0,
+                        "type": "alternate"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "model.divBottomPart",
+                                "type": "classRef"
+                            },
+                            {
+                                "content": [
+                                    {
+                                        "key": "model.divBottomPart",
+                                        "type": "classRef"
+                                    },
+                                    {
+                                        "key": "model.global",
+                                        "type": "classRef"
+                                    }
+                                ],
+                                "maxOccurs": null,
+                                "minOccurs": 0,
+                                "type": "alternate"
+                            }
+                        ],
+                        "minOccurs": 0,
+                        "type": "sequence"
+                    }
+                ],
+                "type": "sequence"
+            },
+            "module": "textstructure"
+        },
+        "body": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.declaring"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "key": "model.global",
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "classRef"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "model.divTop",
+                                "type": "classRef"
+                            },
+                            {
+                                "content": [
+                                    {
+                                        "key": "model.global",
+                                        "type": "classRef"
+                                    },
+                                    {
+                                        "key": "model.divTop",
+                                        "type": "classRef"
+                                    }
+                                ],
+                                "maxOccurs": null,
+                                "minOccurs": 0,
+                                "type": "alternate"
+                            }
+                        ],
+                        "minOccurs": 0,
+                        "type": "sequence"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "model.divGenLike",
+                                "type": "classRef"
+                            },
+                            {
+                                "content": [
+                                    {
+                                        "key": "model.global",
+                                        "type": "classRef"
+                                    },
+                                    {
+                                        "key": "model.divGenLike",
+                                        "type": "classRef"
+                                    }
+                                ],
+                                "maxOccurs": null,
+                                "minOccurs": 0,
+                                "type": "alternate"
+                            }
+                        ],
+                        "minOccurs": 0,
+                        "type": "sequence"
+                    },
+                    {
+                        "content": [
+                            {
+                                "content": [
+                                    {
+                                        "key": "model.divLike",
+                                        "type": "classRef"
+                                    },
+                                    {
+                                        "content": [
+                                            {
+                                                "key": "model.global",
+                                                "type": "classRef"
+                                            },
+                                            {
+                                                "key": "model.divGenLike",
+                                                "type": "classRef"
+                                            }
+                                        ],
+                                        "maxOccurs": null,
+                                        "minOccurs": 0,
+                                        "type": "alternate"
+                                    }
+                                ],
+                                "maxOccurs": null,
+                                "minOccurs": 1,
+                                "type": "sequence"
+                            },
+                            {
+                                "content": [
+                                    {
+                                        "key": "model.div1Like",
+                                        "type": "classRef"
+                                    },
+                                    {
+                                        "content": [
+                                            {
+                                                "key": "model.global",
+                                                "type": "classRef"
+                                            },
+                                            {
+                                                "key": "model.divGenLike",
+                                                "type": "classRef"
+                                            }
+                                        ],
+                                        "maxOccurs": null,
+                                        "minOccurs": 0,
+                                        "type": "alternate"
+                                    }
+                                ],
+                                "maxOccurs": null,
+                                "minOccurs": 1,
+                                "type": "sequence"
+                            },
+                            {
+                                "content": [
+                                    {
+                                        "content": [
+                                            {
+                                                "key": "model.common",
+                                                "type": "classRef"
+                                            },
+                                            {
+                                                "key": "model.global",
+                                                "maxOccurs": null,
+                                                "minOccurs": 0,
+                                                "type": "classRef"
+                                            }
+                                        ],
+                                        "maxOccurs": null,
+                                        "minOccurs": 1,
+                                        "type": "sequence"
+                                    },
+                                    {
+                                        "content": [
+                                            {
+                                                "content": [
+                                                    {
+                                                        "key": "model.divLike",
+                                                        "type": "classRef"
+                                                    },
+                                                    {
+                                                        "content": [
+                                                            {
+                                                                "key": "model.global",
+                                                                "type": "classRef"
+                                                            },
+                                                            {
+                                                                "key": "model.divGenLike",
+                                                                "type": "classRef"
+                                                            }
+                                                        ],
+                                                        "maxOccurs": null,
+                                                        "minOccurs": 0,
+                                                        "type": "alternate"
+                                                    }
+                                                ],
+                                                "maxOccurs": null,
+                                                "minOccurs": 1,
+                                                "type": "sequence"
+                                            },
+                                            {
+                                                "content": [
+                                                    {
+                                                        "key": "model.div1Like",
+                                                        "type": "classRef"
+                                                    },
+                                                    {
+                                                        "content": [
+                                                            {
+                                                                "key": "model.global",
+                                                                "type": "classRef"
+                                                            },
+                                                            {
+                                                                "key": "model.divGenLike",
+                                                                "type": "classRef"
+                                                            }
+                                                        ],
+                                                        "maxOccurs": null,
+                                                        "minOccurs": 0,
+                                                        "type": "alternate"
+                                                    }
+                                                ],
+                                                "maxOccurs": null,
+                                                "minOccurs": 1,
+                                                "type": "sequence"
+                                            }
+                                        ],
+                                        "minOccurs": 0,
+                                        "type": "alternate"
+                                    }
+                                ],
+                                "type": "sequence"
+                            }
+                        ],
+                        "type": "alternate"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "model.divBottom",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "maxOccurs": null,
+                                "minOccurs": 0,
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "sequence"
+                    }
+                ],
+                "type": "sequence"
+            },
+            "module": "textstructure"
+        },
+        "cell": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.tableDecoration"
+            ],
+            "content": {
+                "key": "macro.specialPara",
+                "type": "macroRef"
+            },
+            "module": "figures"
+        },
+        "del": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.pPart.transcriptional",
+                "model.linePart",
+                "att.transcriptional",
+                "att.typed",
+                "att.dimensions"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "div": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.divLike",
+                "att.typed",
+                "att.declaring",
+                "att.written",
+                "model.divLike"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "content": [
+                            {
+                                "key": "model.divTop",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "alternate"
+                    },
+                    {
+                        "content": [
+                            {
+                                "content": [
+                                    {
+                                        "content": [
+                                            {
+                                                "content": [
+                                                    {
+                                                        "key": "model.divLike",
+                                                        "type": "classRef"
+                                                    },
+                                                    {
+                                                        "key": "model.divGenLike",
+                                                        "type": "classRef"
+                                                    }
+                                                ],
+                                                "type": "alternate"
+                                            },
+                                            {
+                                                "key": "model.global",
+                                                "maxOccurs": null,
+                                                "minOccurs": 0,
+                                                "type": "classRef"
+                                            }
+                                        ],
+                                        "maxOccurs": null,
+                                        "minOccurs": 1,
+                                        "type": "sequence"
+                                    },
+                                    {
+                                        "content": [
+                                            {
+                                                "content": [
+                                                    {
+                                                        "key": "model.common",
+                                                        "type": "classRef"
+                                                    },
+                                                    {
+                                                        "key": "model.global",
+                                                        "maxOccurs": null,
+                                                        "minOccurs": 0,
+                                                        "type": "classRef"
+                                                    }
+                                                ],
+                                                "maxOccurs": null,
+                                                "minOccurs": 1,
+                                                "type": "sequence"
+                                            },
+                                            {
+                                                "content": [
+                                                    {
+                                                        "content": [
+                                                            {
+                                                                "key": "model.divLike",
+                                                                "type": "classRef"
+                                                            },
+                                                            {
+                                                                "key": "model.divGenLike",
+                                                                "type": "classRef"
+                                                            }
+                                                        ],
+                                                        "type": "alternate"
+                                                    },
+                                                    {
+                                                        "key": "model.global",
+                                                        "maxOccurs": null,
+                                                        "minOccurs": 0,
+                                                        "type": "classRef"
+                                                    }
+                                                ],
+                                                "maxOccurs": null,
+                                                "minOccurs": 0,
+                                                "type": "sequence"
+                                            }
+                                        ],
+                                        "type": "sequence"
+                                    }
+                                ],
+                                "type": "alternate"
+                            },
+                            {
+                                "content": [
+                                    {
+                                        "key": "model.divBottom",
+                                        "type": "classRef"
+                                    },
+                                    {
+                                        "key": "model.global",
+                                        "maxOccurs": null,
+                                        "minOccurs": 0,
+                                        "type": "classRef"
+                                    }
+                                ],
+                                "maxOccurs": null,
+                                "minOccurs": 0,
+                                "type": "sequence"
+                            }
+                        ],
+                        "minOccurs": 0,
+                        "type": "sequence"
+                    }
+                ],
+                "type": "sequence"
+            },
+            "module": "textstructure"
+        },
+        "front": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.declaring"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "content": [
+                            {
+                                "key": "model.frontPart",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.pLike",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.pLike.front",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "alternate"
+                    },
+                    {
+                        "content": [
+                            {
+                                "content": [
+                                    {
+                                        "content": [
+                                            {
+                                                "key": "model.div1Like",
+                                                "type": "classRef"
+                                            },
+                                            {
+                                                "content": [
+                                                    {
+                                                        "key": "model.div1Like",
+                                                        "type": "classRef"
+                                                    },
+                                                    {
+                                                        "key": "model.frontPart",
+                                                        "type": "classRef"
+                                                    },
+                                                    {
+                                                        "key": "model.global",
+                                                        "type": "classRef"
+                                                    }
+                                                ],
+                                                "maxOccurs": null,
+                                                "minOccurs": 0,
+                                                "type": "alternate"
+                                            }
+                                        ],
+                                        "type": "sequence"
+                                    },
+                                    {
+                                        "content": [
+                                            {
+                                                "key": "model.divLike",
+                                                "type": "classRef"
+                                            },
+                                            {
+                                                "content": [
+                                                    {
+                                                        "key": "model.divLike",
+                                                        "type": "classRef"
+                                                    },
+                                                    {
+                                                        "key": "model.frontPart",
+                                                        "type": "classRef"
+                                                    },
+                                                    {
+                                                        "key": "model.global",
+                                                        "type": "classRef"
+                                                    }
+                                                ],
+                                                "maxOccurs": null,
+                                                "minOccurs": 0,
+                                                "type": "alternate"
+                                            }
+                                        ],
+                                        "type": "sequence"
+                                    }
+                                ],
+                                "type": "alternate"
+                            },
+                            {
+                                "content": [
+                                    {
+                                        "key": "model.divBottom",
+                                        "type": "classRef"
+                                    },
+                                    {
+                                        "content": [
+                                            {
+                                                "key": "model.divBottom",
+                                                "type": "classRef"
+                                            },
+                                            {
+                                                "key": "model.global",
+                                                "type": "classRef"
+                                            }
+                                        ],
+                                        "maxOccurs": null,
+                                        "minOccurs": 0,
+                                        "type": "alternate"
+                                    }
+                                ],
+                                "minOccurs": 0,
+                                "type": "sequence"
+                            }
+                        ],
+                        "minOccurs": 0,
+                        "type": "sequence"
+                    }
+                ],
+                "type": "sequence"
+            },
+            "module": "textstructure"
+        },
+        "hi": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.hiLike",
+                "att.written"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "item": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.sortable"
+            ],
+            "content": {
+                "key": "macro.specialPara",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "lb": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.milestoneLike",
+                "att.typed",
+                "att.edition",
+                "att.spanning",
+                "att.breaking"
+            ],
+            "content": {
+                "type": "empty"
+            },
+            "module": "core"
+        },
+        "list": {
+            "attributes": {
+                "type": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt",
+                    "valList": {
+                        "items": {
+                            "gloss": [],
+                            "index": [],
+                            "instructions": [],
+                            "litany": [],
+                            "syllogism": []
+                        },
+                        "type": "semi"
+                    }
+                }
+            },
+            "classes": [
+                "att.global",
+                "att.sortable",
+                "att.typed",
+                "model.listLike"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "key": "item",
+                        "type": "elementRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "type": "sequence"
+            },
+            "module": "core"
+        },
+        "p": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.pLike",
+                "att.declaring",
+                "att.fragmentable",
+                "att.written"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "row": {
+            "attributes": [],
+            "classes": [
+                "att.global"
+            ],
+            "content": {
+                "key": "cell",
+                "maxOccurs": null,
+                "minOccurs": 1,
+                "type": "elementRef"
+            },
+            "module": "figures"
+        },
+        "table": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.listLike",
+                "att.typed"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "key": "row",
+                        "type": "elementRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "type": "sequence"
+            },
+            "module": "figures"
+        },
+        "text": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.declaring",
+                "att.typed",
+                "att.written",
+                "model.resourceLike"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "key": "model.global",
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "classRef"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "front",
+                                "type": "elementRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "maxOccurs": null,
+                                "minOccurs": 0,
+                                "type": "classRef"
+                            }
+                        ],
+                        "minOccurs": 0,
+                        "type": "sequence"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "body",
+                                "type": "elementRef"
+                            },
+                            {
+                                "key": "group",
+                                "type": "elementRef"
+                            }
+                        ],
+                        "type": "alternate"
+                    },
+                    {
+                        "key": "model.global",
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "classRef"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "back",
+                                "type": "elementRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "maxOccurs": null,
+                                "minOccurs": 0,
+                                "type": "classRef"
+                            }
+                        ],
+                        "minOccurs": 0,
+                        "type": "sequence"
+                    }
+                ],
+                "type": "sequence"
+            },
+            "module": "textstructure"
+        }
+    },
+    "macros": {
+        "macro.limitedContent": {
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.limitedPhrase",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.inter",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "tei"
+        },
+        "macro.paraContent": {
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.phrase",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.inter",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "lg",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "model.lLike",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "tei"
+        },
+        "macro.phraseSeq": {
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.qLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.phrase",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "tei"
+        },
+        "macro.phraseSeq.limited": {
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.limitedPhrase",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "tei"
+        },
+        "macro.specialPara": {
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.phrase",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.inter",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.divPart",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "tei"
+        },
+        "macro.xtext": {
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "tei"
+        }
+    },
+    "start": [
+        "text"
+    ]
+}

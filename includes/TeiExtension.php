@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\Tei;
 use MediaWiki\Extension\Tei\Converter\HtmlToTeiConverter;
 use MediaWiki\Extension\Tei\Converter\TeiToHtmlConverter;
 use MediaWiki\Extension\Tei\Model\CodeMirrorSchemaBuilder;
-use MediaWiki\Extension\Tei\Model\DefaultTeiRegistryBuilder;
 use MediaWiki\Extension\Tei\Model\Normalizer;
 use MediaWiki\Extension\Tei\Model\TeiRegistry;
 use MediaWiki\Extension\Tei\Model\Validator;
@@ -16,6 +15,8 @@ use MediaWiki\Extension\Tei\Model\Validator;
  * Global context for the TEI extension
  */
 class TeiExtension {
+
+	const DEFINITION_FILE_PATH = __DIR__ . '/../data/mw_tei_json_definition.json';
 
 	private $registry;
 
@@ -36,7 +37,9 @@ class TeiExtension {
 	 */
 	private function getRegistry() {
 		if ( $this->registry === null ) {
-			$this->registry = ( new DefaultTeiRegistryBuilder() )->build();
+			$this->registry = new TeiRegistry( json_decode( file_get_contents(
+				self::DEFINITION_FILE_PATH
+			), true ) );
 		}
 		return $this->registry;
 	}
