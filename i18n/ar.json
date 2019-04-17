@@ -28,5 +28,7 @@
 	"apihelp-teiconvert-param-to": "تنسيق المحتوى للتحويل إليه.",
 	"apihelp-teiconvert-param-slot": "إذا لم يتم تعيين <var>$1text</var>، فما الفتحة لإرجاع البيانات إليها.",
 	"apihelp-teiconvert-param-normalize": "في حالة التعيين، يقوم بتطبيع محتوى TEI",
-	"apihelp-teiconvert-example-from-title-to-html": "يحول إلى HTML محتوى [[TEI]]"
+	"apihelp-teiconvert-example-from-title-to-html": "يحول إلى HTML محتوى [[TEI]]",
+	"apihelp-teivalidate-summary": "وحدة API للتحقق من صحة وثيقة TEI",
+	"apihelp-teivalidate-param-text": "النص للتحقق من صحته."
 }

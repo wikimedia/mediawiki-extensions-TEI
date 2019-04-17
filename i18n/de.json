@@ -19,5 +19,7 @@
 	"tei-validation-missing-mandatory-attribute": "Das Attribut <code>$1</code> des Tags <code>$2</code> fehlt in Zeile $3.",
 	"tei-validation-count-invalid-value": "Der Wert von <code>$2</code> sollte eine positive Ganzzahl sein, es wurde <code>$1</code> gefunden.",
 	"tei-validation-enumeration-unknown-value": "<code>$1</code> ist kein unterstützter Wert des <code>$2</code>. Die möglichen Werte sind: $3.",
-	"tei-validation-language-invalid-value": "Der Wert von <code>$2</code> sollte ein gültiges Sprachtag sein, es wurde <code>$1</code> gefunden."
+	"tei-validation-language-invalid-value": "Der Wert von <code>$2</code> sollte ein gültiges Sprachtag sein, es wurde <code>$1</code> gefunden.",
+	"apihelp-teivalidate-summary": "API-Modul zur Validierung eines TEI-Dokuments",
+	"apihelp-teivalidate-param-text": "Zu validierender Text."
 }

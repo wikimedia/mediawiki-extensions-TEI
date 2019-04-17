@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gomoko"
+			"Gomoko",
+			"Wladek92"
 		]
 	},
 	"tei-desc": "Définition du modèle de contenu TEI",
@@ -28,5 +29,7 @@
 	"apihelp-teiconvert-param-to": "Format vers lequel convertir le contenu.",
 	"apihelp-teiconvert-param-slot": "Si <var>$1text</var> n’est pas défini, pour quel emplacement renvoyer les données.",
 	"apihelp-teiconvert-param-normalize": "Si défini, normalise le contenu TEI",
-	"apihelp-teiconvert-example-from-title-to-html": "Convertit en HTML le contenu de [[TEI]]"
+	"apihelp-teiconvert-example-from-title-to-html": "Convertit en HTML le contenu de [[TEI]]",
+	"apihelp-teivalidate-summary": "Module API pour valider un document TEI",
+	"apihelp-teivalidate-param-text": "Texte à valider."
 }

@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mainframe98"
+		]
+	},
+	"tei-libxml-empty-document": "Het XML document is leeg.",
+	"tei-libxml-error-message": "$1 op regel $2."
+}

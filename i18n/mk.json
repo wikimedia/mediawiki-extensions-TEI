@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"tei-desc": "Одредби за содржинскиот модел TEI",
+	"tei-libxml-empty-document": "XML-документот е празен.",
+	"tei-libxml-error-message": "$1 во редот $2 $2.",
+	"apihelp-teiconvert-param-from": "Содржински формат на <var>$1text</var>.",
+	"apihelp-teiconvert-param-to": "Во кој содржински формат да се претвори."
+}

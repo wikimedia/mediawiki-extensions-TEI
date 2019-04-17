@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hedda"
+		]
+	},
+	"tei-desc": "TEI içerik modeli tanımı",
+	"tei-libxml-empty-document": "XML belgesi boş.",
+	"tei-libxml-error-message": "$2. satırdaki $1.",
+	"tei-validation-element-content-unexpected-text": "<code>$1</code>, $2. satırda metin içermemeli.",
+	"tei-validation-no-root": "TEI XML içeriğinde kök etiketi yok."
+}
