@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"佛壁灯"
+		]
+	},
+	"apihelp-teivalidate-summary": "验证TEI文档的API模块",
+	"apihelp-teivalidate-param-text": "要验证的文本。"
+}

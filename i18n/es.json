@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fitoschido"
+		]
+	},
+	"tei-libxml-empty-document": "El documento XML está vacío.",
+	"apihelp-teivalidate-summary": "Módulo de la API para validar un documento TEI",
+	"apihelp-teivalidate-param-text": "Texto que validar."
+}
