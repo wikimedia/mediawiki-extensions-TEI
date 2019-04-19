@@ -16,6 +16,8 @@
 	"tei-validation-count-invalid-value": "The value of <code>$2</code> should be a positive integer, <code>$1</code> found.",
 	"tei-validation-enumeration-unknown-value": "<code>$1</code> is not a supported value of the <code>$2</code>. The possible values are: $3.",
 	"tei-validation-language-invalid-value": "The value of <code>$2</code> should be a valid language tag, <code>$1</code> found.",
+	"tei-validation-pointer-invalid-value": "The value of <code>$2</code> should be a valid URI, <code>$1</code> found.",
+	"tei-validation-word-invalid-value": "The value of <code>$2</code> should be a valid word, <code>$1</code> found.",
 	"apihelp-teiconvert-summary": "API module to convert content between TEI and HTML",
 	"apihelp-teiconvert-param-title": "If <var>$1text</var> is not set, the content of this page. If <var>$1text</var> is set use it as the title of the page during conversion. If it is not set, [[API]] will be used as the title.",
 	"apihelp-teiconvert-param-pageid": "Convert the content of this page.",

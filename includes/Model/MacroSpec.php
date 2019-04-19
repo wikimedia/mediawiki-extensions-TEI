@@ -5,9 +5,9 @@ namespace MediaWiki\Extension\Tei\Model;
 /**
  * @license GPL-2.0-or-later
  *
- * Definition of a TEI tag
+ * Definition of a TEI macro
  */
-class ElementSpec {
+class MacroSpec {
 
 	/**
 	 * @var string
@@ -20,8 +20,8 @@ class ElementSpec {
 	private $data;
 
 	/**
-	 * @param string $ident tag name
-	 * @param string[] $data the element spec data
+	 * @param string $ident macro name
+	 * @param string[] $data the macro spec data
 	 */
 	public function __construct( $ident, array $data ) {
 		$this->ident = $ident;

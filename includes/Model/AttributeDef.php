@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\Tei\Model;
 
 use MediaWiki\Extension\Tei\Model\Datatype\Datatype;
+use MediaWiki\Extension\Tei\Model\Datatype\DatatypeFactory;
 
 /**
  * @license GPL-2.0-or-later
@@ -17,24 +18,17 @@ class AttributeDef {
 	private $ident;
 
 	/**
-	 * @var Datatype
+	 * @var mixed[]
 	 */
-	private $datatype;
-
-	/**
-	 * @var bool
-	 */
-	private $isMandatory;
+	private $data;
 
 	/**
 	 * @param string $ident attribute name
-	 * @param Datatype $datatype the value datatype
-	 * @param bool $isMandatory
+	 * @param string[] $data the attribute spec data
 	 */
-	public function __construct( $ident, Datatype $datatype, $isMandatory = false ) {
+	public function __construct( $ident, array $data ) {
 		$this->ident = $ident;
-		$this->datatype = $datatype;
-		$this->isMandatory = $isMandatory;
+		$this->data = $data;
 	}
 
 	/**
@@ -48,13 +42,13 @@ class AttributeDef {
 	 * @return Datatype
 	 */
 	public function getDatatype() {
-		return $this->datatype;
+		return DatatypeFactory::build( $this->data );
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function isMandatory() {
-		return $this->isMandatory;
+		return array_key_exists( 'usage', $this->data ) && $this->data['usage'] === 'req';
 	}
 }

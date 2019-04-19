@@ -8,7 +8,7 @@ use DOMDocument;
 use DOMNode;
 use DOMNodeList;
 use DOMText;
-use MediaWiki\Extension\Tei\Model\ContentModel\Evaluation\ContentModelValidator;
+use MediaWiki\Extension\Tei\Model\Content\ContentValidatorFactory;
 use OutOfBoundsException;
 use StatusValue;
 
@@ -26,22 +26,16 @@ class Validator {
 	private $registry;
 
 	/**
-	 * @var ContentModelValidator
+	 * @var ContentValidatorFactory
 	 */
-	private $tagsContentModelValidator;
+	private $contentValidatorFactory;
 
 	/**
 	 * @param TeiRegistry $registry
 	 */
 	public function __construct( TeiRegistry $registry ) {
 		$this->registry = $registry;
-
-		$this->tagsContentModelValidator = new ContentModelValidator(
-			'tei-validation-element-content-',
-			function ( $groupId ) use ( $registry ) {
-				return $registry->getElementNamesInClass( $groupId );
-			}
-		);
+		$this->contentValidatorFactory = new ContentValidatorFactory( $registry );
 	}
 
 	/**
@@ -59,7 +53,7 @@ class Validator {
 	}
 
 	private function validateRoot( DOMNode $root, StatusValue $status ) {
-		if ( !in_array( $root->nodeName, [ 'text', 'body' ] ) ) {
+		if ( !in_array( $root->nodeName, $this->registry->getPossibleRootElements() ) ) {
 			$status->fatal(
 				'tei-validation-unexpected-root', $root->nodeName
 			);
@@ -79,7 +73,7 @@ class Validator {
 
 		// We validate the tag based on its definition
 		try {
-			$definition = $this->registry->getElementSpecFromName( $node->nodeName );
+			$definition = $this->registry->getElementSpecFromIdent( $node->nodeName );
 			$this->validateElementUsingDefinition( $node, $definition, $status );
 		} catch ( OutOfBoundsException $e ) {
 			$status->fatal(
@@ -101,8 +95,7 @@ class Validator {
 
 		// Children nodes
 		$status->merge(
-			$this->tagsContentModelValidator->validate(
-				$definition->getContentModel(),
+			$this->contentValidatorFactory->getForElement( $definition->getName() )->validate(
 				$this->nodeNames( $node->childNodes ),
 				$node->nodeName,
 				$node->getLineNo()
@@ -113,7 +106,7 @@ class Validator {
 	private function validateAttributes(
 		DOMNode $node, StatusValue $status
 	) {
-		$attributesDef = $this->registry->getAllAttributesForElement( $node->nodeName );
+		$attributesDef = $this->registry->getAllAttributesForEntityIdent( $node->nodeName );
 
 		/** @var DOMAttr $attr */
 		foreach ( $node->attributes as $attr ) {

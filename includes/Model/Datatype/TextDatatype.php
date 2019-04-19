@@ -7,10 +7,10 @@ use StatusValue;
 /**
  * @license GPL-2.0-or-later
  */
-class CountDatatype extends Datatype {
+class TextDatatype extends Datatype {
 
 	public function __construct() {
-		parent::__construct( 'teidata.count' );
+		parent::__construct( 'teidata.text' );
 	}
 
 	/**
@@ -21,13 +21,6 @@ class CountDatatype extends Datatype {
 	 * @return StatusValue
 	 */
 	public function validate( $attributeName, $attributeValue ) {
-		if ( (int)$attributeValue && $attributeValue > 0 ) {
-			return StatusValue::newGood();
-		} else {
-			return StatusValue::newFatal(
-				'tei-validation-count-invalid-value',
-				$attributeValue, $attributeName
-			);
-		}
+		return StatusValue::newGood();
 	}
 }

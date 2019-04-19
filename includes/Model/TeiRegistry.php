@@ -2,8 +2,6 @@
 
 namespace MediaWiki\Extension\Tei\Model;
 
-use InvalidArgumentException;
-use MediaWiki\Extension\Tei\Model\ContentModel\ContentModel;
 use OutOfBoundsException;
 
 /**
@@ -16,140 +14,124 @@ class TeiRegistry {
 	const TEI_NAMESPACE = 'http://www.tei-c.org/ns/1.0';
 
 	/**
-	 * @var ElementSpec[]
+	 * @var array[]
 	 */
-	private $elements = [];
-
-	/**
-	 * @var ClassSpec[]
-	 */
-	private $classes = [];
+	private $data = [];
 
 	/**
 	 * @var string[][]
 	 */
-	private $elementsInClasses = [];
+	private $elementsInClasses;
+
+	/**
+	 * @param array $teiDefinition JSON definition of the TEI elements
+	 */
+	public function __construct( array $teiDefinition ) {
+		$this->data = $teiDefinition;
+	}
+
+	/**
+	 * @return string[]
+	 */
+	public function getPossibleRootElements() {
+		return $this->data['start'];
+	}
 
 	/**
 	 * @return ElementSpec[]
 	 */
 	public function getAllElementsSpec() {
-		return array_values( $this->elements );
+		$elements = [];
+		foreach ( $this->data['elements'] as $ident => $element ) {
+			$elements[] = new ElementSpec( $ident, $element );
+		}
+		return $elements;
 	}
 
 	/**
-	 * @param string $elementName
+	 * @param string $elementIdent
 	 * @return ElementSpec
 	 * @throws OutOfBoundsException If the element is not registered
 	 */
-	public function getElementSpecFromName( $elementName ) {
-		if ( !array_key_exists( $elementName, $this->elements ) ) {
+	public function getElementSpecFromIdent( $elementIdent ) {
+		if ( !array_key_exists( $elementIdent, $this->data['elements'] ) ) {
 			throw new OutOfBoundsException(
-				'An element named ' . $elementName . ' does not exist in the registry.'
+				'An element named ' . $elementIdent . ' does not exist in the registry.'
 			);
 		}
-
-		return $this->elements[$elementName ];
+		return new ElementSpec( $elementIdent, $this->data['elements'][$elementIdent] );
 	}
 
 	/**
-	 * @param string $className
-	 * @return string[]
+	 * @param string $macroIdent
+	 * @return MacroSpec
+	 * @throws OutOfBoundsException If the macro is not registered
 	 */
-	public function getElementNamesInClass( $className ) {
-		if ( !array_key_exists( $className, $this->elementsInClasses ) ) {
-			throw new InvalidArgumentException(
-				'The class named ' . $className . ' does not exist in the registry.'
+	public function getMacroSpecFromIdent( $macroIdent ) {
+		if ( !array_key_exists( $macroIdent, $this->data['macros'] ) ) {
+			throw new OutOfBoundsException(
+				'A macro named ' . $macroIdent . ' does not exist in the registry.'
 			);
 		}
-		return $this->elementsInClasses[$className];
+		return new MacroSpec( $macroIdent, $this->data['macros'][$macroIdent] );
 	}
 
 	/**
-	 * @param string $elementName
+	 * @param string $elementIdent
 	 * @return AttributeDef[]
-	 * @throws OutOfBoundsException If the element is not registered
 	 */
-	public function getAllAttributesForElement( $elementName ) {
-		$elementSpec = $this->getElementSpecFromName( $elementName );
+	public function getAllAttributesForEntityIdent( $elementIdent ) {
 		$attributesMap = [];
-		foreach ( $elementSpec->getAttributes() as $attribute ) {
-			$attributesMap[$attribute->getName()] = $attribute;
+		$this->addAttributesForEntityIdent( $elementIdent, $attributesMap );
+		return $attributesMap;
+	}
+
+	private function addAttributesForEntityIdent( $elementIdent, array &$attributesMap ) {
+		if ( array_key_exists( $elementIdent, $this->data['classes'] ) ) {
+			$this->addAttributesForEntity( $this->data['classes'][$elementIdent], $attributesMap );
+		} elseif ( array_key_exists( $elementIdent, $this->data['elements'] ) ) {
+			$this->addAttributesForEntity( $this->data['elements'][$elementIdent], $attributesMap );
 		}
-		foreach ( $elementSpec->getClasses() as $class ) {
-			$this->addAttributesFromClass( $class, $attributesMap );
+	}
+
+	private function addAttributesForEntity( array $entitySpec, array &$attributesMap ) {
+		foreach ( $entitySpec['attributes'] as $ident => $attribute ) {
+			$attributesMap[$ident] = new AttributeDef( $ident, $attribute );
+		}
+		foreach ( $entitySpec['classes'] as $class ) {
+			$this->addAttributesForEntityIdent( $class, $attributesMap );
 		}
 		return $attributesMap;
 	}
 
-	private function addAttributesFromClass( $className, array &$attributesMap ) {
-		$classSpec = $this->classes[$className];
-		foreach ( $classSpec->getAttributes() as $attribute ) {
-			$attributesMap[$attribute->getName()] = $attribute;
+	/**
+	 * @param string $classIdent
+	 * @return string[]
+	 */
+	public function getElementIdentsInClass( $classIdent ) {
+		if ( $this->elementsInClasses === null ) {
+			$this->loadElementInClass();
 		}
-		foreach ( $classSpec->getSuperClasses() as $superClass ) {
-			$this->addAttributesFromClass( $superClass, $attributesMap );
+		if ( !array_key_exists( $classIdent, $this->elementsInClasses ) ) {
+			return [];
 		}
+		return $this->elementsInClasses[$classIdent];
 	}
 
-	/**
-	 * @param string $ident tag name
-	 * @param string[] $classes the classes this tag is in. They should all be registered
-	 * @param ContentModel $contentModel the content model of the children of this tag
-	 * @param AttributeDef[] $attributes the attributes specific to the element
-	 */
-	public function registerElement(
-		$ident, array $classes, ContentModel $contentModel, array $attributes = []
-	) {
-		if ( array_key_exists( $ident, $this->elements ) ) {
-			throw new InvalidArgumentException(
-				'A tag named ' . $ident . ' already exists in the registry.'
-			);
-		}
-		foreach ( $classes as $class ) {
-			if ( !array_key_exists( $class, $this->classes ) ) {
-				throw new InvalidArgumentException(
-					'The class named ' . $class . ' does not exist in the registry.'
-				);
+	private function loadElementInClass() {
+		foreach ( $this->data['elements'] as $elementIdent => $element ) {
+			foreach ( $element['classes'] as $classIdent ) {
+				$this->addElementToClass( $elementIdent, $classIdent );
 			}
 		}
-		$this->elements[$ident] = new ElementSpec( $ident, $classes, $contentModel, $attributes );
-
-		foreach ( $classes as $class ) {
-			$this->addElementToClass( $ident, $class );
-		}
 	}
 
-	private function addElementToClass( $elementName, $className ) {
-		if ( in_array( $elementName, $this->elementsInClasses[$className] ) ) {
-			return;
-		}
-		$this->elementsInClasses[$className][] = $elementName;
-		foreach ( $this->classes[$className]->getSuperClasses() as $superClassName ) {
-			$this->addElementToClass( $elementName, $superClassName );
-		}
-	}
-
-	/**
-	 * @param string $ident tag name
-	 * @param string[] $superClasses the super classes of this class
-	 * @param AttributeDef[] $attributes the attributes of the class
-	 */
-	public function registerClass( $ident, array $superClasses, array $attributes = [] ) {
-		if ( array_key_exists( $ident, $this->classes ) ) {
-			throw new InvalidArgumentException(
-				'A class named ' . $ident . ' already exists in the registry.'
-			);
-		}
-		foreach ( $superClasses as $class ) {
-			if ( !array_key_exists( $class, $this->classes ) ) {
-				throw new InvalidArgumentException(
-					'The class named ' . $class . ' does not exist in the registry.'
-				);
+	private function addElementToClass( $elementIdent, $classIdent ) {
+		$this->elementsInClasses[$classIdent][] = $elementIdent;
+		if ( array_key_exists( $classIdent, $this->data['classes'] ) ) {
+			foreach ( $this->data['classes'][$classIdent]['classes'] as $superClassIdent ) {
+				$this->addElementToClass( $elementIdent, $superClassIdent );
 			}
 		}
-
-		$this->classes[$ident] = new ClassSpec( $ident, $superClasses, $attributes );
-		$this->elementsInClasses[$ident] = [];
 	}
 }

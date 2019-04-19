@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\Tei\Model\ContentModel\Evaluation;
+namespace MediaWiki\Extension\Tei\Model\Content;
 
 /**
  * @license GPL-2.0-or-later
