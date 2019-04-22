@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"tei-validation-pointer-invalid-value": "Le valor de <code>$2</code> debe esser un URI valide, ma <code>$1</code> ha essite trovate.",
+	"tei-validation-word-invalid-value": "Le valor de <code>$2</code> debe esser un parola valide, ma <code>$1</code> ha essite trovate.",
+	"tei-validation-multiple-too-few-values": "Le valor de <code>$2</code> debe continer al minus {{PLURAL:$3|un elemento|$3 elementos}}, ma ha essite trovate <code>$1</code> que contine {{PLURAL:$4|un elemento|$4 elementos}}.",
+	"tei-validation-multiple-too-many-values": "Le valor de <code>$2</code> debe continer al plus {{PLURAL:$3|un elemento|$3 elementos}}, ma ha essite trovate <code>$1</code> que contine {{PLURAL:$4|un elemento|$4 elementos}}."
+}

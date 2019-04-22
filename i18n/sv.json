@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"WikiPhoenix"
+		]
+	},
+	"tei-libxml-empty-document": "XML-dokumentet är tomt.",
+	"tei-validation-element-content-unexpected-text": "<code>$1</code> bör inte innehålla text på rad $2.",
+	"apihelp-teiconvert-param-pageid": "Omvandla innehållet på denna sida.",
+	"apihelp-teiconvert-param-revid": "Omvandla innehållet i denna sidversion.",
+	"apihelp-teivalidate-param-text": "Text att validera."
+}

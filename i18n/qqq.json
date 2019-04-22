@@ -1,5 +1,9 @@
 {
-	"@metadata": [],
+	"@metadata": {
+		"authors": [
+			"Umherirrender"
+		]
+	},
 	"tei-desc": "{{desc|name=TEI}}",
 	"content-model-tei": "The name for the TEI content model, used when describing what type of content a page contains.",
 	"tei-libxml-empty-document": "Error message raised when XML document or page is empty.",
@@ -20,7 +24,7 @@
 	"tei-validation-word-invalid-value": "Error when an attribute value is invalid. $1 is the wrong attribute value and $2 is the attribute name.",
 	"tei-validation-multiple-too-few-values": "Error when an attribute value contains not enough parts. $1 is the wrong attribute value, $2 is the attribute name, $3 is the expected number of values and $4 the actual number.",
 	"tei-validation-multiple-too-many-values": "Error when an attribute value contains too many parts. $1 is the wrong attribute value, $2 is the attribute name, $3 is the expected number of values and $4 the actual number.",
-	"apihelp-teiconvert-summary": "{{doc-apihelp-description|teiconvert}}",
+	"apihelp-teiconvert-summary": "{{doc-apihelp-summary|teiconvert}}",
 	"apihelp-teiconvert-param-title": "{{doc-apihelp-param|teiconvert|title}}",
 	"apihelp-teiconvert-param-pageid": "{{doc-apihelp-param|teiconvert|pageid}}",
 	"apihelp-teiconvert-param-revid": "{{doc-apihelp-param|teiconvert|revid}}",
@@ -30,6 +34,6 @@
 	"apihelp-teiconvert-param-slot": "{{doc-apihelp-param|teiconvert|slot}}",
 	"apihelp-teiconvert-param-normalize": "{{doc-apihelp-param|teiconvert|normalize}}",
 	"apihelp-teiconvert-example-from-title-to-html": "{{doc-apihelp-example|teiconvert}}",
-	"apihelp-teivalidate-summary": "{{doc-apihelp-description|teivalidate}}",
+	"apihelp-teivalidate-summary": "{{doc-apihelp-summary|teivalidate}}",
 	"apihelp-teivalidate-param-text": "{{doc-apihelp-param|teivalidate|text}}"
 }

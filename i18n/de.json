@@ -20,6 +20,10 @@
 	"tei-validation-count-invalid-value": "Der Wert von <code>$2</code> sollte eine positive Ganzzahl sein, es wurde <code>$1</code> gefunden.",
 	"tei-validation-enumeration-unknown-value": "<code>$1</code> ist kein unterstützter Wert des <code>$2</code>. Die möglichen Werte sind: $3.",
 	"tei-validation-language-invalid-value": "Der Wert von <code>$2</code> sollte ein gültiges Sprachtag sein, es wurde <code>$1</code> gefunden.",
+	"tei-validation-pointer-invalid-value": "Der Wert von <code>$2</code> sollte eine gültige URI sein. Es wurde <code>$1</code> gefunden.",
+	"tei-validation-word-invalid-value": "Der Wert von <code>$2</code> sollte ein gültiges Wort sein. Es wurde <code>$1</code> gefunden.",
+	"tei-validation-multiple-too-few-values": "Der Wert von <code>$2</code> sollte mindestens {{PLURAL:$3|ein Element|$3 Elemente}} enthalten. Es wurde <code>$1</code> mit {{PLURAL:$4|einem Element|$4 Elementen}} gefunden.",
+	"tei-validation-multiple-too-many-values": "Der Wert von <code>$2</code> sollte höchstens {{PLURAL:$3|ein Element|$3 Elemente}} enthalten. Es wurde <code>$1</code> mit {{PLURAL:$4|einem Element|$4 Elementen}} gefunden.",
 	"apihelp-teivalidate-summary": "API-Modul zur Validierung eines TEI-Dokuments",
 	"apihelp-teivalidate-param-text": "Zu validierender Text."
 }
