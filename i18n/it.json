@@ -4,5 +4,7 @@
 			"Beta16"
 		]
 	},
+	"tei-validation-pointer-invalid-value": "Il valore di <code>$2</code> dovrebbe essere un URI valido: è stato trovato <code>$1</code>.",
+	"tei-validation-word-invalid-value": "Il valore di <code>$2</code> dovrebbe essere una parola valida: è stato trovato <code>$1</code>.",
 	"apihelp-teivalidate-param-text": "Testo da validare."
 }
