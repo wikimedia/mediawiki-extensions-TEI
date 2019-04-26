@@ -25,6 +25,15 @@
         },
         "att.global": {
             "attributes": {
+                "n": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.text"
+                        },
+                        "maxOccurs": 1
+                    },
+                    "usage": "opt"
+                },
                 "xml:id": {
                     "datatype": {
                         "dataRef": {
@@ -2536,6 +2545,52 @@
             },
             "module": "textstructure"
         },
+        "head": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.typed",
+                "att.placement",
+                "att.written",
+                "model.headLike",
+                "model.pLike.front"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "lg",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.phrase",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.inter",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.lLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "core"
+        },
         "hi": {
             "attributes": [],
             "classes": [
@@ -2834,6 +2889,25 @@
             ],
             "content": {
                 "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "note": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.noteLike",
+                "att.placement",
+                "att.pointing",
+                "att.typed",
+                "att.written",
+                "model.correspDescPart",
+                "model.correspActionPart",
+                "model.correspContextPart"
+            ],
+            "content": {
+                "key": "macro.specialPara",
                 "type": "macroRef"
             },
             "module": "core"

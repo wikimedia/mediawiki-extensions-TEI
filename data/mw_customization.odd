@@ -30,7 +30,7 @@
 					<moduleRef key="tei"/>
 					<moduleRef key="analysis" include="pc s w"/>
 					<moduleRef key="core"
-							   include="abbr add address addrLine author bibl biblScope byline choice cit closer corr date del desc editor expan foreign gap hi item l label lb lg list listBibl milestone name num p pb q ref reg relatedItem rs sic sp speaker stage term time title unclear"/>
+							   include="abbr add address addrLine author bibl biblScope byline choice cit closer corr date del desc editor expan foreign gap head hi item l label lb lg list listBibl milestone name note num p pb q ref reg relatedItem rs sic sp speaker stage term time title unclear"/>
 					<moduleRef key="figures"
 							   include="cell figDesc figure formula graphic row table"/>
 					<moduleRef key="linking" include="anchor seg"/>
@@ -41,13 +41,11 @@
 						<attList>
 							<attDef ident="xml:base" mode="delete"/>
 							<attDef ident="xml:space" mode="delete"/>
-							<attDef ident="n" mode="delete"/>
 						</attList>
 					</classSpec>
 					<classSpec ident="att.global.rendition" type="atts" module="tei" mode="change">
 						<attList>
 							<attDef ident="rendition" mode="delete"/>
-							<attDef ident="n" mode="delete"/>
 						</attList>
 					</classSpec>
 					<classSpec ident="att.ascribed" type="atts" module="tei" mode="delete"/>
@@ -55,7 +53,7 @@
 							   mode="delete"/>
 					<classSpec ident="att.canonical" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.ranging" type="atts" module="tei" mode="delete"/>
-					<classSpec ident="att.resourced" type="atts" mode="change">
+					<classSpec ident="att.resourced" type="atts" module="tei"  mode="change">
 						<attList>
 							<attDef ident="url" usage="req" mode="change">
 								<datatype><dataRef key="mw.title"/></datatype>
@@ -157,6 +155,13 @@
 							</alternate>
 						</content>
 					</elementSpec>
+
+					<elementSpec ident="note" module="core" mode="change">
+						<attList>
+                        	<attDef ident="anchored" mode="delete"/>
+                        	<attDef ident="targetEnd" mode="delete"/>
+						</attList>
+                    </elementSpec>
 
 					<elementSpec ident="row" module="figures" mode="change">
 						<classes>

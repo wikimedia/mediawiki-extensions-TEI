@@ -33,6 +33,12 @@
 	font-style: italic;
 }
 
+a[ data-tei-tag='note' ] {
+	vertical-align: super;
+	line-height: normal;
+	font-size: smaller;
+}
+
 *[ data-tei-tag='signed' ] {
 	text-align: right;
 }
