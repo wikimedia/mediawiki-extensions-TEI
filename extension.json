@@ -82,11 +82,11 @@
 		},
 		"ext.tei.editor": {
 			"scripts": [
+				"edit/teiEditor.js",
 				"edit/MWEditModeSourceTool.js",
 				"edit/MWEditModeVisualTool.js",
 				"edit/EncapsulationTool.js",
 				"edit/Editor.js",
-				"edit/teiEditor.js",
 				"edit/teiEditor.init.js"
 			],
 			"dependencies": [
