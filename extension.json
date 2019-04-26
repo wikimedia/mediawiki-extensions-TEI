@@ -76,12 +76,12 @@
 		},
 		"ext.tei.editor": {
 			"scripts": [
-				"edit/editor.js",
 				"edit/MWEditModeSourceTool.js",
 				"edit/MWEditModeVisualTool.js",
 				"edit/EncapsulationTool.js",
 				"edit/Editor.js",
-				"edit/editor.init.js"
+				"edit/teiEditor.js",
+				"edit/teiEditor.init.js"
 			],
 			"dependencies": [
 				"ext.CodeMirror.lib",
