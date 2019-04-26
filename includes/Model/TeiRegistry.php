@@ -96,7 +96,9 @@ class TeiRegistry {
 
 	private function addAttributesForEntity( array $entitySpec, array &$attributesMap ) {
 		foreach ( $entitySpec['attributes'] as $ident => $attribute ) {
-			$attributesMap[$ident] = new AttributeDef( $ident, $attribute );
+			if ( !array_key_exists( $ident, $attributesMap ) ) {
+				$attributesMap[$ident] = new AttributeDef( $ident, $attribute );
+			}
 		}
 		foreach ( $entitySpec['classes'] as $class ) {
 			$this->addAttributesForEntityIdent( $class, $attributesMap );

@@ -25,6 +25,11 @@
 		"MediaWiki\\Extension\\Tei\\": "includes/"
 	},
 	"ResourceModules": {
+		"ext.tei.style": {
+			"styles": [
+				"tei.style.css"
+			]
+		},
 		"ext.tei.ve.pageTarget.init": {
 			"scripts": [
 				"ve/init/ve.init.tei.TEIPageTarget.init.js"
@@ -66,7 +71,8 @@
 				"ext.visualEditor.mediawiki",
 				"ext.visualEditor.core.desktop",
 				"ext.visualEditor.switching",
-				"ext.visualEditor.icons"
+				"ext.visualEditor.icons",
+				"ext.tei.style"
 			],
 			"messages": [
 				"creating",
@@ -90,7 +96,8 @@
 				"ext.tei.ve.pageTarget.init",
 				"ext.tei.editor.teiSchema",
 				"ext.visualEditor.switching",
-				"oojs-ui"
+				"oojs-ui",
+				"ext.tei.style"
 			],
 			"messages": [
 				"visualeditor-annotationbutton-bold-tooltip",

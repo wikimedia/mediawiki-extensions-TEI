@@ -21,11 +21,21 @@
 	<text>
 		<body>
 			<div>
+				<p>
+					Warning: This ODD file is not directly used by the MediaWiki extension.
+					You should update the JSON definition file using
+					<code>php maintenance/GenerateTeiJsonDefinition.php</code>
+				</p>
 				<schemaSpec ident="tei_mediawiki" start="text">
 					<moduleRef key="tei"/>
-					<moduleRef key="core" include="abbr del hi item lb list p"/>
-					<moduleRef key="textstructure" include="back body div front text"/>
-					<moduleRef key="figures" include="cell row table"/>
+					<moduleRef key="analysis" include="pc s w"/>
+					<moduleRef key="core"
+							   include="abbr add address addrLine author bibl biblScope byline choice cit closer corr date del desc editor expan foreign gap hi item l label lb lg list listBibl milestone name num p pb q ref reg relatedItem rs sic sp speaker stage term time title unclear"/>
+					<moduleRef key="figures"
+							   include="cell figDesc figure formula graphic row table"/>
+					<moduleRef key="linking" include="anchor seg"/>
+					<moduleRef key="textstructure"
+							   include="argument back body dateline div docAuthor docDate docEdition docImprint docTitle epigraph front group imprimatur opener orig postscript salute signed text titlePage titlePart trailer"/>
 
 					<classSpec ident="att.global" type="atts" module="tei" mode="change">
 						<attList>
@@ -36,7 +46,6 @@
 					</classSpec>
 					<classSpec ident="att.global.rendition" type="atts" module="tei" mode="change">
 						<attList>
-							<attDef ident="style" mode="delete"/>
 							<attDef ident="rendition" mode="delete"/>
 							<attDef ident="n" mode="delete"/>
 						</attList>
@@ -46,13 +55,32 @@
 							   mode="delete"/>
 					<classSpec ident="att.canonical" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.ranging" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.resourced" type="atts" mode="change">
+						<attList>
+							<attDef ident="url" usage="req" mode="change">
+								<datatype><dataRef key="mw.title"/></datatype>
+							</attDef>
+						</attList>
+					</classSpec>
 					<classSpec ident="att.dimensions" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.written" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.damaged" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.breaking" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.cReferencing" type="atts" module="tei" mode="delete"/>
-					<classSpec ident="att.datable.w3c" type="atts" module="tei" mode="delete"/>
-					<classSpec ident="att.datable" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.datable.w3c" type="atts" module="tei" mode="change">
+						<attList>
+							<attDef ident="from" mode="delete"/>
+							<attDef ident="notAfter" mode="delete"/>
+							<attDef ident="notBefore" mode="delete"/>
+							<attDef ident="to" mode="delete"/>
+						</attList>
+					</classSpec>
+					<classSpec ident="att.datable" type="atts" module="tei" mode="change">
+						<attList>
+							<attDef ident="calendar" mode="delete"/>
+							<attDef ident="period" mode="delete"/>
+						</attList>
+					</classSpec>
 					<classSpec ident="att.datcat" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.declarable" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.declaring" type="atts" module="tei" mode="delete"/>
@@ -65,15 +93,20 @@
 					<classSpec ident="att.editLike" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.global.source" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.handFeatures" type="atts" module="tei" mode="delete"/>
-					<classSpec ident="att.media" type="atts" module="tei" mode="delete"/>
-					<classSpec ident="att.resourced" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.media" type="atts" module="tei" mode="change">
+						<attList>
+							<attDef ident="scale" mode="delete"/>
+						</attList>
+					</classSpec>
 					<classSpec ident="att.interpLike" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.measurement" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.naming" type="atts" module="tei" mode="delete"/>
-					<classSpec ident="att.notated" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.placement" type="atts" module="tei" mode="delete"/>
-					<classSpec ident="att.typed" type="atts" module="tei" mode="delete"/>
-					<classSpec ident="att.pointing" type="atts" module="tei" mode="delete"/>
+					<classSpec type="atts" ident="att.pointing" module="tei" mode="change">
+						<attList>
+							<attDef ident="evaluate" mode="delete"/>
+						</attList>
+					</classSpec>
 					<classSpec ident="att.pointing.group" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.scoping" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.segLike" type="atts" module="tei" mode="delete"/>
@@ -89,12 +122,39 @@
 					<classSpec ident="att.personal" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.duration.iso" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.milestoneUnit" type="atts" module="core" mode="delete"/>
+					<classSpec ident="att.global.linking" type="atts" module="linking"
+							   mode="delete"/>
+
+					<elementSpec ident="formula" module="figures" mode="change">
+						<attList>
+							<attDef ident="notation" usage="req" mode="change">
+								<valList type="closed">
+									<valItem ident="tex">
+										<desc versionDate="2019-04-23" xml:lang="en">TeX or LaTeX notation</desc>
+									</valItem>
+									<valItem ident="none">
+										<desc versionDate="2019-04-23" xml:lang="en">TEI notation</desc>
+									</valItem>
+								</valList>
+							</attDef>
+						</attList>
+					</elementSpec>
 
 					<elementSpec ident="list" module="core" mode="change">
 						<content>
-							<sequence maxOccurs="unbounded">
+							<alternate maxOccurs="unbounded">
 								<elementRef key="item"/>
-							</sequence>
+								<elementRef key="list"/>
+							</alternate>
+						</content>
+					</elementSpec>
+
+					<elementSpec ident="listBibl" module="core" mode="change">
+						<content>
+							<alternate maxOccurs="unbounded">
+								<elementRef key="bibl"/>
+								<elementRef key="listBibl"/>
+							</alternate>
 						</content>
 					</elementSpec>
 

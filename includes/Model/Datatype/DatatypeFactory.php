@@ -18,7 +18,7 @@ class DatatypeFactory {
 	public static function build( array $attribute ) {
 		$datatype = self::buildFromDataRefAndValList(
 			$attribute['datatype']['dataRef'],
-			array_key_exists( 'valList', $attribute ) ? $attribute['valList'] : []
+			$attribute['valList'] ?? []
 		);
 
 		$minOccurs = array_key_exists( 'minOccurs', $attribute['datatype'] )
@@ -48,19 +48,33 @@ class DatatypeFactory {
 		switch ( $datatypeId ) {
 			case 'ID':
 				return new IDDatatype();
+			case 'mw.title':
+				return new MediaWikiTitleDatatype();
 			case 'teidata.count':
 				return new CountDatatype();
 			case 'teidata.enumerated':
-				return new EnumerationDatatype(
-					$valList['type'] === 'closed',
-					array_keys( $valList['items'] )
-				);
+				if ( $valList ) {
+					return new EnumerationDatatype(
+						$valList['type'] === 'closed',
+						array_keys( $valList['items'] )
+					);
+				} else {
+					return new EnumerationDatatype( false, [] );
+				}
 			case 'teidata.language':
 				return new LanguageDatatype();
+			case 'teidata.numeric':
+				return new NumericDatatype();
+			case 'teidata.outputMeasurement':
+				return new OutputMeasurementDatatype();
 			case 'teidata.pointer':
-				return new PointerDatatype();
+				return new MediaWikiTitleDatatype();
+			case 'teidata.temporal.w3c':
+				return new TemporalW3CDatatype();
 			case 'teidata.text':
 				return new TextDatatype();
+			case 'teidata.truthValue':
+				return new TruthValueDatatype();
 			case 'teidata.word':
 				return new WordDatatype();
 			default:

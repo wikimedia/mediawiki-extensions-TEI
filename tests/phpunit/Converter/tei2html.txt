@@ -1,16 +1,4 @@
 !! test
-Unknown tag
-!! wikitext
-<text xmlns="http://www.tei-c.org/ns/1.0">
-	<x-unknown></x-unknown>
-</text>
-!! html/php
-<article>
-	&lt;x-unknown xmlns="http://www.tei-c.org/ns/1.0"&gt;&lt;/x-unknown&gt;
-</article>
-!!end
-
-!! test
 No namespace
 !! wikitext
 <text>
@@ -19,9 +7,9 @@ No namespace
 	</body>
 </text>
 !! html/php
-<article>
-	<section>
-		<p>Foo</p>
+<article data-tei-tag="text">
+	<section data-tei-tag="body">
+		<p data-tei-tag="p">Foo</p>
 	</section>
 </article>
 !!end
@@ -33,25 +21,15 @@ List no type
 	<item>Foo</item>
 </list>
 !! html/php
-<ul>
-	<li>Foo</li>
+<ul data-tei-tag="list">
+	<li data-tei-tag="item">Foo</li>
 </ul>
 !!end
 
 !! test
-Table role data
+Bad style
 !! wikitext
-<table>
-	<row>
-		<cell role="data">Foo</cell>
-		<cell>Bar</cell>
-	</row>
-</table>
+<p xmlns="http://www.tei-c.org/ns/1.0" style="background: url('foo.jpg');">Foo</p>
 !! html/php
-<table>
-	<tr>
-		<td>Foo</td>
-		<td>Bar</td>
-	</tr>
-</table>
+<p data-tei-tag="p" style="/* insecure input */">Foo</p>
 !!end

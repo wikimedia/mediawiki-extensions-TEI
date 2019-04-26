@@ -4,6 +4,10 @@ namespace MediaWiki\Extension\Tei;
 
 use DOMDocument;
 use LibXMLError;
+use RemexHtml\DOM\DOMBuilder;
+use RemexHtml\Tokenizer\Tokenizer;
+use RemexHtml\TreeBuilder\Dispatcher;
+use RemexHtml\TreeBuilder\TreeBuilder;
 use StatusValue;
 
 /**
@@ -12,6 +16,8 @@ use StatusValue;
  * Builds a DOMDocument from XML or HTML
  */
 class DOMDocumentFactory {
+
+	private static $skippedRemexErrorMessages = [ 'missing doctype' ];
 
 	/**
 	 * @param string $xml
@@ -22,31 +28,11 @@ class DOMDocumentFactory {
 			return StatusValue::newFatal( 'tei-libxml-empty-document' );
 		}
 
-		return $this->safeDOMDocumentParsing( function ( DOMDocument $dom ) use ( $xml ) {
-			$dom->loadXML( $xml );
-		} );
-	}
-
-	/**
-	 * @param string $html
-	 * @return StatusValue
-	 */
-	public function buildFromHTMLString( $html ) {
-		if ( $html === '' ) {
-			return StatusValue::newFatal( 'tei-libxml-empty-document' );
-		}
-
-		return $this->safeDOMDocumentParsing( function ( DOMDocument $dom ) use ( $html ) {
-			$dom->loadHTML( $html );
-		} );
-	}
-
-	private function safeDOMDocumentParsing( callable $loadFunction ) {
 		$oldUseInternalErrorsValue = libxml_use_internal_errors( true );
 
 		$oldDisableEntityLoaderValue = libxml_disable_entity_loader( true );
 		$dom = new DOMDocument( '1.0', 'UTF-8' );
-		$loadFunction( $dom );
+		$dom->loadXML( $xml );
 		libxml_disable_entity_loader( $oldDisableEntityLoaderValue );
 
 		$status = StatusValue::newGood( $dom );
@@ -59,6 +45,29 @@ class DOMDocumentFactory {
 
 		libxml_use_internal_errors( $oldUseInternalErrorsValue );
 
+		return $status;
+	}
+
+	/**
+	 * @param string $html
+	 * @return StatusValue
+	 */
+	public function buildFromHTMLString( $html ) {
+		$status = StatusValue::newGood();
+
+		$domBuilder = new DOMBuilder( function ( $error, $pos ) use ( $status ) {
+			if ( !in_array( $error, self::$skippedRemexErrorMessages ) ) {
+				$status->error( 'tei-remex-error-message', $error, $pos );
+			}
+		} );
+
+		( new Tokenizer( new Dispatcher( new TreeBuilder( $domBuilder ) ), $html, [] ) )->execute();
+		$document = $domBuilder->getFragment();
+
+		$status->setResult(
+			$document instanceof DOMDocument && $document->documentElement !== null,
+			$domBuilder->getFragment()
+		);
 		return $status;
 	}
 

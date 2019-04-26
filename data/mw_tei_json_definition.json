@@ -1,5 +1,28 @@
 {
     "classes": {
+        "att.datable": {
+            "attributes": [],
+            "classes": [
+                "att.datable.w3c",
+                "att.datable.iso",
+                "att.datable.custom"
+            ],
+            "module": "tei"
+        },
+        "att.datable.w3c": {
+            "attributes": {
+                "when": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.temporal.w3c"
+                        }
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [],
+            "module": "tei"
+        },
         "att.global": {
             "attributes": {
                 "xml:id": {
@@ -30,6 +53,21 @@
             ],
             "module": "tei"
         },
+        "att.global.analytic": {
+            "attributes": {
+                "ana": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.pointer"
+                        },
+                        "maxOccurs": null
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [],
+            "module": "analysis"
+        },
         "att.global.rendition": {
             "attributes": {
                 "rend": {
@@ -38,6 +76,15 @@
                             "key": "teidata.word"
                         },
                         "maxOccurs": null
+                    },
+                    "usage": "opt"
+                },
+                "style": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.text"
+                        },
+                        "maxOccurs": 1
                     },
                     "usage": "opt"
                 }
@@ -56,6 +103,138 @@
                         "minOccurs": 1
                     },
                     "usage": "opt"
+                }
+            },
+            "classes": [],
+            "module": "tei"
+        },
+        "att.linguistic": {
+            "attributes": {
+                "join": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.text"
+                        }
+                    },
+                    "usage": "opt",
+                    "valList": {
+                        "items": {
+                            "both": [],
+                            "left": [],
+                            "no": [],
+                            "overlap": [],
+                            "right": []
+                        },
+                        "type": "closed"
+                    }
+                },
+                "lemma": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.text"
+                        }
+                    },
+                    "usage": "opt"
+                },
+                "lemmaRef": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.pointer"
+                        },
+                        "maxOccurs": 1
+                    },
+                    "usage": "opt"
+                },
+                "msd": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.text"
+                        }
+                    },
+                    "usage": "opt"
+                },
+                "pos": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.text"
+                        }
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [],
+            "module": "analysis"
+        },
+        "att.media": {
+            "attributes": {
+                "height": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.outputMeasurement"
+                        }
+                    },
+                    "usage": "opt"
+                },
+                "width": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.outputMeasurement"
+                        }
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [
+                "att.internetMedia"
+            ],
+            "module": "tei"
+        },
+        "att.notated": {
+            "attributes": {
+                "notation": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [],
+            "module": "tei"
+        },
+        "att.pointing": {
+            "attributes": {
+                "target": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.pointer"
+                        },
+                        "maxOccurs": null
+                    },
+                    "usage": "opt"
+                },
+                "targetLang": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.language"
+                        }
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [],
+            "module": "tei"
+        },
+        "att.resourced": {
+            "attributes": {
+                "url": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "mw.title"
+                        }
+                    },
+                    "usage": "req"
                 }
             },
             "classes": [],
@@ -97,6 +276,28 @@
             },
             "classes": [],
             "module": "figures"
+        },
+        "att.typed": {
+            "attributes": {
+                "subtype": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt"
+                },
+                "type": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [],
+            "module": "tei"
         },
         "model.addrPart": {
             "attributes": [],
@@ -755,6 +956,7 @@
                             "key": "teidata.enumerated"
                         }
                     },
+                    "usage": "opt",
                     "valList": {
                         "items": {
                             "acronym": [],
@@ -775,6 +977,144 @@
                 "model.pPart.editorial",
                 "model.choicePart",
                 "att.typed"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "add": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.pPart.transcriptional",
+                "model.linePart",
+                "att.transcriptional",
+                "att.placement",
+                "att.typed",
+                "att.dimensions"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "addrLine": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.addrPart"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "address": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.addressLike",
+                "model.publicationStmtPart.detail"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "key": "model.global",
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "classRef"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "model.addrPart",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "maxOccurs": null,
+                                "minOccurs": 0,
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 1,
+                        "type": "sequence"
+                    }
+                ],
+                "type": "sequence"
+            },
+            "module": "core"
+        },
+        "anchor": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.milestoneLike",
+                "att.typed"
+            ],
+            "content": {
+                "type": "empty"
+            },
+            "module": "linking"
+        },
+        "argument": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.divWrapper",
+                "model.titlepagePart",
+                "model.pLike.front"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "content": [
+                            {
+                                "key": "model.global",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.headLike",
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "alternate"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "model.common",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "maxOccurs": null,
+                                "minOccurs": 0,
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 1,
+                        "type": "sequence"
+                    }
+                ],
+                "type": "sequence"
+            },
+            "module": "textstructure"
+        },
+        "author": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.naming",
+                "model.respLike"
             ],
             "content": {
                 "key": "macro.phraseSeq",
@@ -908,6 +1248,74 @@
                 "type": "sequence"
             },
             "module": "textstructure"
+        },
+        "bibl": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.biblLike",
+                "model.biblPart",
+                "att.declarable",
+                "att.typed",
+                "att.sortable",
+                "att.docStatus"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.highlighted",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.pPart.data",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.pPart.edit",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.segLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.ptrLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.biblPart",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "core"
+        },
+        "biblScope": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.citing",
+                "model.imprintPart"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "core"
         },
         "body": {
             "attributes": [],
@@ -1132,6 +1540,42 @@
             },
             "module": "textstructure"
         },
+        "byline": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.divWrapper",
+                "model.titlepagePart",
+                "model.pLike.front"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.phrase",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "docAuthor",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "textstructure"
+        },
         "cell": {
             "attributes": [],
             "classes": [
@@ -1143,6 +1587,200 @@
                 "type": "macroRef"
             },
             "module": "figures"
+        },
+        "choice": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.pPart.editorial",
+                "model.linePart"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "key": "model.choicePart",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "choice",
+                        "type": "elementRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 2,
+                "type": "alternate"
+            },
+            "module": "core"
+        },
+        "cit": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.typed",
+                "model.quoteLike",
+                "model.entryPart.top"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "key": "model.qLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.egLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.biblLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.ptrLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.entryPart",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 1,
+                "type": "alternate"
+            },
+            "module": "core"
+        },
+        "closer": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.written",
+                "model.divBottomPart"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "signed",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "dateline",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "salute",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "model.phrase",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "textstructure"
+        },
+        "corr": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.pPart.transcriptional",
+                "model.choicePart",
+                "att.editLike",
+                "att.typed"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "date": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.dateLike",
+                "model.publicationStmtPart.detail",
+                "att.canonical",
+                "att.datable",
+                "att.duration",
+                "att.editLike",
+                "att.dimensions",
+                "att.typed"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.phrase",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "core"
+        },
+        "dateline": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.divWrapper"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.phrase",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "docDate",
+                        "type": "elementRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "textstructure"
         },
         "del": {
             "attributes": [],
@@ -1156,6 +1794,36 @@
             ],
             "content": {
                 "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "desc": {
+            "attributes": {
+                "type": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt",
+                    "valList": {
+                        "items": {
+                            "deprecationInfo": []
+                        },
+                        "type": "semi"
+                    }
+                }
+            },
+            "classes": [
+                "att.global",
+                "model.descLike",
+                "att.translatable",
+                "att.typed",
+                "model.labelLike"
+            ],
+            "content": {
+                "key": "macro.limitedContent",
                 "type": "macroRef"
             },
             "module": "core"
@@ -1294,6 +1962,298 @@
             },
             "module": "textstructure"
         },
+        "docAuthor": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.titlepagePart",
+                "model.divWrapper",
+                "model.pLike.front",
+                "att.canonical"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "textstructure"
+        },
+        "docDate": {
+            "attributes": {
+                "when": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.temporal.w3c"
+                        }
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [
+                "att.global",
+                "model.titlepagePart",
+                "model.divWrapper",
+                "model.pLike.front"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "textstructure"
+        },
+        "docEdition": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.titlepagePart",
+                "model.pLike.front"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "textstructure"
+        },
+        "docImprint": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.titlepagePart",
+                "model.pLike.front"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.phrase",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "pubPlace",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "docDate",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "publisher",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "textstructure"
+        },
+        "docTitle": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.titlepagePart",
+                "model.pLike.front",
+                "att.canonical"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "key": "model.global",
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "classRef"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "titlePart",
+                                "type": "elementRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "maxOccurs": null,
+                                "minOccurs": 0,
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 1,
+                        "type": "sequence"
+                    }
+                ],
+                "type": "sequence"
+            },
+            "module": "textstructure"
+        },
+        "editor": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.naming",
+                "model.respLike"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "epigraph": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.divWrapper",
+                "model.titlepagePart",
+                "model.pLike.front"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "key": "model.common",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "textstructure"
+        },
+        "expan": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.pPart.editorial",
+                "model.choicePart",
+                "att.editLike"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "figDesc": {
+            "attributes": [],
+            "classes": [
+                "att.global"
+            ],
+            "content": {
+                "key": "macro.limitedContent",
+                "type": "macroRef"
+            },
+            "module": "figures"
+        },
+        "figure": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.global",
+                "att.placement",
+                "att.typed",
+                "att.written"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "key": "model.headLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.common",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "figDesc",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "model.graphicLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.divBottom",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "figures"
+        },
+        "foreign": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.emphLike"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "formula": {
+            "attributes": {
+                "notation": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "req",
+                    "valList": {
+                        "items": {
+                            "none": [],
+                            "tex": []
+                        },
+                        "type": "closed"
+                    }
+                }
+            },
+            "classes": [
+                "att.global",
+                "model.graphicLike",
+                "att.notated"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.graphicLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.hiLike",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "figures"
+        },
         "front": {
             "attributes": [],
             "classes": [
@@ -1422,6 +2382,160 @@
             },
             "module": "textstructure"
         },
+        "gap": {
+            "attributes": {
+                "agent": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt",
+                    "valList": {
+                        "items": {
+                            "mildew": [],
+                            "rubbing": [],
+                            "smoke": []
+                        },
+                        "type": "open"
+                    }
+                },
+                "reason": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        },
+                        "maxOccurs": null
+                    },
+                    "usage": "opt",
+                    "valList": {
+                        "items": {
+                            "cancelled": [],
+                            "deleted": [],
+                            "editorial": [],
+                            "illegible": [],
+                            "inaudible": [],
+                            "irrelevant": [],
+                            "sampling": []
+                        },
+                        "type": "semi"
+                    }
+                }
+            },
+            "classes": [
+                "att.global",
+                "model.global.edit",
+                "att.timed",
+                "att.editLike",
+                "att.dimensions"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "key": "model.descLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.certLike",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "core"
+        },
+        "graphic": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.graphicLike",
+                "model.titlepagePart",
+                "att.media",
+                "att.resourced",
+                "att.declaring"
+            ],
+            "content": {
+                "key": "model.descLike",
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "classRef"
+            },
+            "module": "core"
+        },
+        "group": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.declaring",
+                "att.typed"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "content": [
+                            {
+                                "key": "model.divTop",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "alternate"
+                    },
+                    {
+                        "content": [
+                            {
+                                "content": [
+                                    {
+                                        "key": "text",
+                                        "type": "elementRef"
+                                    },
+                                    {
+                                        "key": "group",
+                                        "type": "elementRef"
+                                    }
+                                ],
+                                "type": "alternate"
+                            },
+                            {
+                                "content": [
+                                    {
+                                        "key": "text",
+                                        "type": "elementRef"
+                                    },
+                                    {
+                                        "key": "group",
+                                        "type": "elementRef"
+                                    },
+                                    {
+                                        "key": "model.global",
+                                        "type": "classRef"
+                                    }
+                                ],
+                                "maxOccurs": null,
+                                "minOccurs": 0,
+                                "type": "alternate"
+                            }
+                        ],
+                        "type": "sequence"
+                    },
+                    {
+                        "key": "model.divBottom",
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "classRef"
+                    }
+                ],
+                "type": "sequence"
+            },
+            "module": "textstructure"
+        },
         "hi": {
             "attributes": [],
             "classes": [
@@ -1435,6 +2549,18 @@
             },
             "module": "core"
         },
+        "imprimatur": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.titlepagePart"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "textstructure"
+        },
         "item": {
             "attributes": [],
             "classes": [
@@ -1443,6 +2569,58 @@
             ],
             "content": {
                 "key": "macro.specialPara",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "l": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.lLike",
+                "att.metrical",
+                "att.enjamb",
+                "att.fragmentable"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.phrase",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.inter",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "core"
+        },
+        "label": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.typed",
+                "att.placement",
+                "att.written",
+                "model.labelLike"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
                 "type": "macroRef"
             },
             "module": "core"
@@ -1459,6 +2637,102 @@
             ],
             "content": {
                 "type": "empty"
+            },
+            "module": "core"
+        },
+        "lg": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.divPart",
+                "att.divLike",
+                "att.typed",
+                "att.declaring"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "content": [
+                            {
+                                "key": "model.divTop",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "alternate"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "model.lLike",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.stageLike",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.labelLike",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "lg",
+                                "type": "elementRef"
+                            }
+                        ],
+                        "type": "alternate"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "model.lLike",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.stageLike",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.labelLike",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "lg",
+                                "type": "elementRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "alternate"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "model.divBottom",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "maxOccurs": null,
+                                "minOccurs": 0,
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "sequence"
+                    }
+                ],
+                "type": "sequence"
             },
             "module": "core"
         },
@@ -1494,10 +2768,180 @@
                     {
                         "key": "item",
                         "type": "elementRef"
+                    },
+                    {
+                        "key": "list",
+                        "type": "elementRef"
                     }
                 ],
                 "maxOccurs": null,
-                "type": "sequence"
+                "type": "alternate"
+            },
+            "module": "core"
+        },
+        "listBibl": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.sortable",
+                "model.frontPart",
+                "att.declarable",
+                "att.typed",
+                "model.biblLike"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "key": "bibl",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "listBibl",
+                        "type": "elementRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "type": "alternate"
+            },
+            "module": "core"
+        },
+        "milestone": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.milestoneLike",
+                "att.milestoneUnit",
+                "att.typed",
+                "att.edition",
+                "att.spanning",
+                "att.breaking"
+            ],
+            "content": {
+                "type": "empty"
+            },
+            "module": "core"
+        },
+        "name": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.nameLike.agent",
+                "model.personPart",
+                "att.personal",
+                "att.datable",
+                "att.editLike",
+                "att.typed"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "num": {
+            "attributes": {
+                "type": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt",
+                    "valList": {
+                        "items": {
+                            "cardinal": [],
+                            "fraction": [],
+                            "ordinal": [],
+                            "percentage": []
+                        },
+                        "type": "semi"
+                    }
+                },
+                "value": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.numeric"
+                        }
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [
+                "att.global",
+                "model.measureLike",
+                "att.ranging"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "opener": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.divTopPart",
+                "att.written"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.phrase",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "argument",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "byline",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "dateline",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "epigraph",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "salute",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "signed",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "textstructure"
+        },
+        "orig": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.pPart.transcriptional",
+                "model.choicePart"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
             },
             "module": "core"
         },
@@ -1516,6 +2960,253 @@
             },
             "module": "core"
         },
+        "pb": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.milestoneLike",
+                "att.typed",
+                "att.edition",
+                "att.spanning",
+                "att.breaking"
+            ],
+            "content": {
+                "type": "empty"
+            },
+            "module": "core"
+        },
+        "pc": {
+            "attributes": {
+                "force": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt",
+                    "valList": {
+                        "items": {
+                            "inter": [],
+                            "strong": [],
+                            "weak": []
+                        },
+                        "type": "closed"
+                    }
+                },
+                "pre": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.truthValue"
+                        }
+                    },
+                    "usage": "opt"
+                },
+                "unit": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [
+                "att.global",
+                "model.segLike",
+                "model.linePart",
+                "att.segLike",
+                "att.typed",
+                "att.linguistic"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "c",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "model.pPart.edit",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "analysis"
+        },
+        "postscript": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.written",
+                "model.divBottomPart"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "content": [
+                            {
+                                "key": "model.global",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.divTopPart",
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "alternate"
+                    },
+                    {
+                        "key": "model.common",
+                        "type": "classRef"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "model.global",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.common",
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "alternate"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "model.divBottomPart",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "maxOccurs": null,
+                                "minOccurs": 0,
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "sequence"
+                    }
+                ],
+                "type": "sequence"
+            },
+            "module": "textstructure"
+        },
+        "q": {
+            "attributes": {
+                "type": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt",
+                    "valList": {
+                        "items": {
+                            "distinct": [],
+                            "emph": [],
+                            "foreign": [],
+                            "mentioned": [],
+                            "soCalled": [],
+                            "spoken": [],
+                            "term": [],
+                            "thought": [],
+                            "written": []
+                        },
+                        "type": "semi"
+                    }
+                }
+            },
+            "classes": [
+                "att.global",
+                "model.qLike",
+                "att.ascribed.directed"
+            ],
+            "content": {
+                "key": "macro.specialPara",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "ref": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.ptrLike",
+                "att.pointing",
+                "att.internetMedia",
+                "att.typed",
+                "att.declaring",
+                "att.cReferencing"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "reg": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.pPart.transcriptional",
+                "model.choicePart",
+                "att.editLike",
+                "att.typed"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "relatedItem": {
+            "attributes": {
+                "target": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.pointer"
+                        }
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [
+                "att.global",
+                "model.biblPart",
+                "att.typed"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "key": "model.biblLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.ptrLike",
+                        "type": "classRef"
+                    }
+                ],
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "core"
+        },
         "row": {
             "attributes": [],
             "classes": [
@@ -1528,6 +3219,221 @@
                 "type": "elementRef"
             },
             "module": "figures"
+        },
+        "rs": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.naming",
+                "model.nameLike",
+                "att.typed"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "s": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.segLike",
+                "att.segLike",
+                "att.typed",
+                "att.notated"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "analysis"
+        },
+        "salute": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.written",
+                "model.divWrapper"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "textstructure"
+        },
+        "seg": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.segLike",
+                "att.segLike",
+                "att.typed",
+                "att.written",
+                "model.choicePart",
+                "model.linePart",
+                "att.notated"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "linking"
+        },
+        "sic": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.pPart.transcriptional",
+                "model.choicePart"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "signed": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.written",
+                "model.divBottomPart",
+                "model.divTopPart"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "textstructure"
+        },
+        "sp": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.divPart",
+                "att.ascribed.directed"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "key": "model.global",
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "classRef"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "speaker",
+                                "type": "elementRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "maxOccurs": null,
+                                "minOccurs": 0,
+                                "type": "classRef"
+                            }
+                        ],
+                        "minOccurs": 0,
+                        "type": "sequence"
+                    },
+                    {
+                        "content": [
+                            {
+                                "content": [
+                                    {
+                                        "key": "lg",
+                                        "type": "elementRef"
+                                    },
+                                    {
+                                        "key": "model.lLike",
+                                        "type": "classRef"
+                                    },
+                                    {
+                                        "key": "model.pLike",
+                                        "type": "classRef"
+                                    },
+                                    {
+                                        "key": "model.listLike",
+                                        "type": "classRef"
+                                    },
+                                    {
+                                        "key": "model.stageLike",
+                                        "type": "classRef"
+                                    },
+                                    {
+                                        "key": "model.qLike",
+                                        "type": "classRef"
+                                    }
+                                ],
+                                "type": "alternate"
+                            },
+                            {
+                                "key": "model.global",
+                                "maxOccurs": null,
+                                "minOccurs": 0,
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 1,
+                        "type": "sequence"
+                    }
+                ],
+                "type": "sequence"
+            },
+            "module": "core"
+        },
+        "speaker": {
+            "attributes": [],
+            "classes": [
+                "att.global"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "stage": {
+            "attributes": {
+                "type": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        },
+                        "maxOccurs": null,
+                        "minOccurs": 0
+                    },
+                    "usage": "rec",
+                    "valList": {
+                        "items": {
+                            "business": [],
+                            "delivery": [],
+                            "entrance": [],
+                            "exit": [],
+                            "location": [],
+                            "mixed": [],
+                            "modifier": [],
+                            "novelistic": [],
+                            "setting": []
+                        },
+                        "type": "semi"
+                    }
+                }
+            },
+            "classes": [
+                "att.ascribed.directed",
+                "att.global",
+                "att.placement",
+                "model.stageLike"
+            ],
+            "content": {
+                "key": "macro.specialPara",
+                "type": "macroRef"
+            },
+            "module": "core"
         },
         "table": {
             "attributes": [],
@@ -1547,6 +3453,24 @@
                 "type": "sequence"
             },
             "module": "figures"
+        },
+        "term": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.emphLike",
+                "att.declaring",
+                "att.pointing",
+                "att.typed",
+                "att.canonical",
+                "att.sortable",
+                "att.cReferencing"
+            ],
+            "content": {
+                "key": "macro.phraseSeq",
+                "type": "macroRef"
+            },
+            "module": "core"
         },
         "text": {
             "attributes": [],
@@ -1620,6 +3544,331 @@
                 "type": "sequence"
             },
             "module": "textstructure"
+        },
+        "time": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.dateLike",
+                "att.datable",
+                "att.duration",
+                "att.editLike",
+                "att.dimensions",
+                "att.typed"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.phrase",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "core"
+        },
+        "title": {
+            "attributes": {
+                "level": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt",
+                    "valList": {
+                        "items": {
+                            "a": [],
+                            "j": [],
+                            "m": [],
+                            "s": [],
+                            "u": []
+                        },
+                        "type": "closed"
+                    }
+                },
+                "type": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt",
+                    "valList": {
+                        "items": {
+                            "alt": [],
+                            "desc": [],
+                            "main": [],
+                            "short": [],
+                            "sub": []
+                        },
+                        "type": "open"
+                    }
+                }
+            },
+            "classes": [
+                "att.global",
+                "model.emphLike",
+                "model.msQuoteLike",
+                "att.canonical",
+                "att.typed",
+                "att.datable"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "titlePage": {
+            "attributes": {
+                "type": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [
+                "att.global",
+                "model.frontPart"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "key": "model.global",
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.titlepagePart",
+                        "type": "classRef"
+                    },
+                    {
+                        "content": [
+                            {
+                                "key": "model.titlepagePart",
+                                "type": "classRef"
+                            },
+                            {
+                                "key": "model.global",
+                                "type": "classRef"
+                            }
+                        ],
+                        "maxOccurs": null,
+                        "minOccurs": 0,
+                        "type": "alternate"
+                    }
+                ],
+                "type": "sequence"
+            },
+            "module": "textstructure"
+        },
+        "titlePart": {
+            "attributes": {
+                "type": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt",
+                    "valList": {
+                        "items": {
+                            "alt": [],
+                            "desc": [],
+                            "main": [],
+                            "short": [],
+                            "sub": []
+                        },
+                        "type": "semi"
+                    }
+                }
+            },
+            "classes": [
+                "att.global",
+                "model.titlepagePart",
+                "model.pLike.front"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "textstructure"
+        },
+        "trailer": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "att.typed",
+                "model.divBottomPart"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "lg",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.phrase",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.inter",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.lLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "textstructure"
+        },
+        "unclear": {
+            "attributes": {
+                "agent": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        }
+                    },
+                    "usage": "opt",
+                    "valList": {
+                        "items": {
+                            "mildew": [],
+                            "rubbing": [],
+                            "smoke": []
+                        },
+                        "type": "open"
+                    }
+                },
+                "reason": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.enumerated"
+                        },
+                        "maxOccurs": null
+                    },
+                    "usage": "opt",
+                    "valList": {
+                        "items": {
+                            "background_noise": [],
+                            "eccentric_ductus": [],
+                            "faded": [],
+                            "illegible": [],
+                            "inaudible": []
+                        },
+                        "type": "semi"
+                    }
+                }
+            },
+            "classes": [
+                "att.global",
+                "model.pPart.transcriptional",
+                "model.linePart",
+                "model.choicePart",
+                "att.editLike",
+                "att.dimensions"
+            ],
+            "content": {
+                "key": "macro.paraContent",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "w": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.segLike",
+                "model.linePart",
+                "att.segLike",
+                "att.typed",
+                "att.linguistic",
+                "att.notated"
+            ],
+            "content": {
+                "content": [
+                    {
+                        "type": "textNode"
+                    },
+                    {
+                        "key": "model.gLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "seg",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "w",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "m",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "c",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "pc",
+                        "type": "elementRef"
+                    },
+                    {
+                        "key": "model.global",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.lPart",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.hiLike",
+                        "type": "classRef"
+                    },
+                    {
+                        "key": "model.pPart.edit",
+                        "type": "classRef"
+                    }
+                ],
+                "maxOccurs": null,
+                "minOccurs": 0,
+                "type": "alternate"
+            },
+            "module": "analysis"
         }
     },
     "macros": {

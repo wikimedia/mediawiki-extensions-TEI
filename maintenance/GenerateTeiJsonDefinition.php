@@ -6,6 +6,7 @@ use DOMDocument;
 use DOMElement;
 use DOMXPath;
 use Maintenance;
+use MultiHttpClient;
 
 $basePath = getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' )
@@ -38,11 +39,6 @@ class GenerateTeiJsonDefinition extends Maintenance {
 							  'by the TEI extension for validation and documentation' );
 
 		$this->addArg(
-			'full_tei_definition',
-			'Complete TEI definition. ' .
-			'You probably want to use https://tei-c.org/Vault/P5/current/xml/tei/odd/p5subset.xml'
-		);
-		$this->addArg(
 			'customization_file',
 			'The customization file. By default data/mw_customization.odd',
 			false
@@ -63,10 +59,10 @@ class GenerateTeiJsonDefinition extends Maintenance {
 
 	public function execute() {
 		$this->loadInputOddDom();
-		$this->importSchema( $this->getArg( 2, 'tei_mediawiki' ) );
+		$this->importSchema( $this->getArg( 1, 'tei_mediawiki' ) );
 
 		file_put_contents(
-			$this->getArg( 3, 'data/mw_tei_json_definition.json' ),
+			$this->getArg( 2, 'data/mw_tei_json_definition.json' ),
 			json_encode( $this->deepSortArray( $this->result ), JSON_PRETTY_PRINT )
 		);
 	}
@@ -167,14 +163,17 @@ class GenerateTeiJsonDefinition extends Maintenance {
 					'attributes' => []
 				];
 				$this->convertClasses( $classSpec, $this->result['classes'][$ident]['classes'] );
-				$this->convertAttributes( $classSpec, $this->result['classes'][$ident]['attributes'] );
+				$this->convertAttributes( $classSpec, $this->result['classes'][$ident] );
 				break;
 			case 'delete':
 				unset( $this->result['classes'][$ident] );
 				break;
 			case 'change':
+				if ( !array_key_exists( $ident, $this->result['classes'] ) ) {
+					$this->error( "No class found named '$ident'" );
+				}
 				$this->convertClasses( $classSpec, $this->result['classes'][$ident]['classes'] );
-				$this->convertAttributes( $classSpec, $this->result['classes'][$ident]['attributes'] );
+				$this->convertAttributes( $classSpec, $this->result['classes'][$ident] );
 				break;
 		}
 	}
@@ -197,18 +196,22 @@ class GenerateTeiJsonDefinition extends Maintenance {
 					'attributes' => []
 				];
 				$this->convertClasses( $elementSpec, $this->result['elements'][$ident]['classes'] );
-				$this->convertAttributes( $elementSpec, $this->result['elements'][$ident]['attributes'] );
+				$this->convertAttributes( $elementSpec, $this->result['elements'][$ident] );
 				break;
 			case 'delete':
 				unset( $this->result['elements'][$ident] );
 				break;
 			case 'change':
+				if ( !array_key_exists( $ident, $this->result['elements'] ) ) {
+					$this->error( "No element found named '$ident'" );
+				}
+
 				$newContent = $this->convertContent( $elementSpec );
 				if ( $newContent !== null ) {
 					$this->result['elements'][$ident]['content'] = $newContent;
 				}
 				$this->convertClasses( $elementSpec, $this->result['elements'][$ident]['classes'] );
-				$this->convertAttributes( $elementSpec, $this->result['elements'][$ident]['attributes'] );
+				$this->convertAttributes( $elementSpec, $this->result['elements'][$ident] );
 				break;
 		}
 	}
@@ -235,42 +238,49 @@ class GenerateTeiJsonDefinition extends Maintenance {
 		}
 	}
 
-	private function convertAttributes( DOMElement $elementSpec, array &$attributesList ) {
+	private function convertAttributes( DOMElement $elementSpec, array &$elementDef ) {
 		foreach ( $this->domXPath->query( 'tei:attList/tei:attDef', $elementSpec ) as $attDef ) {
-			$this->convertAttribute( $attDef, $attributesList );
+			$this->convertAttribute( $attDef, $elementDef );
 		}
 	}
 
-	private function convertAttribute( DOMElement $attDef, array &$attributesList ) {
+	private function convertAttribute( DOMElement $attDef, array &$elementDef ) {
 		$ident = $attDef->getAttribute( 'ident' );
 
 		switch ( $this->getMode( $attDef ) ) {
 			case 'add':
-				$attributesList[$ident] = [
+				$elementDef['attributes'][$ident] = [
 					'datatype' => $this->convertDatatype( $attDef )
 				];
-				$attributesList[$ident]['usage'] = $attDef->hasAttribute( 'usage' )
+				$elementDef['attributes'][$ident]['usage'] = $attDef->hasAttribute( 'usage' )
 					? $attDef->getAttribute( 'usage' )
 					: 'opt';
 				$valList = $this->convertValList( $attDef );
 				if ( $valList !== null ) {
-					$attributesList[$ident]['valList'] = $valList;
+					$elementDef['attributes'][$ident]['valList'] = $valList;
 				}
 				break;
 			case 'delete':
-				unset( $attributesList[$ident] );
+				unset( $elementDef['attributes'][$ident] );
 				break;
 			case 'change':
+				if ( !array_key_exists( $ident, $elementDef['attributes'] ) ) {
+					$elementDef['attributes'][$ident] = $this->getAttributeDef( $ident, $elementDef );
+				}
+				if ( !array_key_exists( $ident, $elementDef['attributes'] ) ) {
+					$this->error( "No attribute found named '$ident'" );
+				}
+
 				if ( $attDef->hasAttribute( 'usage' ) ) {
-					$attributesList[$ident]['usage'] = $attDef->getAttribute( 'usage' );
+					$elementDef['attributes'][$ident]['usage'] = $attDef->getAttribute( 'usage' );
 				}
 				$newDatatype = $this->convertDatatype( $attDef );
 				if ( $newDatatype !== null ) {
-					$attributesList[$ident]['datatype'] = $newDatatype;
+					$elementDef['attributes'][$ident]['datatype'] = $newDatatype;
 				}
 				$newValList = $this->convertValList( $attDef );
 				if ( $newValList !== null ) {
-					$attributesList[$ident]['valList'] = $newValList;
+					$elementDef['attributes'][$ident]['valList'] = $newValList;
 				}
 				break;
 		}
@@ -321,6 +331,20 @@ class GenerateTeiJsonDefinition extends Maintenance {
 			return $result;
 		}
 		return null;
+	}
+
+	private function getAttributeDef( $attributeIdent, array &$elementDef ) {
+		if ( array_key_exists( $attributeIdent, $elementDef['attributes'] ) ) {
+			return $elementDef['attributes'][$attributeIdent];
+		}
+		foreach ( $elementDef['classes'] as $class ) {
+			if ( array_key_exists( $class, $this->result['classes'] ) ) {
+				$attributeDef = $this->getAttributeDef( $attributeIdent, $this->result['classes'][$class] );
+				if ( $attributeDef !== null ) {
+					return $attributeDef;
+				}
+			}
+		}
 	}
 
 	private function convertContent( DOMElement $elementSpec ) {
@@ -378,8 +402,8 @@ class GenerateTeiJsonDefinition extends Maintenance {
 	}
 
 	private function loadInputOddDom() {
-		$fullTeiDefinitionDom = $this->readXmlFile( $this->getArg( 0 ) );
-		$customizationDom = $this->readXmlFile( $this->getArg( 1, 'data/mw_customization.odd' ) );
+		$fullTeiDefinitionDom = $this->loadP5FullDefinition();
+		$customizationDom = $this->readXmlFile( $this->getArg( 0, 'data/mw_customization.odd' ) );
 		$fullTeiDefinitionDom->documentElement->appendChild( $fullTeiDefinitionDom->importNode(
 			$customizationDom->documentElement, true
 		) );
@@ -392,6 +416,34 @@ class GenerateTeiJsonDefinition extends Maintenance {
 		$dom->preserveWhiteSpace = false;
 		$dom->load( $xmlFileName );
 		return $dom;
+	}
+
+	protected function loadP5FullDefinition() {
+		$client = new MultiHttpClient( [] );
+
+		list( $code, $desc, $header, $body, $err ) = $client->run( [
+			'method' => 'GET',
+			'url' => 'https://www.tei-c.org/release/xml/tei/odd/p5subset.xml'
+		] );
+
+		if ( $code === 200 && is_string( $body ) ) {
+			$dom = new DOMDocument();
+			$dom->preserveWhiteSpace = false;
+			$dom->loadXML( $body );
+			return $dom;
+		}
+
+		$errorMessage = 'Error while retrieving https://www.tei-c.org/release/xml/tei/odd/p5subset.xml';
+		if ( $err ) {
+			$errorMessage .= ": " . $err;
+		}
+		if ( $desc ) {
+			$errorMessage .= ": " . $desc;
+		}
+		if ( is_string( $body ) ) {
+			$errorMessage .= "\n\n" . $body;
+		}
+		$this->fatalError( $errorMessage );
 	}
 
 	private function deepSortArray( &$array ) {
