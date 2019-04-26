@@ -8,6 +8,7 @@
 	"tei-desc": "Definition des TEI-Inhaltsmodells",
 	"tei-libxml-empty-document": "Das XML-Dokument ist leer.",
 	"tei-libxml-error-message": "$1 in Zeile $2.",
+	"tei-remex-error-message": "$1 bei Position $2.",
 	"tei-validation-element-content-unexpected-node": "<code>$1</code> ist als Kind von <code lang=\"de\">$2</code> in Zeile $3 nicht erlaubt.",
 	"tei-validation-element-content-unexpected-text": "<code>$1</code> sollte in Zeile $2 keinen Text enthalten.",
 	"tei-validation-element-content-too-short": "Ein Tag wie $1 fehlt als Kind von <code>$2</code> in Zeile $3.",
@@ -20,10 +21,15 @@
 	"tei-validation-count-invalid-value": "Der Wert von <code>$2</code> sollte eine positive Ganzzahl sein, es wurde <code>$1</code> gefunden.",
 	"tei-validation-enumeration-unknown-value": "<code>$1</code> ist kein unterstützter Wert des <code>$2</code>. Die möglichen Werte sind: $3.",
 	"tei-validation-language-invalid-value": "Der Wert von <code>$2</code> sollte ein gültiges Sprachtag sein, es wurde <code>$1</code> gefunden.",
+	"tei-validation-numeric-invalid-value": "Der Wert von <code>$2</code> sollte ein gültiger numerischer Wert sein. Es wurde <code>$1</code> gefunden.",
+	"tei-validation-output-measurement-invalid-value": "Der Wert von <code>$2</code> sollte eine gültige positive Ganzzahl sein. Es wurde <code>$1</code> gefunden.",
 	"tei-validation-pointer-invalid-value": "Der Wert von <code>$2</code> sollte eine gültige URI sein. Es wurde <code>$1</code> gefunden.",
+	"tei-validation-temporal-w3c-invalid-value": "Der Wert von <code>$2</code> sollte ein gültiger ISO-8601-Wert sein. Es wurde <code>$1</code> gefunden.",
+	"tei-validation-truth-value-invalid-value": "Der Wert von <code>$2</code> sollte ein gültiger boolscher Wert wie <code>true</code> oder <code>false</code> sein. Es wurde <code>$1</code> gefunden.",
 	"tei-validation-word-invalid-value": "Der Wert von <code>$2</code> sollte ein gültiges Wort sein. Es wurde <code>$1</code> gefunden.",
 	"tei-validation-multiple-too-few-values": "Der Wert von <code>$2</code> sollte mindestens {{PLURAL:$3|ein Element|$3 Elemente}} enthalten. Es wurde <code>$1</code> mit {{PLURAL:$4|einem Element|$4 Elementen}} gefunden.",
 	"tei-validation-multiple-too-many-values": "Der Wert von <code>$2</code> sollte höchstens {{PLURAL:$3|ein Element|$3 Elemente}} enthalten. Es wurde <code>$1</code> mit {{PLURAL:$4|einem Element|$4 Elementen}} gefunden.",
+	"tei-parser-file-not-found": "Die Datei namens $1 ist nicht vorhanden.",
 	"apihelp-teivalidate-summary": "API-Modul zur Validierung eines TEI-Dokuments",
 	"apihelp-teivalidate-param-text": "Zu validierender Text."
 }
