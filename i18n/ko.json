@@ -5,5 +5,7 @@
 		]
 	},
 	"tei-desc": "TEI 콘텐츠 모델 정의",
-	"tei-libxml-empty-document": "XML 문서가 비어 있습니다."
+	"tei-libxml-empty-document": "XML 문서가 비어 있습니다.",
+	"tei-parser-file-not-found": "$1 파일이 존재하지 않습니다.",
+	"apihelp-teiconvert-param-pageid": "이 문서의 내용을 변환합니다."
 }

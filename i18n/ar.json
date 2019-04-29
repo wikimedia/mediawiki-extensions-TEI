@@ -1,12 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"ديفيد"
+			"ديفيد",
+			"Meno25",
+			"محمد أحمد عبد الفتاح"
 		]
 	},
 	"tei-desc": "تعريف نموذج محتوى TEI",
 	"tei-libxml-empty-document": "مستند XML فارغ.",
 	"tei-libxml-error-message": "$1 على الخط $2.",
+	"tei-remex-error-message": "$1 عند الموضع $2.",
 	"tei-validation-element-content-unexpected-node": "<code>$1</code> غير مسموح به باعتباره ابن <code lang=\"ar\">$2</code> على السطر $3.",
 	"tei-validation-element-content-unexpected-text": "<code>$1</code> يجب ألا يحتوي على نص على السطر <$2.",
 	"tei-validation-element-content-too-short": "هناك وسم مثل $1 مفقود باعتباره ابن <code>$2</code> على الخط $3.",
@@ -19,10 +22,15 @@
 	"tei-validation-count-invalid-value": "يجب أن تكون قيمة <code>$2</code> عددا صحيحا موجبا، موجود <code>$1</code>.",
 	"tei-validation-enumeration-unknown-value": "<code>$1</code> ليست قيمة معتمدة ل<code>$2</code>، القيم المحتملة هي: $3.",
 	"tei-validation-language-invalid-value": "يجب أن تكون قيمة <code>$2</code> وسم لغة صالحا، وقد تم العثور على  <code>$1</code> found.",
+	"tei-validation-numeric-invalid-value": "قيمة <code>$2</code> ينبغي أن تكون قيمة رقمية صحيحة، تم العثور على <code>$1</code>.",
+	"tei-validation-output-measurement-invalid-value": "قيمة <code>$2</code> ينبغي أن تكون رقما صحيحا موجبا، تم العثور على <code>$1</code>.",
 	"tei-validation-pointer-invalid-value": "يجب أن تكون قيمة <code>$2</code> URI صالحا، <code>$1</code> موجود.",
+	"tei-validation-temporal-w3c-invalid-value": "قيمة <code>$2</code> ينبغي أن تكون قيمة ISO 8601 صحيحة، تم العثور على <code>$1</code>.",
+	"tei-validation-truth-value-invalid-value": "قيمة <code>$2</code> ينبغي أن تكون قيمة منطقية صحيحة مثل  <code>true</code> أو <code>false</code>، تم العثور على  <code>$1</code>.",
 	"tei-validation-word-invalid-value": "يجب أن تكون قيمة <code>$2</code> كلمة صالحة، <code>$1</code> موجود.",
 	"tei-validation-multiple-too-few-values": "يجب أن تحتوي قيمة <code>$2</code> على {{PLURAL:$3|عنصر واحد|$3 عناصر}} على الأقل، de>$1</code> وُجِدت تحتوي على {{PLURAL:$4|عنصر واحد|$4 عناصر}}.",
 	"tei-validation-multiple-too-many-values": "يجب أن تحتوي قيمة <code>$2</code> على {{PLURAL:$3|عنصر واحد|$3 عناصر}} على الأكثر، de>$1</code> وُجِدت تحتوي على {{PLURAL:$4|عنصر واحد|$4 عناصر}}.",
+	"tei-parser-file-not-found": "الملف المسمى $1 غير موجود.",
 	"apihelp-teiconvert-summary": "وحدة API لتحويل المحتوى بين TEI وHTML",
 	"apihelp-teiconvert-param-title": "إذا لم يتم تعيين <var>$1text</var> ، فسيكون محتوى هذه الصفحة، إذا تم تعيين <var>$1text</var>، فاستخدمه كعنوان للصفحة أثناء التحويل، إذا لم يتم تعيينه، فسيتم استخدام [[API]] كعنوان.",
 	"apihelp-teiconvert-param-pageid": "تحويل محتوى هذه الصفحة.",

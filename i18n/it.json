@@ -1,10 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
-			"Beta16"
+			"Beta16",
+			"Senpremì"
 		]
 	},
+	"tei-remex-error-message": "$1 alla posizione $2.",
+	"tei-validation-numeric-invalid-value": "Il valore di <code>$2</code> dovrebbe un numero: è stato trovato <code>$1</code>.",
+	"tei-validation-output-measurement-invalid-value": "Il valore di <code>$2</code> dovrebbe essere un intero positivo valido: è stato trovato <code>$1</code>.",
 	"tei-validation-pointer-invalid-value": "Il valore di <code>$2</code> dovrebbe essere un URI valido: è stato trovato <code>$1</code>.",
+	"tei-validation-temporal-w3c-invalid-value": "Il valore di <code>$2</code> dovrebbe essere un valore valido di ISO 8601: è stato trovato <code>$1</code>.",
+	"tei-validation-truth-value-invalid-value": "Il valore di <code>$2</code> dovrebbe essere un valore booleano valido, come <code>true</code> o <code>false</code>: è stato trovato: <code>$1</code>.",
 	"tei-validation-word-invalid-value": "Il valore di <code>$2</code> dovrebbe essere una parola valida: è stato trovato <code>$1</code>.",
+	"tei-parser-file-not-found": "Il file $1 non esiste.",
 	"apihelp-teivalidate-param-text": "Testo da validare."
 }

@@ -4,5 +4,6 @@
 			"Fitoschido"
 		]
 	},
-	"tei-libxml-empty-document": "El document XML és buit."
+	"tei-libxml-empty-document": "El document XML és buit.",
+	"tei-parser-file-not-found": "El fitxer amb el nom «$1» no existeix."
 }
