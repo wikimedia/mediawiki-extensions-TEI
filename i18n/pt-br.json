@@ -19,6 +19,7 @@
 	"tei-validation-count-invalid-value": "O valor de <code>$2</code> deve ser um inteiro positivo, <code>$1</code> encontrado.",
 	"tei-validation-enumeration-unknown-value": "<code>$1</code> não é um valor suportado do <code>$2</code>. Os valores possíveis são: $3.",
 	"tei-validation-language-invalid-value": "O valor de <code>$2</code> deve ser uma etiqueta de idioma válida, <code>$1</code> encontrado.",
+	"tei-parser-file-not-found": "O arquivo chamado $1 não existe.",
 	"apihelp-teiconvert-summary": "Módulo API para converter conteúdo entre TEI e HTML",
 	"apihelp-teiconvert-param-title": "Se <var>$1text</var> não está definido, o conteúdo desta página. E se <var>$1text</var> está definido, use-o como o título da página durante a conversão. Se não estiver definido, [[API]] será usado como título.",
 	"apihelp-teiconvert-param-pageid": "Converta o conteúdo desta página.",
