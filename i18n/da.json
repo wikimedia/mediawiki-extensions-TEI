@@ -4,5 +4,8 @@
 			"Saederup92"
 		]
 	},
-	"tei-libxml-empty-document": "XML-dokumentet er tomt."
+	"tei-libxml-empty-document": "XML-dokumentet er tomt.",
+	"tei-libxml-error-message": "$1 p å linje $2.",
+	"tei-parser-file-not-found": "Filen med navnet $1 findes ikke.",
+	"apihelp-teivalidate-param-text": "Tekst at validere."
 }

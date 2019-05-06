@@ -30,6 +30,10 @@
 	"tei-validation-multiple-too-few-values": "Der Wert von <code>$2</code> sollte mindestens {{PLURAL:$3|ein Element|$3 Elemente}} enthalten. Es wurde <code>$1</code> mit {{PLURAL:$4|einem Element|$4 Elementen}} gefunden.",
 	"tei-validation-multiple-too-many-values": "Der Wert von <code>$2</code> sollte höchstens {{PLURAL:$3|ein Element|$3 Elemente}} enthalten. Es wurde <code>$1</code> mit {{PLURAL:$4|einem Element|$4 Elementen}} gefunden.",
 	"tei-parser-file-not-found": "Die Datei namens $1 ist nicht vorhanden.",
+	"apihelp-teiconvert-param-pageid": "Konvertiert den Inhalt dieser Seite.",
+	"apihelp-teiconvert-param-to": "Zu konvertierendes Inhaltsformat.",
+	"apihelp-teiconvert-param-normalize": "Falls festgelegt, normalisiert den TEI-Inhalt.",
+	"apihelp-teiconvert-example-from-title-to-html": "Konvertiert den Inhalt von [[TEI]] nach HTML",
 	"apihelp-teivalidate-summary": "API-Modul zur Validierung eines TEI-Dokuments",
 	"apihelp-teivalidate-param-text": "Zu validierender Text."
 }
