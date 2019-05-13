@@ -7,6 +7,7 @@ use DOMDocument;
 use DOMElement;
 use DOMNode;
 use DOMText;
+use DOMXPath;
 use MediaWiki\Extension\Tei\Model\TeiRegistry;
 
 /**
@@ -26,6 +27,7 @@ class HtmlToTeiConversion {
 		'abbr' => 'abbr',
 		'address' => 'address',
 		'article' => 'text',
+		'aside' => null,
 		'b' => [
 			self::NODE_NAME => 'hi',
 			'rend' => 'bold'
@@ -113,6 +115,11 @@ class HtmlToTeiConversion {
 	];
 
 	/**
+	 * @var DOMXPath
+	 */
+	private $htmlXPath;
+
+	/**
 	 * @var DOMDocument
 	 */
 	private $teiDocument;
@@ -121,6 +128,7 @@ class HtmlToTeiConversion {
 	 * @param DOMDocument $htmlDocument
 	 */
 	public function __construct( DOMDocument $htmlDocument ) {
+		$this->htmlXPath = new DOMXPath( $htmlDocument );
 		$this->teiDocument = new DOMDocument( '1.0', 'UTF-8' );
 		$this->convertHtml( $htmlDocument );
 	}
@@ -183,6 +191,9 @@ class HtmlToTeiConversion {
 			$teiElement = $this->createTeiElement( $htmlElement->getAttribute( self::TEI_TAG_NAME ) );
 		} elseif ( array_key_exists( $htmlElement->localName, self::$tagsMapping ) ) {
 			$teiTagData = self::$tagsMapping[$htmlElement->localName];
+			if ( $teiTagData === null ) {
+				return $this->teiDocument->createTextNode( '' );
+			}
 			if ( is_string( $teiTagData ) ) {
 				$teiTagData = [ self::NODE_NAME => $teiTagData ];
 			}
@@ -195,6 +206,29 @@ class HtmlToTeiConversion {
 			}
 		} else {
 			return $this->teiDocument->createTextNode( $htmlElement->C14N() );
+		}
+
+		if ( $teiElement->tagName === 'note' ) {
+			if ( $htmlElement->hasAttribute( 'href' ) ) {
+				$href = trim( $htmlElement->getAttribute( 'href' ) );
+				if ( strpos( $href, '#' ) === 0 ) {
+					$id = substr( $href, 1 );
+					foreach ( $this->htmlXPath->query(
+						'//*[@id="' . $id . '"]'
+					) as $htmlContent ) {
+						$this->convertAndAddAttributes( $htmlContent, $teiElement );
+						$this->convertAndAddChildrenNode( $htmlContent, $teiElement );
+						if ( strpos( $id, 'mw-note-' ) === 0 ) {
+							$teiElement->removeAttribute( 'xml:id' );
+						}
+					}
+				}
+			}
+
+			$this->convertAndAddAttributes( $htmlElement, $teiElement );
+			$teiElement->removeAttribute( 'target' );
+
+			return $teiElement;
 		}
 
 		$this->convertAndAddAttributes( $htmlElement, $teiElement );

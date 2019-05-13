@@ -62,7 +62,7 @@ class GenerateTeiJsonDefinition extends Maintenance {
 		$this->importSchema( $this->getArg( 1, 'tei_mediawiki' ) );
 
 		file_put_contents(
-			$this->getArg( 2, 'data/mw_tei_json_definition.json' ),
+			$this->getArg( 2, __DIR__ . '/../data/mw_tei_json_definition.json' ),
 			json_encode( $this->deepSortArray( $this->result ), JSON_PRETTY_PRINT )
 		);
 	}
@@ -403,7 +403,9 @@ class GenerateTeiJsonDefinition extends Maintenance {
 
 	private function loadInputOddDom() {
 		$fullTeiDefinitionDom = $this->loadP5FullDefinition();
-		$customizationDom = $this->readXmlFile( $this->getArg( 0, 'data/mw_customization.odd' ) );
+		$customizationDom = $this->readXmlFile(
+			$this->getArg( 0, __DIR__ . '/../data/mw_customization.odd' )
+		);
 		$fullTeiDefinitionDom->documentElement->appendChild( $fullTeiDefinitionDom->importNode(
 			$customizationDom->documentElement, true
 		) );
@@ -423,7 +425,7 @@ class GenerateTeiJsonDefinition extends Maintenance {
 
 		list( $code, $desc, $header, $body, $err ) = $client->run( [
 			'method' => 'GET',
-			'url' => 'https://www.tei-c.org/release/xml/tei/odd/p5subset.xml'
+			'url' => 'http://www.tei-c.org/release/xml/tei/odd/p5subset.xml'
 		] );
 
 		if ( $code === 200 && is_string( $body ) ) {
@@ -433,7 +435,7 @@ class GenerateTeiJsonDefinition extends Maintenance {
 			return $dom;
 		}
 
-		$errorMessage = 'Error while retrieving https://www.tei-c.org/release/xml/tei/odd/p5subset.xml';
+		$errorMessage = 'Error while retrieving http://www.tei-c.org/release/xml/tei/odd/p5subset.xml';
 		if ( $err ) {
 			$errorMessage .= ": " . $err;
 		}

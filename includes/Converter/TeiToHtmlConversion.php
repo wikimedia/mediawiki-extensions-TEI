@@ -28,7 +28,6 @@ class TeiToHtmlConversion {
 	const TEI_TAG_NAME = 'data-tei-tag';
 	const TEI_CONTENT = 'data-tei-content';
 
-	// TODO: <note>
 	private static $tagsMapping = [
 		'ab' => 'div',
 		'abbr' => 'abbr',
@@ -102,6 +101,10 @@ class TeiToHtmlConversion {
 		'listBibl' => 'ul',
 		'milestone' => 'span',
 		'name' => 'span',
+		'note' => [
+			self::NODE_NAME => 'a',
+			self::VALUE_FUNCTION => 'convertNote'
+		],
 		'num' => 'span',
 		'opener' => 'div',
 		'p' => 'p',
@@ -175,6 +178,16 @@ class TeiToHtmlConversion {
 	private $htmlDocument;
 
 	/**
+	 * @var DOMElement[]
+	 */
+	private $notes = [];
+
+	/**
+	 * @var int
+	 */
+	private $notesCounter = 1;
+
+	/**
 	 * @var string[]
 	 */
 	private $externalLinksUrls = [];
@@ -198,7 +211,11 @@ class TeiToHtmlConversion {
 		$this->pageTitle = $pageTitle;
 		$this->htmlDocument = new DOMDocument( '1.0', 'UTF-8' );
 
-		$this->htmlDocument->appendChild( $this->convertNode( $this->teiDocument->documentElement, 0 ) );
+		$root = $this->convertNode( $this->teiDocument->documentElement, 0 );
+		$this->htmlDocument->appendChild( $root );
+		foreach ( $this->notes as $note ) {
+			$root->appendChild( $note );
+		}
 	}
 
 	/**
@@ -260,18 +277,13 @@ class TeiToHtmlConversion {
 			$htmlTagData = [ self::NODE_NAME => 'span' ];
 		}
 
-		$htmlElement = $this->htmlDocument->createElementNS(
-			HTMLData::NS_HTML,
-			$htmlTagData[self::NODE_NAME]
-		);
+		$htmlElement = $this->createHtmlElement( $htmlTagData[self::NODE_NAME] );
 		$htmlElement->setAttribute( self::TEI_TAG_NAME, $teiElement->tagName );
 
-		$this->convertAndAddAttributes( $teiElement, $htmlElement );
-
 		if ( array_key_exists( self::VALUE_FUNCTION, $htmlTagData ) ) {
-			$htmlElement->appendChild( $this->{$htmlTagData[ self::VALUE_FUNCTION ]}( $teiElement ) );
-			$htmlElement->setAttribute( self::TEI_CONTENT, $teiElement->textContent );
+			$this->{$htmlTagData[ self::VALUE_FUNCTION ]}( $teiElement, $htmlElement );
 		} else {
+			$this->convertAndAddAttributes( $teiElement, $htmlElement );
 			$this->convertAndAddChildrenNode( $teiElement, $htmlElement, $divNesting );
 		}
 
@@ -418,13 +430,49 @@ class TeiToHtmlConversion {
 		}
 	}
 
-	private function convertTexFormula( DOMElement $htmlElement ) {
-		$text = $htmlElement->textContent;
+	private function convertTexFormula( DOMElement $teiElement, DOMElement $htmlElement ) {
+		$text = $teiElement->textContent;
+		$this->convertAndAddAttributes( $teiElement, $htmlElement );
+		$htmlElement->setAttribute( self::TEI_CONTENT, $teiElement->textContent );
+
 		if ( !class_exists( '\MathRenderer' ) ) {
 			return $this->htmlDocument->createTextNode( $text );
 		}
+		$math = \MathRenderer::renderMath( $text, [], 'mathml' );
+		$htmlElement->appendChild( $this->importHtml( $math ) );
+	}
 
-		return $this->importHtml( \MathRenderer::renderMath( $text, [], 'mathml' ) );
+	private function convertNote( DOMElement $teiElement, DOMElement $htmlElement ) {
+		if ( $teiElement->hasAttribute( 'xml:id' ) ) {
+			$id = $teiElement->getAttribute( 'xml:id' );
+		} else {
+			$id = 'mw-note-' . $this->notesCounter;
+		}
+
+		// Pointer
+		$htmlElement->setAttribute( 'href', '#' . $id );
+		$htmlElement->setAttribute( 'role', 'doc-noteref' );
+		if ( $teiElement->hasAttribute( 'n' ) ) {
+			$htmlElement->textContent = $teiElement->getAttribute( 'n' );
+			$htmlElement->setAttribute( 'data-tei-n', $teiElement->getAttribute( 'n' ) );
+		} else {
+			$htmlElement->textContent = (string)$this->notesCounter;
+		}
+
+		// Content
+		$content = $this->createHtmlElement( 'aside' );
+		$this->convertAndAddAttributes( $teiElement, $content );
+		$content->removeAttribute( 'data-tei-n' );
+		$content->setAttribute( 'id', $id );
+		$content->setAttribute( 'role', 'doc-footnote' );
+		$this->convertAndAddChildrenNode( $teiElement, $content, 6 );
+		$this->notes[$id] = $content;
+
+		$this->notesCounter++;
+	}
+
+	private function createHtmlElement( $name ) {
+		return $this->htmlDocument->createElementNS( HTMLData::NS_HTML, $name );
 	}
 
 	private function warning( ...$args ) {

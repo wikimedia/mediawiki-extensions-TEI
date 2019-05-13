@@ -500,6 +500,66 @@ LaTex <formula>
 !!end
 
 !! test
+<note>
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0">
+	<body>
+		<div>
+			<p>Foo<note><hi>bar</hi></note></p>
+		</div>
+	</body>
+</text>
+!! html/php
+<article data-tei-tag="text">
+	<section data-tei-tag="body">
+		<section data-tei-tag="div">
+			<p data-tei-tag="p">Foo<a data-tei-tag="note" href="#mw-note-1" role="doc-noteref">1</a></p>
+		</section>
+	</section>
+<aside id="mw-note-1" role="doc-footnote"><span data-tei-tag="hi">bar</span></aside></article>
+!!end
+
+!! test
+<note n>
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0">
+	<body>
+		<div>
+			<p>Foo<note n="foo"><hi>bar</hi></note></p>
+		</div>
+	</body>
+</text>
+!! html/php
+<article data-tei-tag="text">
+	<section data-tei-tag="body">
+		<section data-tei-tag="div">
+			<p data-tei-tag="p">Foo<a data-tei-tag="note" href="#mw-note-1" role="doc-noteref" data-tei-n="foo">foo</a></p>
+		</section>
+	</section>
+<aside id="mw-note-1" role="doc-footnote"><span data-tei-tag="hi">bar</span></aside></article>
+!!end
+
+!! test
+<note xml:id xml:lang>
+!! wikitext
+<text xmlns="http://www.tei-c.org/ns/1.0">
+	<body>
+		<div>
+			<p>Foo<note xml:id="foo" xml:lang="bar"><hi>bar</hi></note></p>
+		</div>
+	</body>
+</text>
+!! html/php
+<article data-tei-tag="text">
+	<section data-tei-tag="body">
+		<section data-tei-tag="div">
+			<p data-tei-tag="p">Foo<a data-tei-tag="note" href="#foo" role="doc-noteref">1</a></p>
+		</section>
+	</section>
+<aside id="foo" lang="bar" role="doc-footnote"><span data-tei-tag="hi">bar</span></aside></article>
+!!end
+
+!! test
 <q>
 !! wikitext
 <p xmlns="http://www.tei-c.org/ns/1.0">Foo <q>Bar</q></p>
