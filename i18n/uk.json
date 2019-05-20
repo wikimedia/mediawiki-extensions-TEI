@@ -5,7 +5,10 @@
 		]
 	},
 	"tei-desc": "Визначення контентної моделі TEI",
+	"tei-libxml-empty-document": "XML-документ порожній.",
 	"tei-libxml-error-message": "$1 у рядку $2.",
+	"tei-remex-error-message": "$1 на позиції $2.",
+	"tei-validation-no-root": "XML-контент TEI не має кореневого теґу.",
 	"tei-parser-file-not-found": "Файл з ім'ям $1 не існує.",
 	"apihelp-teiconvert-summary": "API-модуль для конвертування вмісту між TEI та HTML",
 	"apihelp-teivalidate-summary": "API-модуль для підтвердження TEI-документа"
