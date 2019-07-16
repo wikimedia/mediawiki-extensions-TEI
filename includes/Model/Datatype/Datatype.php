@@ -15,6 +15,7 @@ abstract class Datatype {
 	 * @var string
 	 */
 	private $ident;
+
 	/**
 	 * @param string $ident tag name
 	 */
