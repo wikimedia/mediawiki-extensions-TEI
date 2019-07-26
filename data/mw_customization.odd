@@ -82,6 +82,7 @@
 					<classSpec ident="att.datcat" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.declarable" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.declaring" type="atts" module="tei" mode="delete"/>
+					<classSpec ident="att.formula" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.fragmentable" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.divLike" type="atts" module="tei" mode="delete"/>
 					<classSpec ident="att.docStatus" type="atts" module="tei" mode="delete"/>

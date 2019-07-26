@@ -3625,6 +3625,7 @@
                 "att.global",
                 "model.dateLike",
                 "att.datable",
+                "att.canonical",
                 "att.duration",
                 "att.editLike",
                 "att.dimensions",
@@ -3791,6 +3792,8 @@
             "classes": [
                 "att.global",
                 "att.typed",
+                "att.placement",
+                "att.written",
                 "model.divBottomPart"
             ],
             "content": {
