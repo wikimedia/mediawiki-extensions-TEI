@@ -55,11 +55,11 @@ class DOMDocumentFactory {
 	public function buildFromHTMLString( $html ) {
 		$status = StatusValue::newGood();
 
-		$domBuilder = new DOMBuilder( function ( $error, $pos ) use ( $status ) {
+		$domBuilder = new DOMBuilder( [ 'errorCallback' => function ( $error, $pos ) use ( $status ) {
 			if ( !in_array( $error, self::$skippedRemexErrorMessages ) ) {
 				$status->error( 'tei-remex-error-message', $error, $pos );
 			}
-		} );
+		} ] );
 
 		( new Tokenizer( new Dispatcher( new TreeBuilder( $domBuilder ) ), $html, [] ) )->execute();
 		$document = $domBuilder->getFragment();
