@@ -8,10 +8,15 @@
 	"tei-desc": "Одредби за содржинскиот модел TEI",
 	"tei-libxml-empty-document": "XML-документот е празен.",
 	"tei-libxml-error-message": "$1 во редот $2.",
+	"tei-remex-error-message": "$1 во положбата $2.",
 	"tei-validation-element-content-unexpected-node": "<code>$1</code> не се допушта како чедо на <code lang=\"mk\">$2</code> во редот $3.",
 	"tei-validation-element-content-unexpected-text": "<code>$1</code> не треба да содржи текст во редот $2.",
 	"tei-validation-element-content-too-short": "Ознака како $1 недостасува како чедо на <code>$2</code> во редот $3.",
 	"tei-validation-no-root": "XML-содржината на TEI нема ознака за корен.",
+	"apihelp-teiconvert-param-pageid": "Претвори ја содржината на страницава.",
+	"apihelp-teiconvert-param-revid": "Претвори ја содржината на преработкава.",
+	"apihelp-teiconvert-param-text": "Текст за расчленување. Користете го <var>$1from</var> за да го одредите содржинскиот формат.",
 	"apihelp-teiconvert-param-from": "Содржински формат на <var>$1text</var>.",
-	"apihelp-teiconvert-param-to": "Во кој содржински формат да се претвори."
+	"apihelp-teiconvert-param-to": "Во кој содржински формат да се претвори.",
+	"apihelp-teivalidate-param-text": "Текст за проверка."
 }
