@@ -55,6 +55,7 @@ class GenerateTeiJsonDefinition extends Maintenance {
 			'The JSON definition file to output. By default data/mw_tei_json_definition.json',
 			false
 		);
+		$this->requireExtension( 'TEI' );
 	}
 
 	public function execute() {
