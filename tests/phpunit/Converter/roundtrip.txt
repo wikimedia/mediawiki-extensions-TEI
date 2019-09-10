@@ -513,10 +513,10 @@ LaTex <formula>
 <article data-tei-tag="text">
 	<section data-tei-tag="body">
 		<section data-tei-tag="div">
-			<p data-tei-tag="p">Foo<a data-tei-tag="note" href="#mw-note-1" role="doc-noteref">1</a></p>
+			<p data-tei-tag="p">Foo<a data-tei-tag="note" href="#mw-note-1" role="doc-noteref" id="mw-note-1-ref">1</a></p>
 		</section>
 	</section>
-<aside id="mw-note-1" role="doc-footnote"><span data-tei-tag="hi">bar</span></aside></article>
+<aside id="mw-note-1" role="doc-footnote"><a href="#mw-note-1-ref" role="doc-backlink">↑</a><span data-tei-tag="hi">bar</span></aside></article>
 !!end
 
 !! test
@@ -533,10 +533,10 @@ LaTex <formula>
 <article data-tei-tag="text">
 	<section data-tei-tag="body">
 		<section data-tei-tag="div">
-			<p data-tei-tag="p">Foo<a data-tei-tag="note" href="#mw-note-1" role="doc-noteref" data-tei-n="foo">foo</a></p>
+			<p data-tei-tag="p">Foo<a data-tei-tag="note" href="#mw-note-1" role="doc-noteref" id="mw-note-1-ref" data-tei-n="foo">foo</a></p>
 		</section>
 	</section>
-<aside id="mw-note-1" role="doc-footnote"><span data-tei-tag="hi">bar</span></aside></article>
+<aside id="mw-note-1" role="doc-footnote"><a href="#mw-note-1-ref" role="doc-backlink">↑</a><span data-tei-tag="hi">bar</span></aside></article>
 !!end
 
 !! test
@@ -553,10 +553,10 @@ LaTex <formula>
 <article data-tei-tag="text">
 	<section data-tei-tag="body">
 		<section data-tei-tag="div">
-			<p data-tei-tag="p">Foo<a data-tei-tag="note" href="#foo" role="doc-noteref">1</a></p>
+			<p data-tei-tag="p">Foo<a data-tei-tag="note" href="#foo" role="doc-noteref" id="mw-note-1-ref">1</a></p>
 		</section>
 	</section>
-<aside id="foo" lang="bar" role="doc-footnote"><span data-tei-tag="hi">bar</span></aside></article>
+<aside id="foo" lang="bar" role="doc-footnote"><a href="#mw-note-1-ref" role="doc-backlink">↑</a><span data-tei-tag="hi">bar</span></aside></article>
 !!end
 
 !! test

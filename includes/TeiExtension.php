@@ -8,6 +8,7 @@ use MediaWiki\Extension\Tei\Model\CodeMirrorSchemaBuilder;
 use MediaWiki\Extension\Tei\Model\Normalizer;
 use MediaWiki\Extension\Tei\Model\TeiRegistry;
 use MediaWiki\Extension\Tei\Model\Validator;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @license GPL-2.0-or-later
@@ -79,7 +80,10 @@ class TeiExtension {
 	 */
 	public function getTeiToHtmlConverter() {
 		if ( $this->teiToHtmlConverter === null ) {
-			$this->teiToHtmlConverter = new TeiToHtmlConverter();
+			$services = MediaWikiServices::getInstance();
+			$this->teiToHtmlConverter = new TeiToHtmlConverter(
+				$services->getRepoGroup(), $services->getBadFileLookup()
+			);
 		}
 		return $this->teiToHtmlConverter;
 	}

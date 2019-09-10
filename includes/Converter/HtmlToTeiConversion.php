@@ -209,23 +209,30 @@ class HtmlToTeiConversion {
 		}
 
 		if ( $teiElement->tagName === 'note' ) {
+			$this->convertAndAddAttributes( $htmlElement, $teiElement );
+
 			if ( $htmlElement->hasAttribute( 'href' ) ) {
 				$href = trim( $htmlElement->getAttribute( 'href' ) );
 				if ( strpos( $href, '#' ) === 0 ) {
 					$id = substr( $href, 1 );
+					/**	@var DOMElement $htmlContent **/
 					foreach ( $this->htmlXPath->query(
 						'//*[@id="' . $id . '"]'
 					) as $htmlContent ) {
+						// We remove the backref
+						if ( $htmlContent->firstChild->getAttribute( 'role' ) === 'doc-backlink' ) {
+							$htmlContent->removeChild( $htmlContent->firstChild );
+						}
+
 						$this->convertAndAddAttributes( $htmlContent, $teiElement );
 						$this->convertAndAddChildrenNode( $htmlContent, $teiElement );
-						if ( strpos( $id, 'mw-note-' ) === 0 ) {
-							$teiElement->removeAttribute( 'xml:id' );
-						}
 					}
 				}
 			}
 
-			$this->convertAndAddAttributes( $htmlElement, $teiElement );
+			if ( strpos( $id, 'mw-note-' ) === 0 ) {
+				$teiElement->removeAttribute( 'xml:id' );
+			}
 			$teiElement->removeAttribute( 'target' );
 
 			return $teiElement;

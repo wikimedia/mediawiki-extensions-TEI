@@ -2,8 +2,10 @@
 
 namespace MediaWiki\Extension\Tei\Converter;
 
+use MediaWiki\BadFileLookup;
 use MediaWiki\Extension\Tei\DOMDocumentFactory;
 use PHPUnit\Framework\TestCase;
+use RepoGroup;
 use TestFileReader;
 
 /**
@@ -36,8 +38,28 @@ class BetweenTeiAndHtmlConverterTest extends TestCase {
 		parent::setUp();
 
 		$this->domDocumentFactory = new DOMDocumentFactory();
-		$this->teiToHtmlConverter = new TeiToHtmlConverter();
+		$this->teiToHtmlConverter = new TeiToHtmlConverter(
+			$this->repoGroupMock(), $this->badFileLookupMock()
+		);
 		$this->htmlToTeiConverter = new HtmlToTeiConverter();
+	}
+
+	private function repoGroupMock() {
+		$repoGroupMock = $this->getMockBuilder( RepoGroup::class )
+			->disableOriginalConstructor()->getMock();
+		$repoGroupMock->expects( $this->any() )
+			->method( 'findFile' )
+			->willReturn( false );
+		return $repoGroupMock;
+	}
+
+	private function badFileLookupMock() {
+		$badFileLookup = $this->getMockBuilder( BadFileLookup::class )
+			->disableOriginalConstructor()->getMock();
+		$badFileLookup->expects( $this->any() )
+			->method( 'isBadFile' )
+			->willReturn( false );
+		return $badFileLookup;
 	}
 
 	private function readTestFile( $fileName ) {

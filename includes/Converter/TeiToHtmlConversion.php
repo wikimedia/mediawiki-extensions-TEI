@@ -9,6 +9,7 @@ use DOMNode;
 use DOMText;
 use File;
 use Linker;
+use MediaWiki\BadFileLookup;
 use RemexHtml\HTMLData;
 use RemexHtml\Serializer\HtmlFormatter;
 use RepoGroup;
@@ -163,6 +164,16 @@ class TeiToHtmlConversion {
 	];
 
 	/**
+	 * @var RepoGroup
+	 */
+	private $repoGroup;
+
+	/**
+	 * @var BadFileLookup
+	 */
+	private $badFileLookup;
+
+	/**
 	 * @var DOMDocument
 	 */
 	private $teiDocument;
@@ -203,10 +214,18 @@ class TeiToHtmlConversion {
 	private $warnings = [];
 
 	/**
+	 * @param RepoGroup $repoGroup
+	 * @param BadFileLookup $badFileLookup
 	 * @param DOMDocument $teiDocument
 	 * @param Title|null $pageTitle
 	 */
-	public function __construct( DOMDocument $teiDocument, Title $pageTitle = null ) {
+	public function __construct(
+		RepoGroup $repoGroup, BadFileLookup $badFileLookup,
+		DOMDocument $teiDocument, Title $pageTitle = null
+	) {
+		$this->repoGroup = $repoGroup;
+		$this->badFileLookup = $badFileLookup;
+
 		$this->teiDocument = $teiDocument;
 		$this->pageTitle = $pageTitle;
 		$this->htmlDocument = new DOMDocument( '1.0', 'UTF-8' );
@@ -385,8 +404,11 @@ class TeiToHtmlConversion {
 		$fileName = $teiElement->getAttribute( 'url' );
 		$htmlElement->setAttribute( 'data-tei-url', $fileName );
 
-		$file = RepoGroup::singleton()->findFile( $fileName );
-		if ( $file === false || wfIsBadImage( $file->getTitle()->getDBkey(), $this->pageTitle ) ) {
+		$file = $this->repoGroup->findFile( $fileName );
+		if (
+			$file === false ||
+			$this->badFileLookup->isBadFile( $file->getTitle()->getDBkey(), $this->pageTitle )
+		) {
 			$this->warning( 'tei-parser-file-not-found', $fileName );
 			return;
 		}
@@ -436,7 +458,7 @@ class TeiToHtmlConversion {
 		$htmlElement->setAttribute( self::TEI_CONTENT, $teiElement->textContent );
 
 		if ( !class_exists( '\MathRenderer' ) ) {
-			return $this->htmlDocument->createTextNode( $text );
+			$htmlElement->appendChild( $this->htmlDocument->createTextNode( $text ) );
 		}
 		$math = \MathRenderer::renderMath( $text, [], 'mathml' );
 		$htmlElement->appendChild( $this->importHtml( $math ) );
@@ -448,10 +470,12 @@ class TeiToHtmlConversion {
 		} else {
 			$id = 'mw-note-' . $this->notesCounter;
 		}
+		$referenceId = 'mw-note-' . $this->notesCounter . '-ref';
 
 		// Pointer
 		$htmlElement->setAttribute( 'href', '#' . $id );
 		$htmlElement->setAttribute( 'role', 'doc-noteref' );
+		$htmlElement->setAttribute( 'id', $referenceId );
 		if ( $teiElement->hasAttribute( 'n' ) ) {
 			$htmlElement->textContent = $teiElement->getAttribute( 'n' );
 			$htmlElement->setAttribute( 'data-tei-n', $teiElement->getAttribute( 'n' ) );
@@ -459,12 +483,18 @@ class TeiToHtmlConversion {
 			$htmlElement->textContent = (string)$this->notesCounter;
 		}
 
+		$backReference = $this->createHtmlElement( 'a' );
+		$backReference->setAttribute( 'href', '#' . $referenceId );
+		$backReference->setAttribute( 'role', 'doc-backlink' );
+		$backReference->textContent = '↑';
+
 		// Content
 		$content = $this->createHtmlElement( 'aside' );
 		$this->convertAndAddAttributes( $teiElement, $content );
 		$content->removeAttribute( 'data-tei-n' );
 		$content->setAttribute( 'id', $id );
 		$content->setAttribute( 'role', 'doc-footnote' );
+		$content->appendChild( $backReference );
 		$this->convertAndAddChildrenNode( $teiElement, $content, 6 );
 		$this->notes[$id] = $content;
 
