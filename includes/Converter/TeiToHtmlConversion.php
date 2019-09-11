@@ -115,6 +115,7 @@ class TeiToHtmlConversion {
 		'place' => 'span',
 		'postscript' => 'div',
 		'q' => 'q',
+		'quote' => 'span',
 		'ref' => 'a',
 		'reg' => 'span',
 		'relatedItem' => 'span',

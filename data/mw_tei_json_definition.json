@@ -23,6 +23,30 @@
             "classes": [],
             "module": "tei"
         },
+        "att.edition": {
+            "attributes": {
+                "ed": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.word"
+                        },
+                        "maxOccurs": null
+                    },
+                    "usage": "opt"
+                },
+                "edRef": {
+                    "datatype": {
+                        "dataRef": {
+                            "key": "teidata.pointer"
+                        },
+                        "maxOccurs": null
+                    },
+                    "usage": "opt"
+                }
+            },
+            "classes": [],
+            "module": "tei"
+        },
         "att.global": {
             "attributes": {
                 "n": {
@@ -3210,6 +3234,21 @@
                 "att.global",
                 "model.qLike",
                 "att.ascribed.directed"
+            ],
+            "content": {
+                "key": "macro.specialPara",
+                "type": "macroRef"
+            },
+            "module": "core"
+        },
+        "quote": {
+            "attributes": [],
+            "classes": [
+                "att.global",
+                "model.quoteLike",
+                "att.typed",
+                "att.msExcerpt",
+                "att.notated"
             ],
             "content": {
                 "key": "macro.specialPara",

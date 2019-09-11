@@ -9,7 +9,7 @@ use StatusValue;
  */
 class TemporalW3CDatatype extends Datatype {
 
-	const YEAR_FRAG = '\-?(([1-9]\d{3,}))|(0\d{3}))';
+	const YEAR_FRAG = '\-?(([1-9]\d{4,})|(0\d{3}))';
 	const MONTH_FRAG = '(0[1-9])|(1[0-2])';
 	const DAY_FRAG = '(0[1-9])|([12]\d)|(3[01])';
 	const HOUR_FRAG = '([01]\d)|(2[0-3])';

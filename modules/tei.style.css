@@ -66,3 +66,23 @@ a[ data-tei-tag='note' ] {
 *[ data-tei-tag='unclear' ]:after {
 	content: ' [?] ';
 }
+
+.tei-rend-bold {
+	font-weight: bold;
+}
+
+.tei-rend-italic {
+	font-style: italic;
+}
+
+.tei-rend-oblique {
+	font-style: oblique;
+}
+
+.tei-rend-small-caps {
+	font-variant: small-caps;
+}
+
+.tei-rend-underline {
+	text-decoration: underline;
+}
