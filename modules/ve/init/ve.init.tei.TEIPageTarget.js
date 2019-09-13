@@ -51,17 +51,16 @@ ve.init.tei.TEIPageTarget.static.toolbarGroups = [
 		title: OO.ui.deferMsg( 'visualeditor-toolbar-format-tooltip' ),
 		include: [ { group: 'format' } ],
 		promote: [ 'paragraph' ],
-		exclude: [ 'heading1', 'heading2', 'heading3', 'heading4', 'heading5', 'heading6', 'preformatted', 'blockquote' ]
+		exclude: [ 'preformatted' ]
 	},
 	{
 		name: 'style',
 		type: 'list',
 		icon: 'textStyle',
 		title: OO.ui.deferMsg( 'visualeditor-toolbar-style-tooltip' ),
-		include: [ { group: 'textStyle' }, 'clear' ],
+		include: [ { group: 'textStyle' }, 'language', 'clear' ],
 		forceExpand: [ 'bold', 'italic', 'clear' ],
-		promote: [ 'bold', 'italic' ],
-		exclude: [ 'strikethrough', 'code', 'underline', 'language', 'big' ]
+		promote: [ 'bold', 'italic' ]
 	},
 	{
 		name: 'structure',

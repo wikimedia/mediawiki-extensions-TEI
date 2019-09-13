@@ -67,6 +67,10 @@ a[ data-tei-tag='note' ] {
 	content: ' [?] ';
 }
 
+.tei-rend-big {
+	font-size: 120%;
+}
+
 .tei-rend-bold {
 	font-weight: bold;
 }
@@ -75,8 +79,20 @@ a[ data-tei-tag='note' ] {
 	font-style: italic;
 }
 
+.tei-rend-line-through {
+	text-decoration: line-through;
+}
+
 .tei-rend-oblique {
 	font-style: oblique;
+}
+
+.tei-rend-overline {
+	text-decoration: overline;
+}
+
+.tei-rend-small {
+	font-size: 80%;
 }
 
 .tei-rend-small-caps {

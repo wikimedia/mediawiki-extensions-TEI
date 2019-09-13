@@ -32,6 +32,10 @@ class HtmlToTeiConversion {
 			self::NODE_NAME => 'hi',
 			'rend' => 'bold'
 		],
+		'big' => [
+			self::NODE_NAME => 'hi',
+			'rend' => 'big'
+		],
 		'blockquote' => 'cit',
 		'br' => 'lb',
 		'cite' => 'bibl',
@@ -60,6 +64,10 @@ class HtmlToTeiConversion {
 		],
 		'p' => 'p',
 		'q' => 'q',
+		's' => [
+			self::NODE_NAME => 'hi',
+			'rend' => 'line-through'
+		],
 		'section' => 'div',
 		'sub' => [
 			self::NODE_NAME => 'hi',
