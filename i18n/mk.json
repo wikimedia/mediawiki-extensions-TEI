@@ -19,5 +19,6 @@
 	"apihelp-teiconvert-param-text": "Текст за расчленување. Користете го <var>$1from</var> за да го одредите содржинскиот формат.",
 	"apihelp-teiconvert-param-from": "Содржински формат на <var>$1text</var>.",
 	"apihelp-teiconvert-param-to": "Во кој содржински формат да се претвори.",
+	"apihelp-teiconvert-param-normalize": "Ако е зададено, ја нормализира содржината на TEI",
 	"apihelp-teivalidate-param-text": "Текст за проверка."
 }
