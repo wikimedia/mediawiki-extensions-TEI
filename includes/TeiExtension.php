@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\Tei;
 
+use MediaWiki\Extension\Tei\Converter\FileLookup;
 use MediaWiki\Extension\Tei\Converter\HtmlToTeiConverter;
 use MediaWiki\Extension\Tei\Converter\TeiToHtmlConverter;
 use MediaWiki\Extension\Tei\Model\CodeMirrorSchemaBuilder;
@@ -81,9 +82,9 @@ class TeiExtension {
 	public function getTeiToHtmlConverter() {
 		if ( $this->teiToHtmlConverter === null ) {
 			$services = MediaWikiServices::getInstance();
-			$this->teiToHtmlConverter = new TeiToHtmlConverter(
+			$this->teiToHtmlConverter = new TeiToHtmlConverter( new FileLookup(
 				$services->getRepoGroup(), $services->getBadFileLookup()
-			);
+			) );
 		}
 		return $this->teiToHtmlConverter;
 	}
