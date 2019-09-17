@@ -255,3 +255,11 @@ Table with tbody
 	</tr>
 </tbody><tfoot></tfoot></table>
 !!end
+
+!! test
+Empty class <var>
+!! wikitext
+<p xmlns="http://www.tei-c.org/ns/1.0">Foo</p>
+!! html/php
+<p class="">Foo</p>
+!!end

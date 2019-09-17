@@ -9,10 +9,8 @@ use DOMNode;
 use DOMText;
 use File;
 use Linker;
-use MediaWiki\BadFileLookup;
 use RemexHtml\HTMLData;
 use RemexHtml\Serializer\HtmlFormatter;
-use RepoGroup;
 use Sanitizer;
 use Title;
 use User;
@@ -167,14 +165,9 @@ class TeiToHtmlConversion {
 	];
 
 	/**
-	 * @var RepoGroup
+	 * @var FileLookup
 	 */
-	private $repoGroup;
-
-	/**
-	 * @var BadFileLookup
-	 */
-	private $badFileLookup;
+	private $fileLookup;
 
 	/**
 	 * @var DOMDocument
@@ -217,17 +210,13 @@ class TeiToHtmlConversion {
 	private $warnings = [];
 
 	/**
-	 * @param RepoGroup $repoGroup
-	 * @param BadFileLookup $badFileLookup
+	 * @param FileLookup $fileLookup
 	 * @param DOMDocument $teiDocument
 	 * @param Title|null $pageTitle
 	 */
 	public function __construct(
-		RepoGroup $repoGroup, BadFileLookup $badFileLookup,
-		DOMDocument $teiDocument, Title $pageTitle = null
-	) {
-		$this->repoGroup = $repoGroup;
-		$this->badFileLookup = $badFileLookup;
+		FileLookup $fileLookup, DOMDocument $teiDocument, Title $pageTitle = null ) {
+		$this->fileLookup = $fileLookup;
 
 		$this->teiDocument = $teiDocument;
 		$this->pageTitle = $pageTitle;
@@ -407,11 +396,8 @@ class TeiToHtmlConversion {
 		$fileName = $teiElement->getAttribute( 'url' );
 		$htmlElement->setAttribute( 'data-tei-url', $fileName );
 
-		$file = $this->repoGroup->findFile( $fileName );
-		if (
-			$file === false ||
-			$this->badFileLookup->isBadFile( $file->getTitle()->getDBkey(), $this->pageTitle )
-		) {
+		$file = $this->fileLookup->getFileForPage( $fileName, $this->pageTitle );
+		if ( $file === null ) {
 			$this->warning( 'tei-parser-file-not-found', $fileName );
 			return;
 		}

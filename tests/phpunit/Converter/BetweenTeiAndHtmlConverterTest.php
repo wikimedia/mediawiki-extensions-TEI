@@ -2,20 +2,18 @@
 
 namespace MediaWiki\Extension\Tei\Converter;
 
-use MediaWiki\BadFileLookup;
+use File;
 use MediaWiki\Extension\Tei\DOMDocumentFactory;
 use PHPUnit\Framework\TestCase;
-use RepoGroup;
 use TestFileReader;
+use ThumbnailImage;
 
 /**
  * @group TEI
  * @covers \MediaWiki\Extension\Tei\Converter\TeiToHtmlConverter
+ * @covers \MediaWiki\Extension\Tei\Converter\TeiToHtmlConversion
  * @covers \MediaWiki\Extension\Tei\Converter\HtmlToTeiConverter
- * @covers \MediaWiki\Extension\Tei\Converter\TagMapper
- * @covers \MediaWiki\Extension\Tei\Converter\TagsMappingSerializer
- * @covers \MediaWiki\Extension\Tei\Converter\TeiToHtmlTagMapper
- * @covers \MediaWiki\Extension\Tei\Converter\HtmlToTeiTagMapper
+ * @covers \MediaWiki\Extension\Tei\Converter\HtmlToTeiConversion
  */
 class BetweenTeiAndHtmlConverterTest extends TestCase {
 
@@ -38,28 +36,50 @@ class BetweenTeiAndHtmlConverterTest extends TestCase {
 		parent::setUp();
 
 		$this->domDocumentFactory = new DOMDocumentFactory();
-		$this->teiToHtmlConverter = new TeiToHtmlConverter(
-			$this->repoGroupMock(), $this->badFileLookupMock()
-		);
+		$this->teiToHtmlConverter = new TeiToHtmlConverter( $this->fileLookupMock() );
 		$this->htmlToTeiConverter = new HtmlToTeiConverter();
 	}
 
-	private function repoGroupMock() {
-		$repoGroupMock = $this->getMockBuilder( RepoGroup::class )
-			->disableOriginalConstructor()->getMock();
-		$repoGroupMock->expects( $this->any() )
-			->method( 'findFile' )
-			->willReturn( false );
-		return $repoGroupMock;
-	}
+	private function fileLookupMock() {
+		/*$services = MediaWikiServices::getInstance();
+		return new FileLookup(
+			new RepoGroup(
+				[
+					'class' => MockLocalRepo::class,
+					'name' => 'local',
+					'url' => 'http://example.com/images',
+					'hashLevels' => 2,
+					'transformVia404' => false,
+					'backend' => new MockFileBackend( [
+						'name' => 'local-backend',
+						'wikiId' => wfWikiID()
+					] )
+				],
+				[],
+				$services->getMainWANObjectCache()
+			),
+			$services->getBadFileLookup()
+		);*/
 
-	private function badFileLookupMock() {
-		$badFileLookup = $this->getMockBuilder( BadFileLookup::class )
+		$fileMock = $this->getMockBuilder( File::class )
 			->disableOriginalConstructor()->getMock();
-		$badFileLookup->expects( $this->any() )
-			->method( 'isBadFile' )
-			->willReturn( false );
-		return $badFileLookup;
+		$fileMock->expects( $this->any() )
+			->method( 'transform' )
+			->willReturnCallback( function ( $params ) use ( $fileMock ) {
+				return new ThumbnailImage( $fileMock,  'http://example.com/file/FooBar.jpg', false, $params );
+			} );
+
+		$fileLookupMock = $this->getMockBuilder( FileLookup::class )
+			->disableOriginalConstructor()->getMock();
+		$fileLookupMock->expects( $this->any() )
+			->method( 'getFileForPage' )
+			->willReturnCallback( function ( $fileName ) use ( $fileMock ) {
+				if ( $fileName === 'FooBar.jpg' ) {
+					return $fileMock;
+				}
+				return null;
+			} );
+		return $fileLookupMock;
 	}
 
 	private function readTestFile( $fileName ) {

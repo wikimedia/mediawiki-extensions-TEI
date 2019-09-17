@@ -285,7 +285,7 @@ Table with cols and rows
 !! wikitext
 <table xmlns="http://www.tei-c.org/ns/1.0">
 	<row>
-		<cell role="label" rows="2">Label</cell>
+		<cell rows="2" role="label">Label</cell>
 		<cell>Foo</cell>
 		<cell>Bar</cell>
 	</row>
@@ -297,7 +297,7 @@ Table with cols and rows
 !! html/php
 <table data-tei-tag="table">
 	<tr data-tei-tag="row">
-		<th data-tei-tag="cell" data-tei-role="label" rowspan="2">Label</th>
+		<th data-tei-tag="cell" rowspan="2" data-tei-role="label">Label</th>
 		<td data-tei-tag="cell">Foo</td>
 		<td data-tei-tag="cell">Bar</td>
 	</tr>
@@ -489,12 +489,26 @@ LaTex <formula>
 <figure>
 !! wikitext
 <figure xmlns="http://www.tei-c.org/ns/1.0">
-	<graphic url="Foobar.jpg" width="100" height="100"/>
+	<graphic url="FooBar.jpg" width="100" height="100"/>
 	<figDesc>Foo</figDesc>
 </figure>
 !! html/php
 <figure data-tei-tag="figure">
-	<img data-tei-tag="graphic" data-tei-url="Foobar.jpg" width="100" height="100">
+	<img data-tei-tag="graphic" data-tei-url="FooBar.jpg" alt="" src="http://example.com/file/FooBar.jpg" decoding="async" width="100" height="100">
+	<figcaption data-tei-tag="figDesc">Foo</figcaption>
+</figure>
+!!end
+
+!! test
+<figure> not existing
+!! wikitext
+<figure xmlns="http://www.tei-c.org/ns/1.0">
+	<graphic width="100" height="100" url="Unknown.jpg"/>
+	<figDesc>Foo</figDesc>
+</figure>
+!! html/php
+<figure data-tei-tag="figure">
+	<img data-tei-tag="graphic" width="100" height="100" data-tei-url="Unknown.jpg">
 	<figcaption data-tei-tag="figDesc">Foo</figcaption>
 </figure>
 !!end

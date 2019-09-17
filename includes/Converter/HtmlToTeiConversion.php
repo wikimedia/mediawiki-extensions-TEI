@@ -269,6 +269,8 @@ class HtmlToTeiConversion {
 	}
 
 	private function convertAndAddAttributes( DOMElement $htmlElement, DOMElement $teiElement ) {
+		// We convert first the native HTML attributes then the data-tei- to allow overrides
+
 		/**	@var DOMNode $attribute **/
 		foreach ( $htmlElement->attributes as $attribute ) {
 			if ( array_key_exists( $attribute->nodeName, self::$attributesMapping ) ) {
@@ -281,8 +283,15 @@ class HtmlToTeiConversion {
 					? $this->{$attributeData[ self::VALUE_FUNCTION ]}( $attribute->nodeValue )
 					: $attribute->nodeValue;
 
-				$teiElement->setAttribute( $attributeData[self::NODE_NAME], $nodeValue );
-			} elseif (
+				if ( $nodeValue !== null ) {
+					$teiElement->setAttribute( $attributeData[self::NODE_NAME], $nodeValue );
+				}
+			}
+		}
+
+		/**	@var DOMNode $attribute **/
+		foreach ( $htmlElement->attributes as $attribute ) {
+			if (
 				strpos( $attribute->nodeName, 'data-tei-' ) === 0 &&
 				$attribute->nodeName !== self::TEI_TAG_NAME && $attribute->nodeName != self::TEI_CONTENT
 			) {
@@ -303,6 +312,6 @@ class HtmlToTeiConversion {
 			return substr( $val, 9 );
 		}, array_filter( explode( ' ', $value ), function ( $value ) {
 			return strpos( $value, 'tei-rend-' ) === 0;
-		} ) ) );
+		} ) ) ) ?: null;
 	}
 }

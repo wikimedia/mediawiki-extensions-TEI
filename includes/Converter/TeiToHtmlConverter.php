@@ -3,8 +3,6 @@
 namespace MediaWiki\Extension\Tei\Converter;
 
 use DOMDocument;
-use MediaWiki\BadFileLookup;
-use RepoGroup;
 use Title;
 
 /**
@@ -15,22 +13,15 @@ use Title;
 class TeiToHtmlConverter {
 
 	/**
-	 * @var RepoGroup
+	 * @var FileLookup
 	 */
-	private $repoGroup;
+	private $fileLookup;
 
 	/**
-	 * @var BadFileLookup
+	 * @param FileLookup $fileLookup
 	 */
-	private $badFileLookup;
-
-	/**
-	 * @param RepoGroup $repoGroup
-	 * @param BadFileLookup $badFileLookup
-	 */
-	public function __construct( RepoGroup $repoGroup, BadFileLookup $badFileLookup ) {
-		$this->repoGroup = $repoGroup;
-		$this->badFileLookup = $badFileLookup;
+	public function __construct( FileLookup $fileLookup ) {
+		$this->fileLookup = $fileLookup;
 	}
 
 	/**
@@ -39,8 +30,6 @@ class TeiToHtmlConverter {
 	 * @return TeiToHtmlConversion
 	 */
 	public function convert( DOMDocument $teiDocument, Title $pageTitle = null ) {
-		return new TeiToHtmlConversion(
-			$this->repoGroup, $this->badFileLookup, $teiDocument, $pageTitle
-		);
+		return new TeiToHtmlConversion( $this->fileLookup, $teiDocument, $pageTitle );
 	}
 }
