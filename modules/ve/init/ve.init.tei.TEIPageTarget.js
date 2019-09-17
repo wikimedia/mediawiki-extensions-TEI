@@ -63,6 +63,10 @@ ve.init.tei.TEIPageTarget.static.toolbarGroups = [
 		promote: [ 'bold', 'italic' ]
 	},
 	{
+		name: 'link',
+		include: [ 'link' ]
+	},
+	{
 		name: 'structure',
 		type: 'list',
 		icon: 'listBullet',
@@ -244,4 +248,14 @@ ve.init.tei.TEIPageTarget.prototype.submit = function ( wikitext, params ) {
 		action: 'submit'
 	} ) ).appendTo( 'body' ).trigger( 'submit' );
 	return true;
+};
+
+ve.init.tei.TEIPageTarget.prototype.getPageName = function () {
+	return this.pageTitle.toString();
+};
+
+ve.init.tei.TEIPageTarget.prototype.getContentApi = function ( doc, options ) {
+	options = options || {};
+	options.parameters = ve.extendObject( { formatversion: 2 }, options.parameters );
+	return new mw.Api( options );
 };
