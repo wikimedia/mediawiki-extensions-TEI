@@ -20,5 +20,6 @@
 	"apihelp-teiconvert-param-from": "Содржински формат на <var>$1text</var>.",
 	"apihelp-teiconvert-param-to": "Во кој содржински формат да се претвори.",
 	"apihelp-teiconvert-param-normalize": "Ако е зададено, ја нормализира содржината на TEI",
+	"apihelp-teivalidate-summary": "API-модул за потврдување на TEI-документ",
 	"apihelp-teivalidate-param-text": "Текст за проверка."
 }
