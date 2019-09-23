@@ -237,7 +237,7 @@ ve.init.tei.TEIPageTarget.prototype.submit = function ( wikitext, params ) {
 		model: 'tei',
 		oldid: this.revId,
 		wpTextbox1: wikitext,
-		wpEditToken: mw.user.tokens.get( 'editToken' ),
+		wpEditToken: mw.user.tokens.get( 'csrfToken' ),
 		wpUnicodeCheck: 'ℳ𝒲♥𝓊𝓃𝒾𝒸ℴ𝒹ℯ',
 		wpUltimateParam: true
 	}, params );
