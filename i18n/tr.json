@@ -1,12 +1,45 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hedda"
+			"Hedda",
+			"BaRaN6161 TURK"
 		]
 	},
 	"tei-desc": "TEI içerik modeli tanımı",
 	"tei-libxml-empty-document": "XML belgesi boş.",
 	"tei-libxml-error-message": "$2. satırdaki $1.",
+	"tei-remex-error-message": "$2 pozisyonunda $1.",
+	"tei-validation-element-content-unexpected-node": "$3 satırında <code lang=\"en\">$2</code> öğesinin alt öğesi olarak <code>$1</code> öğesine izin verilmiyor.",
 	"tei-validation-element-content-unexpected-text": "<code>$1</code>, $2. satırda metin içermemeli.",
-	"tei-validation-no-root": "TEI XML içeriğinde kök etiketi yok."
+	"tei-validation-element-content-too-short": "$1 gibi bir etiket, $3 satırında <code>$2</code> öğesinin alt öğesi olarak eksik.",
+	"tei-validation-no-root": "TEI XML içeriğinde kök etiketi yok.",
+	"tei-validation-unexpected-root": "TEI XML içerik kök etiketi <code>text</code> veya <code>body</code> olmalı, <code>$1</code> bulunmalıdır.",
+	"tei-validation-wrong-namespace": "TEI XML ad alanı <code>http://www.tei-c.org/ns/1.0</code> olmalı, $2 satırında <code>$1</code> bulunmalıdır.",
+	"tei-validation-unknown-tag": "<code>$1</code>, $2 satırında desteklenen bir TEI etiketi değil.",
+	"tei-validation-unknown-attribute": "<code>$1</code>, $3 satırındaki <code>$2</code> etiketinin desteklenen bir özelliği değildir.",
+	"tei-validation-missing-mandatory-attribute": "$3 satırında <code>$2</code> etiketinin <code>$1</code> özelliği eksik.",
+	"tei-validation-count-invalid-value": "<code>$2</code> değeri pozitif bir tamsayı olmalıdır, <code>$1</code> bulundu.",
+	"tei-validation-enumeration-unknown-value": "<code>$1</code>, <code>$2</code> için desteklenen bir değer değil. Olası değerler: $3.",
+	"tei-validation-language-invalid-value": "<code>$2</code> değeri geçerli bir dil etiketi olmalı, <code>$1</code> bulundu.",
+	"tei-validation-numeric-invalid-value": "<code>$2</code> değeri geçerli bir sayısal değer olmalı, <code>$1</code> bulundu.",
+	"tei-validation-output-measurement-invalid-value": "<code>$2</code> değeri geçerli bir pozitif tamsayı olmalı, <code>$1</code> bulundu.",
+	"tei-validation-pointer-invalid-value": "<code>$2</code> değeri geçerli bir URI olmalıdır, <code>$1</code> bulundu.",
+	"tei-validation-temporal-w3c-invalid-value": "<code>$2</code> değeri, geçerli bir ISO 8601 değeri olmalı, <code>$1</code> bulunmalıdır.",
+	"tei-validation-truth-value-invalid-value": "<code>$2</code> değeri <code>true</code> veya <code>false</code>, <code>$1</code> gibi geçerli bir boole değeri olmalıdır.",
+	"tei-validation-word-invalid-value": "<code>$2</code> değeri geçerli bir kelime olmalı, <code>$1</code> bulundu.",
+	"tei-validation-multiple-too-few-values": "<code>$2</code> değeri en az {{PLURAL:$3|bir öğe|$3 öğe}}, <code>$1</code> içermeli ve {{PLURAL:$4|bir öğe|$4 öğe}} içermelidir.",
+	"tei-validation-multiple-too-many-values": "<code>$2</code> değeri en fazla {{PLURAL:$3|bir öğe|$3 öğe}}, <code>$1</code> {{PLURAL:$4|bir öğe|$4 öğe}} içermelidir.",
+	"tei-parser-file-not-found": "$1 adlı dosya mevcut değil.",
+	"apihelp-teiconvert-summary": "İçeriği TEI ve HTML arasında dönüştürmek için API modülü",
+	"apihelp-teiconvert-param-title": "<var>$1text</var> ayarlanmamışsa, bu sayfanın içeriği. <var>$1text</var> ayarlanırsa, dönüştürme sırasında sayfanın başlığı olarak kullanın. Ayarlanmazsa başlık olarak [[API]] kullanılır.",
+	"apihelp-teiconvert-param-pageid": "Bu sayfanın içeriğini dönüştürün.",
+	"apihelp-teiconvert-param-revid": "Bu revizyonun içeriğini dönüştürün.",
+	"apihelp-teiconvert-param-text": "Ayrıştırılacak metin. İçerik biçimini kontrol etmek için <var>$1from</var> tuşunu kullanın.",
+	"apihelp-teiconvert-param-from": "<var>$1text</var>'in içerik biçimi.",
+	"apihelp-teiconvert-param-to": "Dönüştürmek için içerik biçimi.",
+	"apihelp-teiconvert-param-slot": "<var>$1text</var> ayarlanmadıysa, veri döndürülecek yuva.",
+	"apihelp-teiconvert-param-normalize": "Ayarlanmışsa, TEI içeriğini normalleştirir",
+	"apihelp-teiconvert-example-from-title-to-html": "[[TEI]] içeriğini HTML'ye dönüştürür",
+	"apihelp-teivalidate-summary": "TEI belgesini doğrulamak için API modülü",
+	"apihelp-teivalidate-param-text": "Doğrulanacak metin."
 }
