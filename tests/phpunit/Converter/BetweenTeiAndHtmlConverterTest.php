@@ -32,7 +32,7 @@ class BetweenTeiAndHtmlConverterTest extends TestCase {
 	 */
 	private $htmlToTeiConverter;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 
 		$this->domDocumentFactory = new DOMDocumentFactory();
