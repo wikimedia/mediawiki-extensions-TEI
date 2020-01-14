@@ -223,7 +223,7 @@ class HtmlToTeiConversion {
 				$href = trim( $htmlElement->getAttribute( 'href' ) );
 				if ( strpos( $href, '#' ) === 0 ) {
 					$id = substr( $href, 1 );
-					/**	@var DOMElement $htmlContent **/
+					/**	@var DOMElement $htmlContent */
 					foreach ( $this->htmlXPath->query(
 						'//*[@id="' . $id . '"]'
 					) as $htmlContent ) {
@@ -271,7 +271,7 @@ class HtmlToTeiConversion {
 	private function convertAndAddAttributes( DOMElement $htmlElement, DOMElement $teiElement ) {
 		// We convert first the native HTML attributes then the data-tei- to allow overrides
 
-		/**	@var DOMNode $attribute **/
+		/**	@var DOMNode $attribute */
 		foreach ( $htmlElement->attributes as $attribute ) {
 			if ( array_key_exists( $attribute->nodeName, self::$attributesMapping ) ) {
 				$attributeData = self::$attributesMapping[$attribute->nodeName];
@@ -289,7 +289,7 @@ class HtmlToTeiConversion {
 			}
 		}
 
-		/**	@var DOMNode $attribute **/
+		/**	@var DOMNode $attribute */
 		foreach ( $htmlElement->attributes as $attribute ) {
 			if (
 				strpos( $attribute->nodeName, 'data-tei-' ) === 0 &&

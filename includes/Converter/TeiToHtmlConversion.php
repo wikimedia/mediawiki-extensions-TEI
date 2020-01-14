@@ -351,7 +351,7 @@ class TeiToHtmlConversion {
 	}
 
 	private function convertAndAddAttributes( DOMElement $teiElement, DOMElement $htmlElement ) {
-		/**	@var DOMNode $attribute **/
+		/**	@var DOMNode $attribute */
 		foreach ( $teiElement->attributes as $attribute ) {
 			if ( array_key_exists( $attribute->nodeName, self::$attributesMapping ) ) {
 				$attributeData = self::$attributesMapping[$attribute->nodeName];
