@@ -133,7 +133,7 @@ class TeiContentTest extends TestCase {
 	public function testPreSaveTransform( TeiContent $input, TeiContent $output ) {
 		$title = Title::makeTitle( NS_MAIN, 'Foo' );
 		$user = User::newFromName( 'Foo' );
-		$actual = $input->preSaveTransform( $title, $user, ParserOptions::newCanonical() );
+		$actual = $input->preSaveTransform( $title, $user, ParserOptions::newFromUser( $user ) );
 		$this->assertEquals( $output->serialize(), $actual->serialize() );
 	}
 }
