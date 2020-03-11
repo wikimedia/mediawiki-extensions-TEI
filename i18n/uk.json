@@ -1,14 +1,27 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vlad5250"
+			"Vlad5250",
+			"Piramidion"
 		]
 	},
 	"tei-desc": "Визначення контентної моделі TEI",
 	"tei-libxml-empty-document": "XML-документ порожній.",
 	"tei-libxml-error-message": "$1 у рядку $2.",
 	"tei-remex-error-message": "$1 на позиції $2.",
+	"tei-validation-element-content-unexpected-node": "<code>$1</code> не може використовуватись як тег, дочірній відносно <code lang=\"en\">$2</code> в рядку $3.",
+	"tei-validation-element-content-unexpected-text": "<code>$1</code> не може містити тексту в рядку $2.",
+	"tei-validation-element-content-too-short": "Бракує тегу на кшталт $1, дочірнього відносно <code>$2</code>, в рядку $3.",
 	"tei-validation-no-root": "XML-контент TEI не має кореневого теґу.",
+	"tei-validation-unexpected-root": "Кореневий тег контенту TEI XML має бути або <code>text</code>, або <code>body</code>, натомість знайдено <code>$1</code>.",
+	"tei-validation-wrong-namespace": "Простір назв TEI XML має бути <code>http://www.tei-c.org/ns/1.0</code>, натомість знайдено <code>$1</code> в рядку $2.",
+	"tei-validation-unknown-tag": "<code>$1</code> не є підтримуваним тегом TEI в рядку $2.",
+	"tei-validation-unknown-attribute": "<code>$1</code> не є підтримуваним атрибутом тегу <code>$2</code> в рядку $3.",
+	"tei-validation-missing-mandatory-attribute": "Бракує атрибута <code>$1</code> тегу <code>$2</code> в рядку $3.",
+	"tei-validation-count-invalid-value": "Значення <code>$2</code> має бути позитивним цифровим значенням, натомість знайдено <code>$1</code>.",
+	"tei-validation-enumeration-unknown-value": "<code>$1</code> не є підтримуваним значенням <code>$2</code>. Можливі значення: $3.",
+	"tei-validation-language-invalid-value": "Значення <code>$2</code> має бути дійсним кодом мови, натомість знайдено <code>$1</code>.",
+	"tei-validation-numeric-invalid-value": "Значення <code>$2</code> має бути дійсним числовим значенням, натомість знайдено <code>$1</code>.",
 	"tei-parser-file-not-found": "Файл з ім'ям $1 не існує.",
 	"apihelp-teiconvert-summary": "API-модуль для конвертування вмісту між TEI та HTML",
 	"apihelp-teivalidate-summary": "API-модуль для підтвердження TEI-документа"
