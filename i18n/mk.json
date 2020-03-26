@@ -37,7 +37,7 @@
 	"apihelp-teiconvert-param-text": "Текст за расчленување. Користете го <var>$1from</var> за да го одредите содржинскиот формат.",
 	"apihelp-teiconvert-param-from": "Содржински формат на <var>$1text</var>.",
 	"apihelp-teiconvert-param-to": "Во кој содржински формат да се претвори.",
-	"apihelp-teiconvert-param-slot": "Ако не е зададено <var>$1text</var, за кој жлеб да се дадат податоци.",
+	"apihelp-teiconvert-param-slot": "Ако не е зададено <var>$1text</var>, за кој жлеб да се дадат податоци.",
 	"apihelp-teiconvert-param-normalize": "Ако е зададено, ја нормализира содржината на TEI",
 	"apihelp-teiconvert-example-from-title-to-html": "Претвора содржини од [[TEI]] во HTML",
 	"apihelp-teivalidate-summary": "API-модул за потврдување на TEI-документ",
