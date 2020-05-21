@@ -6,7 +6,7 @@ use DOMDocument;
 use DOMElement;
 use DOMXPath;
 use Maintenance;
-use MultiHttpClient;
+use MediaWiki\MediaWikiServices;
 
 $basePath = getenv( 'MW_INSTALL_PATH' ) !== false
 	? getenv( 'MW_INSTALL_PATH' )
@@ -422,7 +422,10 @@ class GenerateTeiJsonDefinition extends Maintenance {
 	}
 
 	protected function loadP5FullDefinition() {
-		$client = new MultiHttpClient( [] );
+		$proxy = $this->getConfig()->get( 'HTTPProxy' );
+		$client = MediaWikiServices::getInstance()->getHttpRequestFactory()->createMultiClient( [
+			'proxy' => $proxy
+		] );
 
 		list( $code, $desc, $header, $body, $err ) = $client->run( [
 			'method' => 'GET',
