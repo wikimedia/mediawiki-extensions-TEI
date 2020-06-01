@@ -1,6 +1,5 @@
 <?php
 
-
 namespace MediaWiki\Extension\Tei\Model;
 
 use MediaWiki\Extension\Tei\Model\Datatype\EnumerationDatatype;
