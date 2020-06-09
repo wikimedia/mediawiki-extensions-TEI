@@ -120,6 +120,7 @@ class ApiTeiConvert extends ApiBase {
 			$text = $content->serialize( $from );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 		$output = $this->convert( $text, $title, $from, $to, $params['normalize'] );
 
 		$this->getResult()->addValue( null, 'convert', [
@@ -155,11 +156,14 @@ class ApiTeiConvert extends ApiBase {
 			if ( isset( $params['revid'] ) ) {
 				if ( $params['revid'] === 0 ) {
 					// Default content
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 					return [ $title, ContentHandler::getForTitle( $title )->makeEmptyContent() ];
 				} else {
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 					$revision = $this->revisionLookup->getRevisionByTitle( $title, $params['revid'] );
 				}
 			} else {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 				$revision = $this->revisionLookup->getRevisionByTitle( $title );
 			}
 			if ( $revision === null ) {
@@ -184,15 +188,18 @@ class ApiTeiConvert extends ApiBase {
 			$this->requireAtLeastOneParameter( $params, 'title', 'pageid', 'revid' );
 		}
 
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable T240141
 		$content = $revision->getContent(
 			$params['slot'],
 			RevisionRecord::FOR_THIS_USER,
 			$this->getUser()
 		);
 		if ( $content === null ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable T240141
 			$this->dieWithError( [ 'apierror-missingcontent-revid', $revision->getId() ] );
 		}
 
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable T240141
 		return [ $title, $content ];
 	}
 

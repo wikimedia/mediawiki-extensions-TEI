@@ -30,7 +30,7 @@ class TeiContent extends TextContent {
 	}
 
 	/**
-	 * @return StatusValue[DOMDocument]
+	 * @return StatusValue
 	 */
 	public function getDOMDocumentStatus() {
 		return TeiExtension::getDefault()->getDOMDocumentFactory()

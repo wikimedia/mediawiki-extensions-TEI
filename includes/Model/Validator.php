@@ -98,7 +98,7 @@ class Validator {
 			$this->contentValidatorFactory->getForElement( $definition->getName() )->validate(
 				$this->nodeNames( $node->childNodes ),
 				$node->nodeName,
-				$node->getLineNo()
+				(string)$node->getLineNo()
 			)
 		);
 	}

@@ -231,6 +231,7 @@ class GenerateTeiJsonDefinition extends Maintenance {
 					$classes[] = $memberOf->getAttribute( 'key' );
 					break;
 				case 'delete':
+					// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 					array_splice( $classes, array_search(
 						$memberOf->getAttribute( 'key' ), $classes
 					), 1 );

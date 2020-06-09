@@ -91,10 +91,12 @@ class NondeteministicFiniteAutomaton {
 	private function extendArrayWithEpsilonTransitionsFrom( array &$states, $start ) {
 		if (
 			!array_key_exists( $start, $this->transitionsTable ) ||
+			// @phan-suppress-next-line PhanTypeMismatchArgumentInternalProbablyReal
 			!array_key_exists( null, $this->transitionsTable[$start] )
 		) {
 			return;
 		}
+		// @phan-suppress-next-line PhanTypeMismatchDimFetchNullable
 		foreach ( $this->transitionsTable[$start][null] as $additionalState ) {
 			if ( !in_array( $additionalState, $states ) ) {
 				$states[] = $additionalState;

@@ -9,9 +9,9 @@ use StatusValue;
  */
 class NumericDatatype extends Datatype {
 
-	const DOUBLE = '[+-]?(\d+(\.\d*)?|\.\d+)([Ee][+-]?\d+)?|(\+|-)?INF|NaN';
-	const DECIMAL = '([+-]?(\d+(\.\d*)?|\.\d+)';
-	const RANGE = '(\-?[\d]+/\-?[\d]+)';
+	const DOUBLE = '[+-]?(\d+(\.\d*)?|\.\d+)([Ee][+-]?\d+)?|[+-]?INF|NaN';
+	const DECIMAL = '[+-]?(\d+(\.\d*)?|\.\d+)';
+	const RANGE = '(\-?\d+\/-?\d+)';
 	const REGEX = '/^(' . self::DOUBLE . '|' . self::DECIMAL . '|' . self::RANGE . ')$/';
 
 	public function __construct() {

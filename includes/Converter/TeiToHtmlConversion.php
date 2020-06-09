@@ -336,8 +336,9 @@ class TeiToHtmlConversion {
 			yield $teiElement->tagName . '-rend-' .
 				  strtolower( $teiElement->getAttribute( 'rend' ) );
 		}
-		if ( $teiElement->parentNode instanceof DOMElement ) {
-			yield $teiElement->tagName . '-parent-' . $teiElement->parentNode->tagName;
+		$parent = $teiElement->parentNode;
+		if ( $parent instanceof DOMElement ) {
+			yield $teiElement->tagName . '-parent-' . $parent->tagName;
 		}
 		yield $teiElement->tagName;
 	}
@@ -362,6 +363,7 @@ class TeiToHtmlConversion {
 				if ( array_key_exists( self::VALUE_FUNCTION, $attributeData ) ) {
 					$this->{$attributeData[ self::VALUE_FUNCTION ]}( $teiElement, $htmlElement );
 				} else {
+					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 					$htmlElement->setAttribute( $attributeData[self::NODE_NAME], $attribute->nodeValue );
 				}
 			} else {
