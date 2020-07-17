@@ -192,6 +192,7 @@ ve.init.tei.TEIPageTarget.prototype.addSurface = function () {
 
 /**
  * Saves the surface of the page
+ *
  * @return {Promise}
  */
 ve.init.tei.TEIPageTarget.prototype.saveSurface = function () {

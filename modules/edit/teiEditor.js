@@ -1,5 +1,6 @@
 /**
  * Namespace for TEI XML editor
+ *
  * @class
  * @singleton
  */
