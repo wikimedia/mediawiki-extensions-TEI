@@ -1,3 +1,5 @@
+!! Version 2
+
 !! test
 Basic full file
 !! wikitext
@@ -253,7 +255,7 @@ Hi small
 !!end
 
 !! test
-Hi sup
+Hi var
 !! wikitext
 <p xmlns="http://www.tei-c.org/ns/1.0">Foo <hi rend="var">Bar</hi></p>
 !! html/php
@@ -469,7 +471,7 @@ Style
 !!end
 
 !! test
-LaTex <formula>
+LaTeX <formula>
 !! wikitext
 <p xmlns="http://www.tei-c.org/ns/1.0"><formula notation="tex">C</formula></p>
 !! html/php
