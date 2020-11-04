@@ -2,17 +2,17 @@
 	"root": true,
 	"extends": [
 		"wikimedia/client",
-		"wikimedia/jquery"
+		"wikimedia/jquery",
+		"wikimedia/mediawiki"
 	],
 	"globals": {
-		"OO": false,
-		"mw": false,
 		"ve": false,
 		"CodeMirror": false
 	},
 	"rules": {
 		"max-len": "off",
 		"no-jquery/no-global-selector": "off",
-		"no-shadow": "warn"
+		"no-shadow": "warn",
+		"mediawiki/msg-doc": "warn"
 	}
 }

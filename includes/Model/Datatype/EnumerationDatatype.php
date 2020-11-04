@@ -11,7 +11,7 @@ use StatusValue;
 class EnumerationDatatype extends Datatype {
 
 	/**
-	 * @var boolean
+	 * @var bool
 	 */
 	private $closed;
 
