@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
+			"Verdy p",
 			"Wladek92"
 		]
 	},
 	"tei-desc": "Définition du modèle de contenu TEI",
+	"content-model-tei": "TEI",
 	"tei-libxml-empty-document": "Le document XML est vide.",
 	"tei-libxml-error-message": "$1 à la ligne $2.",
 	"tei-remex-error-message": "$1 en position $2.",
