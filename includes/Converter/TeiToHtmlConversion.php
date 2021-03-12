@@ -9,6 +9,7 @@ use DOMNode;
 use DOMText;
 use File;
 use Linker;
+use MediaWiki\MediaWikiServices;
 use RemexHtml\HTMLData;
 use RemexHtml\Serializer\HtmlFormatter;
 use Sanitizer;
@@ -416,7 +417,12 @@ class TeiToHtmlConversion {
 			if ( array_key_exists( 'height', $parameters ) ) {
 				$parameters['width'] = $parameters['height'] * $file->getWidth() / $file->getHeight();
 			} else {
-				$parameters['width'] = $wgThumbLimits[User::getDefaultOption( 'thumbsize' )];
+				if ( method_exists( 'MediaWiki\User\UserOptionsLookup', 'getDefaultOption' ) ) {
+					$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+					$parameters['width'] = $wgThumbLimits[$userOptionsLookup->getDefaultOption( 'thumbsize' )];
+				} else {
+					$parameters['width'] = $wgThumbLimits[User::getDefaultOption( 'thumbsize' )];
+				}
 				if ( !$file->isVectorized() && $file->getWidth() < $parameters['width'] ) {
 					$parameters['width'] = $file->getWidth();
 				}
