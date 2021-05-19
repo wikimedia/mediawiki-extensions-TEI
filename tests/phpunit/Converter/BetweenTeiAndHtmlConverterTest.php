@@ -65,7 +65,7 @@ class BetweenTeiAndHtmlConverterTest extends TestCase {
 			->disableOriginalConstructor()->getMock();
 		$fileMock->expects( $this->any() )
 			->method( 'transform' )
-			->willReturnCallback( function ( $params ) use ( $fileMock ) {
+			->willReturnCallback( static function ( $params ) use ( $fileMock ) {
 				return new ThumbnailImage( $fileMock,  'http://example.com/file/FooBar.jpg', false, $params );
 			} );
 
@@ -73,7 +73,7 @@ class BetweenTeiAndHtmlConverterTest extends TestCase {
 			->disableOriginalConstructor()->getMock();
 		$fileLookupMock->expects( $this->any() )
 			->method( 'getFileForPage' )
-			->willReturnCallback( function ( $fileName ) use ( $fileMock ) {
+			->willReturnCallback( static function ( $fileName ) use ( $fileMock ) {
 				if ( $fileName === 'FooBar.jpg' ) {
 					return $fileMock;
 				}

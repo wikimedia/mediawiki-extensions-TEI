@@ -121,7 +121,7 @@ class NondeteministicFiniteAutomaton {
 	 * @return mixed[]
 	 */
 	private function transitionsLabelsFromState( $state ) {
-		return array_filter( array_keys( $this->transitionsTable[$state] ), function ( $label ) {
+		return array_filter( array_keys( $this->transitionsTable[$state] ), static function ( $label ) {
 			return $label != null;
 		} );
 	}

@@ -377,7 +377,7 @@ class TeiToHtmlConversion {
 	}
 
 	private function convertRend( DOMElement $teiElement, DOMElement $htmlElement ) {
-		$htmlElement->setAttribute( 'class', implode( ' ', array_map( function ( $val ) {
+		$htmlElement->setAttribute( 'class', implode( ' ', array_map( static function ( $val ) {
 			return 'tei-rend-' . $val;
 		}, array_filter( explode( ' ', $teiElement->getAttribute( 'rend' ) ) ) ) ) );
 	}

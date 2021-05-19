@@ -310,9 +310,9 @@ class HtmlToTeiConversion {
 	}
 
 	private static function convertClass( $value ) {
-		return implode( ' ', array_map( function ( $val ) {
+		return implode( ' ', array_map( static function ( $val ) {
 			return substr( $val, 9 );
-		}, array_filter( explode( ' ', $value ), function ( $value ) {
+		}, array_filter( explode( ' ', $value ), static function ( $value ) {
 			return strpos( $value, 'tei-rend-' ) === 0;
 		} ) ) ) ?: null;
 	}
