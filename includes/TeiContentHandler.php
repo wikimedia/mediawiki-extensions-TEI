@@ -2,6 +2,9 @@
 
 namespace MediaWiki\Extension\Tei;
 
+use Content;
+use MediaWiki\Content\Transform\PreSaveTransformParams;
+use MWException;
 use TextContentHandler;
 
 /**
@@ -36,5 +39,28 @@ class TeiContentHandler extends TextContentHandler {
 		return new TeiContent(
 			'<text xmlns="http://www.tei-c.org/ns/1.0"><body><p></p></body></text>'
 		);
+	}
+
+	/**
+	 * @see ContentHandler::preSaveTransform
+	 *
+	 * @param Content $content
+	 * @param PreSaveTransformParams $pstParams
+	 * @return TeiContent
+	 * @throws MWException
+	 */
+	public function preSaveTransform( Content $content, PreSaveTransformParams $pstParams ): Content {
+		'@phan-var TeiContent $content';
+		$status = $content->getDOMDocumentStatus();
+
+		if ( !$status->isOK() ) {
+			return $content;
+		}
+
+		$dom = $status->getValue();
+		TeiExtension::getDefault()->getNormalizer()->normalizeDOM( $dom );
+
+		$contentClass = $this->getContentClass();
+		return new $contentClass( $dom->saveXML( $dom->documentElement ) );
 	}
 }

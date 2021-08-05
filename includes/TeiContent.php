@@ -57,28 +57,6 @@ class TeiContent extends TextContent {
 	}
 
 	/**
-	 * @see Content::preSaveTransform
-	 *
-	 * @param Title $title
-	 * @param User $user
-	 * @param ParserOptions $popts
-	 * @return TeiContent
-	 * @throws MWException
-	 */
-	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
-		$status = $this->getDOMDocumentStatus();
-
-		if ( !$status->isOK() ) {
-			return $this;
-		}
-
-		$dom = $status->getValue();
-		TeiExtension::getDefault()->getNormalizer()->normalizeDOM( $dom );
-
-		return new self( $dom->saveXML( $dom->documentElement ) );
-	}
-
-	/**
 	 * @see Content::prepareSave
 	 *
 	 * @param WikiPage $page

@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Extension\Tei;
 
-use ParserOptions;
 use PHPUnit\Framework\TestCase;
 use Title;
 use User;
@@ -101,39 +100,5 @@ class TeiContentTest extends TestCase {
 		$user = User::newFromName( 'Foo' );
 		$status = $content->prepareSave( $page, 0, -1, $user );
 		$this->assertFalse( $status->isOK() );
-	}
-
-	public function preSaveTransformProvider() {
-		return [
-			[
-				new TeiContent( 'foo' ),
-				new TeiContent( 'foo' )
-			],
-			[
-				new TeiContent( '<text  xmlns="http://www.tei-c.org/ns/1.0">
-									  <body> <p>Foo</p></body>  </text>' ),
-				new TeiContent( '<text xmlns="http://www.tei-c.org/ns/1.0">
-									  <body> <p>Foo</p></body>  </text>' )
-			],
-			[
-				new TeiContent( '<text><body><p>Foo</p></body></text>' ),
-				new TeiContent( '<text xmlns="http://www.tei-c.org/ns/1.0"><body><p>Foo</p></body></text>' )
-			],
-			[
-				new TeiContent( '<?xml version="1.0" encoding="UTF-8"?> 
-						              <text  xmlns="http://www.tei-c.org/ns/1.0"><body><p>Foo</p></body></text>' ),
-				new TeiContent( '<text xmlns="http://www.tei-c.org/ns/1.0"><body><p>Foo</p></body></text>' )
-			]
-		];
-	}
-
-	/**
-	 * @dataProvider preSaveTransformProvider
-	 */
-	public function testPreSaveTransform( TeiContent $input, TeiContent $output ) {
-		$title = Title::makeTitle( NS_MAIN, 'Foo' );
-		$user = User::newFromName( 'Foo' );
-		$actual = $input->preSaveTransform( $title, $user, ParserOptions::newFromUser( $user ) );
-		$this->assertEquals( $output->serialize(), $actual->serialize() );
 	}
 }
