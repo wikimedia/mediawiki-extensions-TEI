@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"DDPAT",
 			"Piramidion",
 			"Vlad5250"
 		]
@@ -12,7 +13,7 @@
 	"tei-validation-element-content-unexpected-node": "<code>$1</code> не може використовуватись як тег, дочірній відносно <code lang=\"en\">$2</code> в рядку $3.",
 	"tei-validation-element-content-unexpected-text": "<code>$1</code> не може містити тексту в рядку $2.",
 	"tei-validation-element-content-too-short": "Бракує тегу на кшталт $1, дочірнього відносно <code>$2</code>, в рядку $3.",
-	"tei-validation-no-root": "XML-контент TEI не має кореневого теґу.",
+	"tei-validation-no-root": "XML-контент TEI не має кореневого тегу.",
 	"tei-validation-unexpected-root": "Кореневий тег контенту TEI XML має бути або <code>text</code>, або <code>body</code>, натомість знайдено <code>$1</code>.",
 	"tei-validation-wrong-namespace": "Простір назв TEI XML має бути <code>http://www.tei-c.org/ns/1.0</code>, натомість знайдено <code>$1</code> в рядку $2.",
 	"tei-validation-unknown-tag": "<code>$1</code> не є підтримуваним тегом TEI в рядку $2.",
