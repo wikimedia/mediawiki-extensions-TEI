@@ -7,6 +7,7 @@
 		]
 	},
 	"tei-desc": "Визначення контентної моделі TEI",
+	"content-model-tei": "TEI",
 	"tei-libxml-empty-document": "XML-документ порожній.",
 	"tei-libxml-error-message": "$1 у рядку $2.",
 	"tei-remex-error-message": "$1 на позиції $2.",
