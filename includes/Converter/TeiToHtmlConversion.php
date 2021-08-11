@@ -10,11 +10,11 @@ use DOMText;
 use File;
 use Linker;
 use MediaWiki\MediaWikiServices;
-use RemexHtml\HTMLData;
-use RemexHtml\Serializer\HtmlFormatter;
 use Sanitizer;
 use Title;
 use User;
+use Wikimedia\RemexHtml\HTMLData;
+use Wikimedia\RemexHtml\Serializer\HtmlFormatter;
 
 /**
  * @license GPL-2.0-or-later

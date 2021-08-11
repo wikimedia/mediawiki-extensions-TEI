@@ -4,11 +4,11 @@ namespace MediaWiki\Extension\Tei;
 
 use DOMDocument;
 use LibXMLError;
-use RemexHtml\DOM\DOMBuilder;
-use RemexHtml\Tokenizer\Tokenizer;
-use RemexHtml\TreeBuilder\Dispatcher;
-use RemexHtml\TreeBuilder\TreeBuilder;
 use StatusValue;
+use Wikimedia\RemexHtml\DOM\DOMBuilder;
+use Wikimedia\RemexHtml\Tokenizer\Tokenizer;
+use Wikimedia\RemexHtml\TreeBuilder\Dispatcher;
+use Wikimedia\RemexHtml\TreeBuilder\TreeBuilder;
 
 /**
  * @license GPL-2.0-or-later
