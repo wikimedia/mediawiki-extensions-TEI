@@ -29,8 +29,7 @@
                     "datatype": {
                         "dataRef": {
                             "key": "teidata.word"
-                        },
-                        "maxOccurs": null
+                        }
                     },
                     "usage": "opt"
                 },
@@ -38,8 +37,7 @@
                     "datatype": {
                         "dataRef": {
                             "key": "teidata.pointer"
-                        },
-                        "maxOccurs": null
+                        }
                     },
                     "usage": "opt"
                 }
@@ -92,8 +90,7 @@
                     "datatype": {
                         "dataRef": {
                             "key": "teidata.pointer"
-                        },
-                        "maxOccurs": null
+                        }
                     },
                     "usage": "opt"
                 }
@@ -107,8 +104,7 @@
                     "datatype": {
                         "dataRef": {
                             "key": "teidata.word"
-                        },
-                        "maxOccurs": null
+                        }
                     },
                     "usage": "opt"
                 },
@@ -132,7 +128,6 @@
                         "dataRef": {
                             "key": "teidata.word"
                         },
-                        "maxOccurs": null,
                         "minOccurs": 1
                     },
                     "usage": "opt"
@@ -242,8 +237,7 @@
                     "datatype": {
                         "dataRef": {
                             "key": "teidata.pointer"
-                        },
-                        "maxOccurs": null
+                        }
                     },
                     "usage": "opt"
                 },
@@ -1057,7 +1051,6 @@
                 "content": [
                     {
                         "key": "model.global",
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "classRef"
                     },
@@ -1069,12 +1062,10 @@
                             },
                             {
                                 "key": "model.global",
-                                "maxOccurs": null,
                                 "minOccurs": 0,
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 1,
                         "type": "sequence"
                     }
@@ -1116,7 +1107,6 @@
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "alternate"
                     },
@@ -1128,12 +1118,10 @@
                             },
                             {
                                 "key": "model.global",
-                                "maxOccurs": null,
                                 "minOccurs": 0,
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 1,
                         "type": "sequence"
                     }
@@ -1186,7 +1174,6 @@
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "alternate"
                     },
@@ -1213,7 +1200,6 @@
                                                 "type": "classRef"
                                             }
                                         ],
-                                        "maxOccurs": null,
                                         "minOccurs": 0,
                                         "type": "alternate"
                                     }
@@ -1241,7 +1227,6 @@
                                                 "type": "classRef"
                                             }
                                         ],
-                                        "maxOccurs": null,
                                         "minOccurs": 0,
                                         "type": "alternate"
                                     }
@@ -1269,7 +1254,6 @@
                                         "type": "classRef"
                                     }
                                 ],
-                                "maxOccurs": null,
                                 "minOccurs": 0,
                                 "type": "alternate"
                             }
@@ -1331,7 +1315,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -1360,7 +1343,6 @@
                 "content": [
                     {
                         "key": "model.global",
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "classRef"
                     },
@@ -1381,7 +1363,6 @@
                                         "type": "classRef"
                                     }
                                 ],
-                                "maxOccurs": null,
                                 "minOccurs": 0,
                                 "type": "alternate"
                             }
@@ -1406,7 +1387,6 @@
                                         "type": "classRef"
                                     }
                                 ],
-                                "maxOccurs": null,
                                 "minOccurs": 0,
                                 "type": "alternate"
                             }
@@ -1433,12 +1413,10 @@
                                                 "type": "classRef"
                                             }
                                         ],
-                                        "maxOccurs": null,
                                         "minOccurs": 0,
                                         "type": "alternate"
                                     }
                                 ],
-                                "maxOccurs": null,
                                 "minOccurs": 1,
                                 "type": "sequence"
                             },
@@ -1459,12 +1437,10 @@
                                                 "type": "classRef"
                                             }
                                         ],
-                                        "maxOccurs": null,
                                         "minOccurs": 0,
                                         "type": "alternate"
                                     }
                                 ],
-                                "maxOccurs": null,
                                 "minOccurs": 1,
                                 "type": "sequence"
                             },
@@ -1478,12 +1454,10 @@
                                             },
                                             {
                                                 "key": "model.global",
-                                                "maxOccurs": null,
                                                 "minOccurs": 0,
                                                 "type": "classRef"
                                             }
                                         ],
-                                        "maxOccurs": null,
                                         "minOccurs": 1,
                                         "type": "sequence"
                                     },
@@ -1506,12 +1480,10 @@
                                                                 "type": "classRef"
                                                             }
                                                         ],
-                                                        "maxOccurs": null,
                                                         "minOccurs": 0,
                                                         "type": "alternate"
                                                     }
                                                 ],
-                                                "maxOccurs": null,
                                                 "minOccurs": 1,
                                                 "type": "sequence"
                                             },
@@ -1532,12 +1504,10 @@
                                                                 "type": "classRef"
                                                             }
                                                         ],
-                                                        "maxOccurs": null,
                                                         "minOccurs": 0,
                                                         "type": "alternate"
                                                     }
                                                 ],
-                                                "maxOccurs": null,
                                                 "minOccurs": 1,
                                                 "type": "sequence"
                                             }
@@ -1559,12 +1529,10 @@
                             },
                             {
                                 "key": "model.global",
-                                "maxOccurs": null,
                                 "minOccurs": 0,
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "sequence"
                     }
@@ -1603,7 +1571,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -1639,7 +1606,6 @@
                         "type": "elementRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 2,
                 "type": "alternate"
             },
@@ -1680,7 +1646,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 1,
                 "type": "alternate"
             },
@@ -1723,7 +1688,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -1775,7 +1739,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -1809,7 +1772,6 @@
                         "type": "elementRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -1884,7 +1846,6 @@
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "alternate"
                     },
@@ -1909,12 +1870,10 @@
                                             },
                                             {
                                                 "key": "model.global",
-                                                "maxOccurs": null,
                                                 "minOccurs": 0,
                                                 "type": "classRef"
                                             }
                                         ],
-                                        "maxOccurs": null,
                                         "minOccurs": 1,
                                         "type": "sequence"
                                     },
@@ -1928,12 +1887,10 @@
                                                     },
                                                     {
                                                         "key": "model.global",
-                                                        "maxOccurs": null,
                                                         "minOccurs": 0,
                                                         "type": "classRef"
                                                     }
                                                 ],
-                                                "maxOccurs": null,
                                                 "minOccurs": 1,
                                                 "type": "sequence"
                                             },
@@ -1954,12 +1911,10 @@
                                                     },
                                                     {
                                                         "key": "model.global",
-                                                        "maxOccurs": null,
                                                         "minOccurs": 0,
                                                         "type": "classRef"
                                                     }
                                                 ],
-                                                "maxOccurs": null,
                                                 "minOccurs": 0,
                                                 "type": "sequence"
                                             }
@@ -1977,12 +1932,10 @@
                                     },
                                     {
                                         "key": "model.global",
-                                        "maxOccurs": null,
                                         "minOccurs": 0,
                                         "type": "classRef"
                                     }
                                 ],
-                                "maxOccurs": null,
                                 "minOccurs": 0,
                                 "type": "sequence"
                             }
@@ -2083,7 +2036,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -2101,7 +2053,6 @@
                 "content": [
                     {
                         "key": "model.global",
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "classRef"
                     },
@@ -2113,12 +2064,10 @@
                             },
                             {
                                 "key": "model.global",
-                                "maxOccurs": null,
                                 "minOccurs": 0,
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 1,
                         "type": "sequence"
                     }
@@ -2159,7 +2108,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -2226,7 +2174,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -2281,7 +2228,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -2314,7 +2260,6 @@
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "alternate"
                     },
@@ -2343,7 +2288,6 @@
                                                         "type": "classRef"
                                                     }
                                                 ],
-                                                "maxOccurs": null,
                                                 "minOccurs": 0,
                                                 "type": "alternate"
                                             }
@@ -2371,7 +2315,6 @@
                                                         "type": "classRef"
                                                     }
                                                 ],
-                                                "maxOccurs": null,
                                                 "minOccurs": 0,
                                                 "type": "alternate"
                                             }
@@ -2398,7 +2341,6 @@
                                                 "type": "classRef"
                                             }
                                         ],
-                                        "maxOccurs": null,
                                         "minOccurs": 0,
                                         "type": "alternate"
                                     }
@@ -2437,8 +2379,7 @@
                     "datatype": {
                         "dataRef": {
                             "key": "teidata.enumerated"
-                        },
-                        "maxOccurs": null
+                        }
                     },
                     "usage": "opt",
                     "valList": {
@@ -2473,7 +2414,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -2491,7 +2431,6 @@
             ],
             "content": {
                 "key": "model.descLike",
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "classRef"
             },
@@ -2517,7 +2456,6 @@
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "alternate"
                     },
@@ -2551,7 +2489,6 @@
                                         "type": "classRef"
                                     }
                                 ],
-                                "maxOccurs": null,
                                 "minOccurs": 0,
                                 "type": "alternate"
                             }
@@ -2560,7 +2497,6 @@
                     },
                     {
                         "key": "model.divBottom",
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "classRef"
                     }
@@ -2609,7 +2545,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -2683,7 +2618,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -2741,7 +2675,6 @@
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "alternate"
                     },
@@ -2789,7 +2722,6 @@
                                 "type": "elementRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "alternate"
                     },
@@ -2801,12 +2733,10 @@
                             },
                             {
                                 "key": "model.global",
-                                "maxOccurs": null,
                                 "minOccurs": 0,
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "sequence"
                     }
@@ -2853,7 +2783,6 @@
                         "type": "elementRef"
                     }
                 ],
-                "maxOccurs": null,
                 "type": "alternate"
             },
             "module": "core"
@@ -2879,7 +2808,6 @@
                         "type": "elementRef"
                     }
                 ],
-                "maxOccurs": null,
                 "type": "alternate"
             },
             "module": "core"
@@ -3024,7 +2952,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -3134,7 +3061,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -3160,7 +3086,6 @@
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "alternate"
                     },
@@ -3179,7 +3104,6 @@
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "alternate"
                     },
@@ -3191,12 +3115,10 @@
                             },
                             {
                                 "key": "model.global",
-                                "maxOccurs": null,
                                 "minOccurs": 0,
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "sequence"
                     }
@@ -3327,7 +3249,6 @@
             ],
             "content": {
                 "key": "cell",
-                "maxOccurs": null,
                 "minOccurs": 1,
                 "type": "elementRef"
             },
@@ -3431,7 +3352,6 @@
                 "content": [
                     {
                         "key": "model.global",
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "classRef"
                     },
@@ -3443,7 +3363,6 @@
                             },
                             {
                                 "key": "model.global",
-                                "maxOccurs": null,
                                 "minOccurs": 0,
                                 "type": "classRef"
                             }
@@ -3484,12 +3403,10 @@
                             },
                             {
                                 "key": "model.global",
-                                "maxOccurs": null,
                                 "minOccurs": 0,
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 1,
                         "type": "sequence"
                     }
@@ -3516,7 +3433,6 @@
                         "dataRef": {
                             "key": "teidata.enumerated"
                         },
-                        "maxOccurs": null,
                         "minOccurs": 0
                     },
                     "usage": "rec",
@@ -3562,7 +3478,6 @@
                         "type": "elementRef"
                     }
                 ],
-                "maxOccurs": null,
                 "type": "sequence"
             },
             "module": "figures"
@@ -3598,7 +3513,6 @@
                 "content": [
                     {
                         "key": "model.global",
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "classRef"
                     },
@@ -3610,7 +3524,6 @@
                             },
                             {
                                 "key": "model.global",
-                                "maxOccurs": null,
                                 "minOccurs": 0,
                                 "type": "classRef"
                             }
@@ -3633,7 +3546,6 @@
                     },
                     {
                         "key": "model.global",
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "classRef"
                     },
@@ -3645,7 +3557,6 @@
                             },
                             {
                                 "key": "model.global",
-                                "maxOccurs": null,
                                 "minOccurs": 0,
                                 "type": "classRef"
                             }
@@ -3688,7 +3599,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -3766,7 +3676,6 @@
                 "content": [
                     {
                         "key": "model.global",
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "classRef"
                     },
@@ -3785,7 +3694,6 @@
                                 "type": "classRef"
                             }
                         ],
-                        "maxOccurs": null,
                         "minOccurs": 0,
                         "type": "alternate"
                     }
@@ -3865,7 +3773,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -3893,8 +3800,7 @@
                     "datatype": {
                         "dataRef": {
                             "key": "teidata.enumerated"
-                        },
-                        "maxOccurs": null
+                        }
                     },
                     "usage": "opt",
                     "valList": {
@@ -3980,7 +3886,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -4003,7 +3908,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -4040,7 +3944,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -4069,7 +3972,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -4090,7 +3992,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -4123,7 +4024,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
@@ -4140,7 +4040,6 @@
                         "type": "classRef"
                     }
                 ],
-                "maxOccurs": null,
                 "minOccurs": 0,
                 "type": "alternate"
             },
