@@ -11,8 +11,10 @@ module.exports = function ( grunt ) {
 			options: {
 				cache: true
 			},
+			// Exclude mw_tei_json_definition due to bug in eslint - T273997
 			all: [
 				'**/*.{js,json}',
+				'!data/mw_tei_json_definition.json',
 				'!node_modules/**',
 				'!modules/jquery/*.js',
 				'!vendor/**'
