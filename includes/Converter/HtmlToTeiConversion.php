@@ -281,7 +281,6 @@ class HtmlToTeiConversion {
 				}
 
 				$nodeValue = array_key_exists( self::VALUE_FUNCTION, $attributeData )
-					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 					? $this->{$attributeData[ self::VALUE_FUNCTION ]}( $attribute->nodeValue )
 					: $attribute->nodeValue;
 

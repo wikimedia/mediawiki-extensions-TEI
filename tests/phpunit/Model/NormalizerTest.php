@@ -22,7 +22,7 @@ class NormalizerTest extends TestCase {
 	 */
 	private $normalizer;
 
-	public function setUp() : void {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->domDocumentFactory = new DOMDocumentFactory();

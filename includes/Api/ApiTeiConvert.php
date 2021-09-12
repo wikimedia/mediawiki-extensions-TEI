@@ -242,8 +242,6 @@ class ApiTeiConvert extends ApiBase {
 			default:
 				$this->dieWithError( [ 'apierror-teiconvert-invalid-fromto', CONTENT_FORMAT_TEI_XML, $to ] );
 		}
-
-		$this->dieWithError( [ 'apierror-teiconvert-invalid-fromto', CONTENT_FORMAT_HTML, $to ] );
 	}
 
 	private function parseTitle( $titleText ) {
