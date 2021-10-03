@@ -9,6 +9,7 @@ use DOMNode;
 use DOMText;
 use File;
 use Linker;
+use MediaWiki\Extension\Math\MathRenderer;
 use MediaWiki\MediaWikiServices;
 use Sanitizer;
 use Title;
@@ -454,10 +455,10 @@ class TeiToHtmlConversion {
 		$this->convertAndAddAttributes( $teiElement, $htmlElement );
 		$htmlElement->setAttribute( self::TEI_CONTENT, $teiElement->textContent );
 
-		if ( !class_exists( '\MathRenderer' ) ) {
+		if ( !class_exists( MathRenderer::class ) ) {
 			$htmlElement->appendChild( $this->htmlDocument->createTextNode( $text ) );
 		}
-		$math = \MathRenderer::renderMath( $text, [], 'mathml' );
+		$math = MathRenderer::renderMath( $text, [], 'mathml' );
 		$htmlElement->appendChild( $this->importHtml( $math ) );
 	}
 
