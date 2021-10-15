@@ -30,6 +30,7 @@
 	"tei-validation-multiple-too-few-values": "Error when an attribute value contains not enough parts. $1 is the wrong attribute value, $2 is the attribute name, $3 is the expected number of values and $4 the actual number.",
 	"tei-validation-multiple-too-many-values": "Error when an attribute value contains too many parts. $1 is the wrong attribute value, $2 is the attribute name, $3 is the expected number of values and $4 the actual number.",
 	"tei-parser-file-not-found": "Error returned when an included file does not exist with $1 the file name without namespace.",
+	"tei-parser-error": "Warning returned when a conversion error occurs. Parameters:\n* $1 - warning message, not localized.",
 	"apihelp-teiconvert-summary": "{{doc-apihelp-summary|teiconvert}}",
 	"apihelp-teiconvert-param-title": "{{doc-apihelp-param|teiconvert|title}}",
 	"apihelp-teiconvert-param-pageid": "{{doc-apihelp-param|teiconvert|pageid}}",

@@ -95,8 +95,8 @@ class TeiContent extends TextContent {
 		$output->setText( Html::rawElement(
 			'div', [ 'class' => 'mw-parser-output' ], $conversion->getHtml()
 		) );
-		foreach ( $conversion->getWarnings() as $warning ) {
-			$output->addWarning( $warning );
+		foreach ( $conversion->getWarnings() as $warningArgs ) {
+			$output->addWarningMsg( ...$warningArgs );
 		}
 		foreach ( $conversion->getExternalLinksUrls() as $externalLink ) {
 			$output->addExternalLink( $externalLink );

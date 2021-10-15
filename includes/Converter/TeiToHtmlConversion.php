@@ -11,6 +11,7 @@ use File;
 use Linker;
 use MediaWiki\Extension\Math\MathRenderer;
 use MediaWiki\MediaWikiServices;
+use Message;
 use Sanitizer;
 use Title;
 use User;
@@ -207,7 +208,7 @@ class TeiToHtmlConversion {
 	private $includedFiles = [];
 
 	/**
-	 * @var string[]
+	 * @var array[]
 	 */
 	private $warnings = [];
 
@@ -239,7 +240,7 @@ class TeiToHtmlConversion {
 	}
 
 	/**
-	 * @return string[]
+	 * @return array[]
 	 */
 	public function getWarnings() {
 		return $this->warnings;
@@ -436,7 +437,10 @@ class TeiToHtmlConversion {
 			return;
 		}
 		if ( $thumbnail->isError() ) {
-			$this->warnings[] = $thumbnail->toHtml();
+			$this->warning(
+				'tei-parser-error',
+				Message::rawParam( $thumbnail->toHtml() )
+			);
 			return;
 		}
 
@@ -504,7 +508,7 @@ class TeiToHtmlConversion {
 	}
 
 	private function warning( ...$args ) {
-		$this->warnings[] = wfMessage( ...$args )->parse();
+		$this->warnings[] = $args;
 	}
 
 	private function importHtml( $html ) {
