@@ -29,6 +29,7 @@
 	"tei-validation-multiple-too-few-values": "<code>$2</code> 的值應至少包含 {{PLURAL:$3|1|$3}} 個單元，但發現到 <code>$1</code> 包含 {{PLURAL:$4|1|$4}} 個單元。",
 	"tei-validation-multiple-too-many-values": "<code>$2</code> 的值最多包含 {{PLURAL:$3|1|$3}} 個單元，但發現到 <code>$1</code> 包含 {{PLURAL:$4|1|$4}} 個單元。",
 	"tei-parser-file-not-found": "名為$1的檔案不存在。",
+	"tei-parser-error": "轉換錯誤：$1",
 	"apihelp-teiconvert-summary": "用來在 TEI 與 HTML 之間轉換內容的 API 模組",
 	"apihelp-teiconvert-param-title": "若 <var>$1text</var> 未設定，此頁面的內容。若 <var>$1text</var> 有設定，使用此作為轉換期間的頁面標題。若此未設定，[[API]] 將作為標題。",
 	"apihelp-teiconvert-param-pageid": "轉換此頁面內容。",

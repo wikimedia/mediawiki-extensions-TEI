@@ -7,6 +7,7 @@
 	"tei-libxml-empty-document": "D'XML-Dokument ass eidel.",
 	"tei-remex-error-message": "$1 op der Positioun $2.",
 	"tei-parser-file-not-found": "De Fichier mam Numm $1 gëtt et net.",
+	"tei-parser-error": "Feeler bei der Ëmwandlung: $1",
 	"apihelp-teiconvert-param-pageid": "Den Inhalt vun dëser Säit ëmwandelen",
 	"apihelp-teiconvert-param-revid": "Den Inhalt vun dëser Versioun ëmwandelen",
 	"apihelp-teiconvert-example-from-title-to-html": "Wandelt den Inhalt vun [[TEI]] an HTML ëm",

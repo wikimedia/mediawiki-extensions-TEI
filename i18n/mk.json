@@ -30,6 +30,7 @@
 	"tei-validation-multiple-too-few-values": "Вредноста на <code>$2</code> треба да содржи барем {{PLURAL:$3|еден елемент|$3 елементи}}, а најдов <code>$1</code> што содржи {{PLURAL:$4|еден елемент|$4 елементи}}.",
 	"tei-validation-multiple-too-many-values": "Вредноста на <code>$2</code> треба да содржи највеќе {{PLURAL:$3|еден елемент|$3 елементи}}, а најдов <code>$1</code> што содржи {{PLURAL:$4|еден елемент|$4 елементи}}.",
 	"tei-parser-file-not-found": "Податотеката по име $1 не постои.",
+	"tei-parser-error": "Грешка во претворањето: $1",
 	"apihelp-teiconvert-summary": "Извршнички модул за претворање на содржина од TEI во HTML",
 	"apihelp-teiconvert-param-title": "Ако не е зададено <var>$1text</var>, содржината на страницава. Ако е зададено <var>$1text</var>, употреби ја како наслов на странивата при претворањето. Ако ова не е зададено, [[API|приложникот]] ќе се користи како наслов.",
 	"apihelp-teiconvert-param-pageid": "Претвори ја содржината на страницава.",
