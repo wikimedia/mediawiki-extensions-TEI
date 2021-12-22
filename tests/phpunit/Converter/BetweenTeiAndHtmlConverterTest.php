@@ -52,7 +52,7 @@ class BetweenTeiAndHtmlConverterTest extends TestCase {
 					'transformVia404' => false,
 					'backend' => new MockFileBackend( [
 						'name' => 'local-backend',
-						'wikiId' => wfWikiID()
+						'wikiId' => WikiMap::getCurrentWikiId()
 					] )
 				],
 				[],
