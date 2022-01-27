@@ -14,7 +14,6 @@ use MediaWiki\MediaWikiServices;
 use Message;
 use Sanitizer;
 use Title;
-use User;
 use Wikimedia\RemexHtml\HTMLData;
 use Wikimedia\RemexHtml\Serializer\HtmlFormatter;
 
@@ -419,12 +418,8 @@ class TeiToHtmlConversion {
 			if ( array_key_exists( 'height', $parameters ) ) {
 				$parameters['width'] = $parameters['height'] * $file->getWidth() / $file->getHeight();
 			} else {
-				if ( method_exists( 'MediaWiki\User\UserOptionsLookup', 'getDefaultOption' ) ) {
-					$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
-					$parameters['width'] = $wgThumbLimits[$userOptionsLookup->getDefaultOption( 'thumbsize' )];
-				} else {
-					$parameters['width'] = $wgThumbLimits[User::getDefaultOption( 'thumbsize' )];
-				}
+				$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+				$parameters['width'] = $wgThumbLimits[$userOptionsLookup->getDefaultOption( 'thumbsize' )];
 				if ( !$file->isVectorized() && $file->getWidth() < $parameters['width'] ) {
 					$parameters['width'] = $file->getWidth();
 				}
