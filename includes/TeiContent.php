@@ -104,6 +104,6 @@ class TeiContent extends TextContent {
 		foreach ( $conversion->getIncludedFiles() as $file ) {
 			$output->addImage( $file->getTitle()->getDBkey(), $file->getTimestamp(), $file->getSha1() );
 		}
-		$output->addModuleStyles( 'ext.tei.style' );
+		$output->addModuleStyles( [ 'ext.tei.style' ] );
 	}
 }
