@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ajeje Brazorf"
+		]
+	},
+	"tei-desc": "Difinizzioni dû mudellu di cuntinutu TEI",
+	"tei-libxml-empty-document": "Lu ducumentu XML è vacanti.",
+	"tei-libxml-error-message": "$1 n lìnia $2."
+}
