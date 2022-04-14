@@ -29,6 +29,7 @@
 	"tei-validation-multiple-too-few-values": "O valor de <code>$2</code> deve conter pelo menos {{PLURAL:$3|um elemento|$3 elementos}}; foi encontrado <code>$1</code> que contém {{PLURAL:$4|um elemento|$4 elementos}}.",
 	"tei-validation-multiple-too-many-values": "O valor de <code>$2</code> deve conter no máximo {{PLURAL:$3|um elemento|$3 elementos}}; foi encontrado <code>$1</code> que contém {{PLURAL:$4|um elemento|$4 elementos}}.",
 	"tei-parser-file-not-found": "O ficheiro com o nome $1 não existe.",
+	"tei-parser-error": "Erro de conversão: $1",
 	"apihelp-teiconvert-summary": "Módulo da API para converter conteúdo entre TEI e HTML",
 	"apihelp-teiconvert-param-title": "Se <var>$1text</var> não estiver definido, o conteúdo desta página. Se <var>$1text</var> estiver definido usá-lo como título da página durante a conversão. Se não estiver definido, será usado como título [[API]].",
 	"apihelp-teiconvert-param-pageid": "Converter o conteúdo desta página.",
