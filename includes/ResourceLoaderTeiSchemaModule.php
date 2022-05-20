@@ -2,21 +2,20 @@
 
 namespace MediaWiki\Extension\Tei;
 
-use ResourceLoaderContext;
-use ResourceLoaderModule;
+use MediaWiki\ResourceLoader as RL;
 
 /**
  * @license GPL-2.0-or-later
  *
  * Provides data about the shape of the TEI XML content
  */
-class ResourceLoaderTeiSchemaModule extends ResourceLoaderModule {
+class ResourceLoaderTeiSchemaModule extends RL\Module {
 
 	/**
-	 * @param ResourceLoaderContext $context
+	 * @param RL\Context $context
 	 * @return string
 	 */
-	public function getScript( ResourceLoaderContext $context ) {
+	public function getScript( RL\Context $context ) {
 		$schema = TeiExtension::getDefault()->getCodeMirrorSchemaBuilder()->generateSchema();
 		return 'mw.teiEditorSchema = ' . json_encode( $schema ) . ';';
 	}
