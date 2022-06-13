@@ -3,7 +3,8 @@
 		"authors": [
 			"Gomoko",
 			"Wladek92",
-			"Verdy p"
+			"Verdy p",
+			"Urhixidur"
 		]
 	},
 	"tei-desc": "Définition du modèle de contenu TEI",
@@ -17,11 +18,11 @@
 	"tei-validation-no-root": "Le contenu du XML TEI n’a pas de balise racine.",
 	"tei-validation-unexpected-root": "La balise racine du contenu XML TEI devrait être <code>text</code> ou <code>body</code>, <code>$1</code> trouvé.",
 	"tei-validation-wrong-namespace": "L’espace de noms du XML TEI devrait être <code>http://www.tei-c.org/ns/1.0</code>, <code>$1</code> trouvé à la ligne $2.",
-	"tei-validation-unknown-tag": "<code>$1</code> n’est pas une balise TEI supportée à la ligne $2.",
-	"tei-validation-unknown-attribute": "<code>$1</code> n’est pas un attribut supporté de la balise <code>$2</code> à la ligne $3.",
+	"tei-validation-unknown-tag": "<code>$1</code> n’est pas une balise TEI prise en charge à la ligne $2.",
+	"tei-validation-unknown-attribute": "<code>$1</code> n’est pas un attribut pris en charge pour la balise <code>$2</code> à la ligne $3.",
 	"tei-validation-missing-mandatory-attribute": "L’attribut <code>$1</code> de la balise <code>$2</code> est absent à la ligne $3.",
 	"tei-validation-count-invalid-value": "La valeur de <code>$2</code> doit être un entier positif, <code>$1</code> trouvé.",
-	"tei-validation-enumeration-unknown-value": "<code>$1</code> n’est pas une valeur supportée de <code>$2</code>. Les valeurs possibles sont : $3.",
+	"tei-validation-enumeration-unknown-value": "<code>$1</code> n’est pas une valeur prise en charge pour l’attribut <code>$2</code>. Les valeurs possibles sont : $3.",
 	"tei-validation-language-invalid-value": "La valeur de <code>$2</code> doit être une balise de langue valide, <code>$1</code> trouvé.",
 	"tei-validation-numeric-invalid-value": "La valeur de <code>$2</code> doit être une valeur numérique valide, <code>$1</code> trouvé.",
 	"tei-validation-output-measurement-invalid-value": "La valeur de <code>$2</code> doit être un entier positif valide, <code>$1</code> trouvé.",
