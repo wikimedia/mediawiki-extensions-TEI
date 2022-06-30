@@ -5,8 +5,8 @@ namespace MediaWiki\Extension\Tei\Converter;
 use File;
 use MediaWiki\Extension\Tei\DOMDocumentFactory;
 use PHPUnit\Framework\TestCase;
-use TestFileReader;
 use ThumbnailImage;
+use Wikimedia\Parsoid\ParserTests\TestFileReader;
 
 /**
  * @group TEI
@@ -83,8 +83,8 @@ class BetweenTeiAndHtmlConverterTest extends TestCase {
 	}
 
 	private function readTestFile( $fileName ) {
-		foreach ( TestFileReader::read( __DIR__ . '/' . $fileName )['tests'] as $test ) {
-			yield [ $test['desc'], $test['input'], $test['result'] ];
+		foreach ( TestFileReader::read( __DIR__ . '/' . $fileName )->testCases as $test ) {
+			yield [ $test->testName, $test->wikitext, $test->legacyHtml ];
 		}
 	}
 

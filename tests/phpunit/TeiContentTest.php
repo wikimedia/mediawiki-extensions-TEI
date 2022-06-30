@@ -3,9 +3,6 @@
 namespace MediaWiki\Extension\Tei;
 
 use PHPUnit\Framework\TestCase;
-use Title;
-use User;
-use WikiPage;
 
 /**
  * @group TEI
@@ -53,16 +50,6 @@ class TeiContentTest extends TestCase {
 		$this->assertTrue( $content->isValid() );
 	}
 
-	/**
-	 * @dataProvider isValidProvider
-	 */
-	public function testPrepareSaveValid( TeiContent $content ) {
-		$page = WikiPage::factory( Title::makeTitle( NS_MAIN, 'Foo' ) );
-		$user = User::newFromName( 'Foo' );
-		$status = $content->prepareSave( $page, 0, -1, $user );
-		$this->assertTrue( $status->isGood(), $status->getWikiText() );
-	}
-
 	public function isNotValidProvider() {
 		return [
 			[
@@ -90,15 +77,5 @@ class TeiContentTest extends TestCase {
 	 */
 	public function testIsNotValid( TeiContent $content ) {
 		$this->assertFalse( $content->isValid() );
-	}
-
-	/**
-	 * @dataProvider isNotValidProvider
-	 */
-	public function testPrepareSaveNotValid( TeiContent $content ) {
-		$page = WikiPage::factory( Title::makeTitle( NS_MAIN, 'Foo' ) );
-		$user = User::newFromName( 'Foo' );
-		$status = $content->prepareSave( $page, 0, -1, $user );
-		$this->assertFalse( $status->isOK() );
 	}
 }
