@@ -3,9 +3,16 @@
 namespace MediaWiki\Extension\Tei;
 
 use Content;
+use Html;
+use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
+use MediaWiki\Content\ValidationParams;
 use MWException;
+use ParserOutput;
+use Status;
+use StatusValue;
 use TextContentHandler;
+use Title;
 
 /**
  * @license GPL-2.0-or-later
@@ -62,5 +69,53 @@ class TeiContentHandler extends TextContentHandler {
 
 		$contentClass = $this->getContentClass();
 		return new $contentClass( $dom->saveXML( $dom->documentElement ) );
+	}
+
+	/**
+	 * @param Content $content
+	 * @param ContentParseParams $cpoParams
+	 * @param ParserOutput &$output
+	 */
+	public function fillParserOutput(
+		Content $content, ContentParseParams $cpoParams, ParserOutput &$output
+	) {
+		/** @var TeiContent $content */
+		'@phan-var TeiContent $content';
+		$status = $content->getDOMDocumentStatus();
+		if ( !$status->isOK() ) {
+			$output->setText( Html::rawElement(
+				'div', [ 'class' => 'error' ], Status::wrap( $status )->getHTML()
+			) );
+			return;
+		}
+
+		$converter = TeiExtension::getDefault()->getTeiToHtmlConverter();
+		$conversion = $converter->convert( $status->getValue(),
+			Title::castFromPageReference( $cpoParams->getPage() ) );
+
+		$output->setText( Html::rawElement(
+			'div', [ 'class' => 'mw-parser-output' ], $conversion->getHtml()
+		) );
+		foreach ( $conversion->getWarnings() as $warningArgs ) {
+			$output->addWarningMsg( ...$warningArgs );
+		}
+		foreach ( $conversion->getExternalLinksUrls() as $externalLink ) {
+			$output->addExternalLink( $externalLink );
+		}
+		foreach ( $conversion->getIncludedFiles() as $file ) {
+			$output->addImage( $file->getTitle()->getDBkey(), $file->getTimestamp(), $file->getSha1() );
+		}
+		$output->addModuleStyles( [ 'ext.tei.style' ] );
+	}
+
+	/**
+	 * @param Content $content
+	 * @param ValidationParams $validationParams
+	 * @return StatusValue
+	 */
+	public function validateSave( Content $content, ValidationParams $validationParams ) {
+		/** @var TeiContent $content */
+		'@phan-var TeiContent $content';
+		return $content->validateContent();
 	}
 }

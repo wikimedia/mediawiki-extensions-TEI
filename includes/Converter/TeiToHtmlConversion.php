@@ -9,7 +9,6 @@ use DOMNode;
 use DOMText;
 use File;
 use Linker;
-use MediaWiki\Extension\Math\MathRenderer;
 use MediaWiki\MediaWikiServices;
 use Message;
 use Sanitizer;
@@ -454,11 +453,19 @@ class TeiToHtmlConversion {
 		$this->convertAndAddAttributes( $teiElement, $htmlElement );
 		$htmlElement->setAttribute( self::TEI_CONTENT, $teiElement->textContent );
 
-		if ( !class_exists( MathRenderer::class ) ) {
+		$services = MediaWikiServices::getInstance();
+		if ( !$services->hasService( 'Math.RendererFactory' ) ) {
 			$htmlElement->appendChild( $this->htmlDocument->createTextNode( $text ) );
+		} else {
+			$renderer = $services->get( 'Math.RendererFactory' )
+				->getRenderer( $text, [], 'mathml' );
+			if ( $renderer->render() ) {
+				$math = $renderer->getHtmlOutput();
+			} else {
+				$math = $renderer->getLastError();
+			}
+			$htmlElement->appendChild( $this->importHtml( $math ) );
 		}
-		$math = MathRenderer::renderMath( $text, [], 'mathml' );
-		$htmlElement->appendChild( $this->importHtml( $math ) );
 	}
 
 	private function convertNote( DOMElement $teiElement, DOMElement $htmlElement ) {

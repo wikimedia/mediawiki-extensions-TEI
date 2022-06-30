@@ -4,7 +4,7 @@ namespace MediaWiki\Extension\Tei\Model;
 
 use MediaWiki\Extension\Tei\DOMDocumentFactory;
 use PHPUnit\Framework\TestCase;
-use TestFileReader;
+use Wikimedia\Parsoid\ParserTests\TestFileReader;
 
 /**
  * @group TEI
@@ -30,8 +30,8 @@ class NormalizerTest extends TestCase {
 	}
 
 	public function normalizationProvider() {
-		foreach ( TestFileReader::read( __DIR__ . '/normalization.txt' )['tests'] as $test ) {
-			yield [ $test['desc'], $test['input'], $test['result'] ];
+		foreach ( TestFileReader::read( __DIR__ . '/normalization.txt' )->testCases as $test ) {
+			yield [ $test->testName, $test->wikitext, $test->legacyHtml ];
 		}
 	}
 
