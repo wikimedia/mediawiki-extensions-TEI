@@ -207,6 +207,7 @@ class TeiToHtmlConversion {
 
 	/**
 	 * @var array[]
+	 * @phan-var non-empty-array[]
 	 */
 	private $warnings = [];
 
@@ -239,6 +240,7 @@ class TeiToHtmlConversion {
 
 	/**
 	 * @return array[]
+	 * @phan-return non-empty-array[]
 	 */
 	public function getWarnings() {
 		return $this->warnings;
@@ -509,8 +511,8 @@ class TeiToHtmlConversion {
 		return $this->htmlDocument->createElementNS( HTMLData::NS_HTML, $name );
 	}
 
-	private function warning( ...$args ) {
-		$this->warnings[] = $args;
+	private function warning( string $msgKey, ...$params ) {
+		$this->warnings[] = func_get_args();
 	}
 
 	private function importHtml( $html ) {
