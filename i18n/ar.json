@@ -31,6 +31,7 @@
 	"tei-validation-multiple-too-few-values": "يجب أن تحتوي قيمة <code>$2</code> على {{PLURAL:$3|عنصر واحد|$3 عناصر}} على الأقل، de>$1</code> وُجِدت تحتوي على {{PLURAL:$4|عنصر واحد|$4 عناصر}}.",
 	"tei-validation-multiple-too-many-values": "يجب أن تحتوي قيمة <code>$2</code> على {{PLURAL:$3|عنصر واحد|$3 عناصر}} على الأكثر، de>$1</code> وُجِدت تحتوي على {{PLURAL:$4|عنصر واحد|$4 عناصر}}.",
 	"tei-parser-file-not-found": "الملف المسمى $1 غير موجود.",
+	"tei-parser-error": "خطأ التحويل: $1",
 	"apihelp-teiconvert-summary": "وحدة API لتحويل المحتوى بين TEI وHTML",
 	"apihelp-teiconvert-param-title": "إذا لم يتم تعيين <var>$1text</var> ، فسيكون محتوى هذه الصفحة، إذا تم تعيين <var>$1text</var>، فاستخدمه كعنوان للصفحة أثناء التحويل، إذا لم يتم تعيينه، فسيتم استخدام [[API]] كعنوان.",
 	"apihelp-teiconvert-param-pageid": "تحويل محتوى هذه الصفحة.",
