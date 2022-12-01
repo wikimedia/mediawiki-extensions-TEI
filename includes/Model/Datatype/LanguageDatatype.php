@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\Tei\Model\Datatype;
 
-use Language;
+use LanguageCode;
 use StatusValue;
 
 /**
@@ -22,7 +22,7 @@ class LanguageDatatype extends Datatype {
 	 * @return StatusValue
 	 */
 	public function validate( $attributeName, $attributeValue ) {
-		if ( $attributeValue === '' || Language::isWellFormedLanguageTag( $attributeValue ) ) {
+		if ( $attributeValue === '' || LanguageCode::isWellFormedLanguageTag( $attributeValue ) ) {
 			return StatusValue::newGood();
 		} else {
 			return StatusValue::newFatal(
