@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kly"
+			"Kly",
+			"捍粵者"
 		]
 	},
 	"tei-desc": "TEI 內容模組定義",
 	"tei-libxml-empty-document": "XML 文件為空。",
-	"tei-libxml-error-message": "$1 在第 $2 行。",
+	"tei-libxml-error-message": "$1在第$2行。",
 	"tei-remex-error-message": "$1 在 $2 位置。",
 	"tei-validation-element-content-unexpected-node": "在第 $3 行裡 <code>$1</code> 不允許作為 <code lang=\"en\">$2</code> 的子代。",
 	"tei-validation-element-content-unexpected-text": "在第 $2 行的 <code>$1</code> 不應該包含文字。",
