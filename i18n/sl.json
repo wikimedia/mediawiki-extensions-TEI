@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"tei-parser-error": "Napaka pretvorbe: $1"
+}
