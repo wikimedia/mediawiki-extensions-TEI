@@ -4,5 +4,6 @@
 			"Eleassar"
 		]
 	},
-	"tei-parser-error": "Napaka pretvorbe: $1"
+	"tei-parser-error": "Napaka pretvorbe: $1",
+	"apihelp-teivalidate-param-text": "Besedilo za validiranje."
 }
