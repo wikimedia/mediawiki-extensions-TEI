@@ -30,10 +30,12 @@ class DOMDocumentFactory {
 
 		$oldUseInternalErrorsValue = libxml_use_internal_errors( true );
 
-		$oldDisableEntityLoaderValue = libxml_disable_entity_loader( true );
+		// phpcs:ignore Generic.PHP.NoSilencedErrors -- suppress deprecation per T268847
+		$oldDisableEntityLoaderValue = @libxml_disable_entity_loader( true );
 		$dom = new DOMDocument( '1.0', 'UTF-8' );
 		$dom->loadXML( $xml );
-		libxml_disable_entity_loader( $oldDisableEntityLoaderValue );
+		// phpcs:ignore Generic.PHP.NoSilencedErrors
+		@libxml_disable_entity_loader( $oldDisableEntityLoaderValue );
 
 		$status = StatusValue::newGood( $dom );
 
