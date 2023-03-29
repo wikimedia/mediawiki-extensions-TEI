@@ -17,11 +17,11 @@
 	margin-left: 1em;
 }
 
-*[ data-tei-tag='core' ]:before {
+*[ data-tei-tag='core' ]::before {
 	content: '[';
 }
 
-*[ data-tei-tag='core' ]:after {
+*[ data-tei-tag='core' ]::after {
 	content: ']';
 }
 
@@ -59,11 +59,11 @@ a[ data-tei-tag='note' ] {
 	color: #14866d;
 }
 
-*[ data-tei-tag='trailer' ]:after {
+*[ data-tei-tag='trailer' ]::after {
 	content: ' [?] ';
 }
 
-*[ data-tei-tag='unclear' ]:after {
+*[ data-tei-tag='unclear' ]::after {
 	content: ' [?] ';
 }
 
