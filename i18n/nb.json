@@ -29,6 +29,7 @@
 	"tei-validation-multiple-too-few-values": "Verdien til <code>$2</code> bør inneholde minst {{PLURAL:$3|ett element|$3 elementer}}, <code>$1</code> funnet som inneholder {{PLURAL:$4|ett element|$4 elementer}}.",
 	"tei-validation-multiple-too-many-values": "Verdien til <code>$2</code> bør inneholde på det meste {{PLURAL:$3|ett element|$3 elementer}}, <code>$1</code> funnet som inneholder {{PLURAL:$4|ett element|$4 elementer}}.",
 	"tei-parser-file-not-found": "Filen med navn $1 finnes ikke.",
+	"tei-parser-error": "Konverteringsfeil: $1",
 	"apihelp-teiconvert-summary": "API-modul for å konvertere tekst mellom TEI og HTML",
 	"apihelp-teiconvert-param-title": "Hvis <var>$1text</var> ikke er satt, innholdet til denne siden. Hvis <var>$1text</var> er satt, bruk det som tittelen til siden under konverteringen. Hvis den ikke er satt vil [[API]] bli brukt som tittel.",
 	"apihelp-teiconvert-param-pageid": "Konverter innholdet til denne siden.",
