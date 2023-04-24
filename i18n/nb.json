@@ -32,7 +32,7 @@
 	"apihelp-teiconvert-summary": "API-modul for å konvertere tekst mellom TEI og HTML",
 	"apihelp-teiconvert-param-title": "Hvis <var>$1text</var> ikke er satt, innholdet til denne siden. Hvis <var>$1text</var> er satt, bruk det som tittelen til siden under konverteringen. Hvis den ikke er satt vil [[API]] bli brukt som tittel.",
 	"apihelp-teiconvert-param-pageid": "Konverter innholdet til denne siden.",
-	"apihelp-teiconvert-param-revid": "Konverter innholdet til denne revisjonen.",
+	"apihelp-teiconvert-param-revid": "Konverter innholdet til denne sideversjonen.",
 	"apihelp-teiconvert-param-text": "Tekst som skal tolkes. Bruk <var>$1from</var> for å kontrollere innholdsformatet.",
 	"apihelp-teiconvert-param-from": "Innholdsformatet til <var>$1text</var>.",
 	"apihelp-teiconvert-param-to": "Innholdsformat det skal konverteres til.",
