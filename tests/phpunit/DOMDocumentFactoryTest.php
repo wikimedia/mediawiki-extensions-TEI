@@ -11,7 +11,7 @@ use StatusValue;
  */
 class DOMDocumentFactoryTest extends TestCase {
 
-	public function xmlParsingProvider() {
+	public static function xmlParsingProvider() {
 		$cases = [
 			[ '', StatusValue::newFatal( 'tei-libxml-empty-document' ) ],
 			[ '<text></text>', StatusValue::newGood() ]
@@ -34,7 +34,7 @@ class DOMDocumentFactoryTest extends TestCase {
 		$this->assertEquals( $expectedOutput->getErrors(), $actualOutput->getErrors() );
 	}
 
-	public function htmlParsingProvider() {
+	public static function htmlParsingProvider() {
 		$cases = [
 			[ '', StatusValue::newGood() ],
 			[ '<html></html>', StatusValue::newGood() ],

@@ -29,7 +29,7 @@ class NormalizerTest extends TestCase {
 		$this->normalizer = new Normalizer();
 	}
 
-	public function normalizationProvider() {
+	public static function normalizationProvider() {
 		foreach ( TestFileReader::read( __DIR__ . '/normalization.txt' )->testCases as $test ) {
 			yield [ $test->testName, $test->wikitext, $test->legacyHtml ];
 		}

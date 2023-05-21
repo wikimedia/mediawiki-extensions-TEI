@@ -27,7 +27,7 @@ class TeiContentTest extends TestCase {
 		$this->assertEquals( $content, $content->copy() );
 	}
 
-	public function isValidProvider() {
+	public static function isValidProvider() {
 		return [
 			[
 				new TeiContent( '<text xmlns="http://www.tei-c.org/ns/1.0"> <body><p>Foo</p></body> </text>' )
@@ -50,7 +50,7 @@ class TeiContentTest extends TestCase {
 		$this->assertTrue( $content->isValid() );
 	}
 
-	public function isNotValidProvider() {
+	public static function isNotValidProvider() {
 		return [
 			[
 				new TeiContent( 'foo' )

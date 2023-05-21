@@ -18,7 +18,7 @@ class ContentModelValidatorTest extends TestCase {
 		'group.test1' => [ 'foo', 'bar' ]
 	];
 
-	public function validationProvider() {
+	public static function validationProvider() {
 		return [
 			[
 				[ 'type' => 'empty' ],

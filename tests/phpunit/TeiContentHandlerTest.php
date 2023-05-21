@@ -30,7 +30,7 @@ class TeiContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $content->isValid() );
 	}
 
-	public function providePreSaveTransform() {
+	public static function providePreSaveTransform() {
 		return [
 			[
 				new TeiContent( 'foo' ),

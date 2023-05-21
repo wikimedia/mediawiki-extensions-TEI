@@ -82,7 +82,7 @@ class BetweenTeiAndHtmlConverterTest extends TestCase {
 		return $fileLookupMock;
 	}
 
-	private function readTestFile( $fileName ) {
+	private static function readTestFile( $fileName ) {
 		foreach ( TestFileReader::read( __DIR__ . '/' . $fileName )->testCases as $test ) {
 			yield [ $test->testName, $test->wikitext, $test->legacyHtml ];
 		}
@@ -100,8 +100,8 @@ class BetweenTeiAndHtmlConverterTest extends TestCase {
 		$this->assertEquals( $expectedTei, $actualTei, $testDesc );
 	}
 
-	public function roundtripTestProvider() {
-		return $this->readTestFile( 'roundtrip.txt' );
+	public static function roundtripTestProvider() {
+		return self::readTestFile( 'roundtrip.txt' );
 	}
 
 	/**
@@ -112,8 +112,8 @@ class BetweenTeiAndHtmlConverterTest extends TestCase {
 		$this->assertHtmlToTeiConversionTest( $testDesc, $tei, $html );
 	}
 
-	public function teiToHtmlTestProvider() {
-		return $this->readTestFile( 'tei2html.txt' );
+	public static function teiToHtmlTestProvider() {
+		return self::readTestFile( 'tei2html.txt' );
 	}
 
 	/**
@@ -123,8 +123,8 @@ class BetweenTeiAndHtmlConverterTest extends TestCase {
 		$this->assertTeiToHtmlConversionTest( $testDesc, $tei, $html );
 	}
 
-	public function html2teiTestProvider() {
-		return $this->readTestFile( 'html2tei.txt' );
+	public static function html2teiTestProvider() {
+		return self::readTestFile( 'html2tei.txt' );
 	}
 
 	/**
