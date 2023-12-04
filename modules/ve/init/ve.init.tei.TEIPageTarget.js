@@ -8,7 +8,7 @@
  * @param {Object} [config] Configuration options
  * @cfg {Object} [toolbarConfig] Configuration options for the toolbar
  * @cfg {mw.Title} [pageTitle] the title of the page to edit
- * @cfg {integer} [revId] the ID of the revision to edit
+ * @cfg {number} [revId] the ID of the revision to edit
  * @cfg {string} [lang] Page language
  * @cfg {string} [dir] Page language direction
  * @cfg {boolean} [readOnly] If page is not editable
@@ -148,8 +148,8 @@ ve.init.tei.TEIPageTarget.prototype.createSurface = function () {
 ve.init.tei.TEIPageTarget.prototype.generateSurface = function ( mode, content ) {
 	var self = this;
 
-	return ve.init.tei.teiContentConverter.getHtmlFromTei( content, true, this.pageTitle ).then( function ( content ) {
-		return self.generateSurfaceForContent( content, mode );
+	return ve.init.tei.teiContentConverter.getHtmlFromTei( content, true, this.pageTitle ).then( function ( pageContent ) {
+		return self.generateSurfaceForContent( pageContent, mode );
 	}, function ( error ) {
 		self.emit( 'error', error );
 	} );

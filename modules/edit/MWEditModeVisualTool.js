@@ -18,6 +18,7 @@ mw.teiEditor.MWEditModeVisualTool.static.name = 'teiEditModeVisual';
  * @inheritdoc
  */
 mw.teiEditor.MWEditModeVisualTool.prototype.switch = function () {
+	// eslint-disable-next-line no-jquery/no-global-selector
 	var content = $( '#wpTextbox1' ).textSelection( 'getContents' );
 	mw.openVeTeiEditDialog( 'visual', content );
 };

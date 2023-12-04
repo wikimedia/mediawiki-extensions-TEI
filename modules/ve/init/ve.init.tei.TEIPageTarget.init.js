@@ -18,7 +18,7 @@ $( function () {
 
 		isLoading = true;
 
-		$( 'html' ).addClass( 've-tei-loading' );
+		$( document.documentElement ).addClass( 've-tei-loading' );
 		if ( !$loading ) {
 			progressBar = new OO.ui.ProgressBarWidget();
 			$loading = $( '<div>' )
@@ -26,6 +26,7 @@ $( function () {
 				.append( progressBar.$element );
 		}
 
+		// eslint-disable-next-line no-jquery/no-global-selector
 		$content = $( '#content' );
 		// Center within visible part of the target
 		windowHeight = window.innerHeight;
@@ -40,7 +41,7 @@ $( function () {
 
 	function clearLoading() {
 		isLoading = false;
-		$( 'html' ).removeClass( 've-tei-loading' );
+		$( document.documentElement ).removeClass( 've-tei-loading' );
 		if ( $loading ) {
 			$loading.detach();
 		}

@@ -23,8 +23,7 @@ OO.inheritClass( ve.init.tei.TeiPageEditDialog, OO.ui.ProcessDialog );
 
 ve.init.tei.TeiPageEditDialog.static.name = 've-tei-editor';
 ve.init.tei.TeiPageEditDialog.static.title = function () {
-	var message = mw.config.get( 'wgArticleId' ) === 0 ? 'creating' : 'editing';
-	return ve.msg( message, mw.config.get( 'wgPageName' ) );
+	return ve.msg( mw.config.get( 'wgArticleId' ) === 0 ? 'creating' : 'editing', mw.config.get( 'wgPageName' ) );
 };
 ve.init.tei.TeiPageEditDialog.static.actions = [
 	{

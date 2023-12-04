@@ -31,6 +31,7 @@ mw.teiEditor.EncapsulationTool.static.encapsulate = {
  * @inheritdoc
  */
 mw.teiEditor.EncapsulationTool.prototype.onSelect = function () {
+	// eslint-disable-next-line no-jquery/no-global-selector
 	$( '#wpTextbox1' ).textSelection( 'encapsulateSelection', this.constructor.static.encapsulate );
 	this.setActive( false );
 };
