@@ -66,7 +66,7 @@ class BetweenTeiAndHtmlConverterTest extends TestCase {
 		$fileMock->expects( $this->any() )
 			->method( 'transform' )
 			->willReturnCallback( static function ( $params ) use ( $fileMock ) {
-				return new ThumbnailImage( $fileMock,  'http://example.com/file/FooBar.jpg', false, $params );
+				return new ThumbnailImage( $fileMock, 'http://example.com/file/FooBar.jpg', false, $params );
 			} );
 
 		$fileLookupMock = $this->getMockBuilder( FileLookup::class )

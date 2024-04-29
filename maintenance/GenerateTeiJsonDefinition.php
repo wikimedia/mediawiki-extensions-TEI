@@ -69,7 +69,7 @@ class GenerateTeiJsonDefinition extends Maintenance {
 	}
 
 	private function importSchema( $schemaIdent ) {
-		foreach ( $this->getElementsWithIdent( 'schemaSpec',  $schemaIdent ) as $schemaSpec ) {
+		foreach ( $this->getElementsWithIdent( 'schemaSpec', $schemaIdent ) as $schemaSpec ) {
 			$this->importSchemaSpec( $schemaSpec );
 		}
 	}
@@ -428,7 +428,7 @@ class GenerateTeiJsonDefinition extends Maintenance {
 			'proxy' => $proxy
 		] );
 
-		list( $code, $desc, $header, $body, $err ) = $client->run( [
+		[ $code, $desc, $header, $body, $err ] = $client->run( [
 			'method' => 'GET',
 			'url' => 'http://www.tei-c.org/release/xml/tei/odd/p5subset.xml'
 		] );

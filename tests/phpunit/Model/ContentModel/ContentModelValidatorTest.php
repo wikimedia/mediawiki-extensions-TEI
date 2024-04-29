@@ -145,62 +145,62 @@ class ContentModelValidatorTest extends TestCase {
 				StatusValue::newGood()
 			],
 			[
-				[ 'type' => 'textNode' , 'minOccurs' => 0, 'maxOccurs' => 1 ],
+				[ 'type' => 'textNode', 'minOccurs' => 0, 'maxOccurs' => 1 ],
 				[ '#text', '#text' ],
 				StatusValue::newFatal( 'tei-validation-element-content-unexpected-text' )
 			],
 			[
-				[ 'type' => 'textNode' , 'minOccurs' => 0, 'maxOccurs' => 1 ],
+				[ 'type' => 'textNode', 'minOccurs' => 0, 'maxOccurs' => 1 ],
 				[ 'foo' ],
 				StatusValue::newFatal( 'tei-validation-element-content-unexpected-node', 'foo' )
 			],
 			[
-				[ 'type' => 'textNode' , 'minOccurs' => 0, 'maxOccurs' => null ],
+				[ 'type' => 'textNode', 'minOccurs' => 0, 'maxOccurs' => null ],
 				[],
 				StatusValue::newGood()
 			],
 			[
-				[ 'type' => 'textNode' , 'minOccurs' => 0, 'maxOccurs' => null ],
+				[ 'type' => 'textNode', 'minOccurs' => 0, 'maxOccurs' => null ],
 				[ '#text' ],
 				StatusValue::newGood()
 			],
 			[
-				[ 'type' => 'textNode' , 'minOccurs' => 0, 'maxOccurs' => null ],
+				[ 'type' => 'textNode', 'minOccurs' => 0, 'maxOccurs' => null ],
 				[ '#text', '#text' ],
 				StatusValue::newGood()
 			],
 			[
-				[ 'type' => 'textNode' , 'minOccurs' => 0, 'maxOccurs' => null ],
+				[ 'type' => 'textNode', 'minOccurs' => 0, 'maxOccurs' => null ],
 				[ 'foo' ],
 				StatusValue::newFatal( 'tei-validation-element-content-unexpected-node', 'foo' )
 			],
 			[
-				[ 'type' => 'textNode' , 'minOccurs' => 1, 'maxOccurs' => null ],
+				[ 'type' => 'textNode', 'minOccurs' => 1, 'maxOccurs' => null ],
 				[],
 				StatusValue::newFatal( 'tei-validation-element-content-too-short', '#text' )
 			],
 			[
-				[ 'type' => 'textNode' , 'minOccurs' => 1, 'maxOccurs' => null ],
+				[ 'type' => 'textNode', 'minOccurs' => 1, 'maxOccurs' => null ],
 				[ '#text' ],
 				StatusValue::newGood()
 			],
 			[
-				[ 'type' => 'textNode' , 'minOccurs' => 1, 'maxOccurs' => null ],
+				[ 'type' => 'textNode', 'minOccurs' => 1, 'maxOccurs' => null ],
 				[ '#text', '#text' ],
 				StatusValue::newGood()
 			],
 			[
-				[ 'type' => 'textNode' , 'minOccurs' => 1, 'maxOccurs' => null ],
+				[ 'type' => 'textNode', 'minOccurs' => 1, 'maxOccurs' => null ],
 				[ '#text', '#text', '#text' ],
 				StatusValue::newGood()
 			],
 			[
-				[ 'type' => 'textNode' , 'minOccurs' => 1, 'maxOccurs' => null ],
+				[ 'type' => 'textNode', 'minOccurs' => 1, 'maxOccurs' => null ],
 				[ '#text', 'foo' ],
 				StatusValue::newFatal( 'tei-validation-element-content-unexpected-node', 'foo' )
 			],
 			[
-				[ 'type' => 'textNode' , 'minOccurs' => 1, 'maxOccurs' => null ],
+				[ 'type' => 'textNode', 'minOccurs' => 1, 'maxOccurs' => null ],
 				[ 'foo', '#text' ],
 				StatusValue::newFatal( 'tei-validation-element-content-unexpected-node', 'foo' )
 			],

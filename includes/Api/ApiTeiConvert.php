@@ -106,7 +106,7 @@ class ApiTeiConvert extends ApiBase {
 				$title = Title::makeTitle( NS_MAIN, 'API' );
 			}
 		} else {
-			list( $title, $content ) = $this->getTitleAndContent( $params );
+			[ $title, $content ] = $this->getTitleAndContent( $params );
 
 			if ( $from === null ) {
 				$from = $content->getDefaultFormat();
