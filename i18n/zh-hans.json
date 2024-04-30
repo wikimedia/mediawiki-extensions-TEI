@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"佛壁灯"
+			"佛壁灯",
+			"沈澄心"
 		]
 	},
+	"tei-desc": "TEI内容模型定义",
+	"tei-libxml-empty-document": "XML文档为空。",
 	"apihelp-teivalidate-summary": "验证TEI文档的API模块",
 	"apihelp-teivalidate-param-text": "要验证的文本。"
 }
