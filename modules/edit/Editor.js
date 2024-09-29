@@ -37,7 +37,7 @@ mw.teiEditor.Editor = function ( config ) {
 	// Code mirror autocomplete
 	function completeAfter( cm, pred ) {
 		if ( !pred || pred() ) {
-			setTimeout( function () {
+			setTimeout( () => {
 				if ( !cm.state.completionActive ) {
 					cm.showHint( { completeSingle: false } );
 				}
@@ -47,14 +47,14 @@ mw.teiEditor.Editor = function ( config ) {
 	}
 
 	function completeIfAfterLt( cm ) {
-		return completeAfter( cm, function () {
+		return completeAfter( cm, () => {
 			var cur = cm.getCursor();
 			return cm.getRange( CodeMirror.Pos( cur.line, cur.ch - 1 ), cur ) === '<';
 		} );
 	}
 
 	function completeIfInTag( cm ) {
-		return completeAfter( cm, function () {
+		return completeAfter( cm, () => {
 			var tok = cm.getTokenAt( cm.getCursor() ),
 				inner = CodeMirror.innerMode( cm.getMode(), tok.state ).state;
 			if ( tok.type === 'string' && ( !/['"]/.test( tok.string.charAt( tok.string.length - 1 ) ) || tok.string.length === 1 ) ) {
@@ -151,15 +151,13 @@ mw.teiEditor.Editor.prototype.lint = function ( text, callback ) {
 	return this.api.post( {
 		action: 'teivalidate',
 		text: text
-	} ).done( function ( data ) {
-		callback( data.validation.map( function ( message ) {
-			return {
-				from: CodeMirror.Pos( ( message.line || 1 ) - 1, 0 ),
-				to: CodeMirror.Pos( ( message.line || 1 ) - 1, 0 ),
-				message: message.message,
-				severity: message.type
-			};
-		} ) );
+	} ).done( ( data ) => {
+		callback( data.validation.map( ( message ) => ( {
+			from: CodeMirror.Pos( ( message.line || 1 ) - 1, 0 ),
+			to: CodeMirror.Pos( ( message.line || 1 ) - 1, 0 ),
+			message: message.message,
+			severity: message.type
+		} ) ) );
 	} );
 };
 mw.teiEditor.Editor.prototype.lint.async = true;

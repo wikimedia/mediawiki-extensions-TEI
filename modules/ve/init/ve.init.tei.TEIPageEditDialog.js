@@ -14,7 +14,7 @@ ve.init.tei.TeiPageEditDialog = function ( target, config ) {
 
 	ve.init.tei.TeiPageEditDialog.super.call( this, config );
 
-	target.on( 'error', function ( error ) {
+	target.on( 'error', ( error ) => {
 		self.showErrors( [ error ] );
 	} );
 };
@@ -55,16 +55,14 @@ ve.init.tei.TeiPageEditDialog.prototype.initialize = function () {
 ve.init.tei.TeiPageEditDialog.prototype.getSetupProcess = function ( data ) {
 	var self = this;
 
-	return ve.init.tei.TeiPageEditDialog.super.prototype.getSetupProcess.call( this, data ).next( function () {
-		return self.target.generateSurface( data.mode, data.content );
-	} );
+	return ve.init.tei.TeiPageEditDialog.super.prototype.getSetupProcess.call( this, data ).next( () => self.target.generateSurface( data.mode, data.content ) );
 };
 
 // Use the getActionProcess() method to specify a process to handle the
 // actions (for the 'save' action, in this example).
 ve.init.tei.TeiPageEditDialog.prototype.getActionProcess = function ( action ) {
 	if ( action === 'save' ) {
-		return new OO.ui.Process( this.target.saveSurface().then( function () {
+		return new OO.ui.Process( this.target.saveSurface().then( () => {
 			document.location.reload();
 			// TODO: avoid a page reload
 		} ) );

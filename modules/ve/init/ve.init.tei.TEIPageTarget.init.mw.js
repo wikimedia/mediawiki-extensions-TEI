@@ -1,4 +1,4 @@
-$( function () {
+$( () => {
 	var editMessage = mw.config.get( 'wgArticleId' ) > 0 ? 'edit' : 'create',
 		// eslint-disable-next-line no-jquery/no-global-selector
 		$editSource = $( '#ca-edit' ),
@@ -11,7 +11,7 @@ $( function () {
 	$editSource.find( 'a' ).text( mw.message( 'visualeditor-ca-' + editMessage + 'source' ).plain() );
 
 	$edit.insertBefore( $editSource );
-	$editLink.on( 'click', function ( event ) {
+	$editLink.on( 'click', ( event ) => {
 		event.preventDefault();
 		mw.openVeTeiEditDialog( 'visual' );
 	} );

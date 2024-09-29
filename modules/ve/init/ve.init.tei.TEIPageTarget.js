@@ -148,9 +148,7 @@ ve.init.tei.TEIPageTarget.prototype.createSurface = function () {
 ve.init.tei.TEIPageTarget.prototype.generateSurface = function ( mode, content ) {
 	var self = this;
 
-	return ve.init.tei.teiContentConverter.getHtmlFromTei( content, true, this.pageTitle ).then( function ( pageContent ) {
-		return self.generateSurfaceForContent( pageContent, mode );
-	}, function ( error ) {
+	return ve.init.tei.teiContentConverter.getHtmlFromTei( content, true, this.pageTitle ).then( ( pageContent ) => self.generateSurfaceForContent( pageContent, mode ), ( error ) => {
 		self.emit( 'error', error );
 	} );
 };
@@ -202,9 +200,7 @@ ve.init.tei.TEIPageTarget.prototype.saveSurface = function () {
 		case 'visual':
 			return ve.init.tei.teiContentConverter.getTeiFromHtml(
 				this.getSurface().getHtml(), true, this.pageTitle
-			).then( function ( pageContent ) {
-				return self.saveTeiContent( pageContent );
-			} );
+			).then( ( pageContent ) => self.saveTeiContent( pageContent ) );
 		case 'source':
 			return self.saveTeiContent( this.getSurface().getHtml() );
 	}
@@ -224,9 +220,9 @@ ve.init.tei.TEIPageTarget.prototype.editSource = function () {
 
 	ve.init.tei.teiContentConverter.getTeiFromHtml(
 		this.getSurface().getHtml(), true, this.pageTitle
-	).then( function ( pageContent ) {
+	).then( ( pageContent ) => {
 		self.submit( pageContent, { wpDiff: true } );
-	}, function ( error ) {
+	}, ( error ) => {
 		self.emit( 'error', error );
 	} );
 };

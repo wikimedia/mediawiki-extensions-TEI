@@ -44,7 +44,7 @@ class ContentValidator {
 			$currentStates = $this->automaton->applyTransition( $currentStates, $nodeLabel );
 
 			// We have just read a tag that is not known
-			if ( empty( $currentStates ) ) {
+			if ( !$currentStates ) {
 				if ( $nodeLabel === '#text' ) {
 					return StatusValue::newFatal(
 						$this->messagePrefix . 'unexpected-text',

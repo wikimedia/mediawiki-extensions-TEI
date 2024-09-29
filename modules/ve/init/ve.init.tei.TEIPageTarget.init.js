@@ -1,4 +1,4 @@
-$( function () {
+$( () => {
 	var windowManager = null,
 		editDialog = null,
 		isLoading = false,
@@ -65,7 +65,7 @@ $( function () {
 
 	mw.openVeTeiEditDialog = function ( mode, content ) {
 		showLoading();
-		mw.loader.using( 'ext.tei.ve.pageTarget', function () {
+		mw.loader.using( 'ext.tei.ve.pageTarget', () => {
 			if ( editDialog === null ) {
 				createEditDialog();
 			}

@@ -140,7 +140,7 @@ class Validator {
 		foreach ( $list as $node ) {
 			// We ignore whitespace elements and comments
 			if (
-				$node instanceof DOMText && $node->isElementContentWhitespace() ||
+				( $node instanceof DOMText && $node->isElementContentWhitespace() ) ||
 				$node instanceof DOMComment
 			) {
 				continue;

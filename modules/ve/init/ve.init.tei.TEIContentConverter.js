@@ -40,9 +40,7 @@ ve.init.tei.TeiContentConverter.prototype.convertContent = function ( content, f
 		to: to,
 		normalize: normalize,
 		title: title.toString()
-	} ).then( function ( data ) {
-		return data.convert.text;
-	}, function ( code, data ) {
+	} ).then( ( data ) => data.convert.text, ( code, data ) => {
 		throw new OO.ui.Error( data.error.info );
 	} );
 };
