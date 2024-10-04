@@ -5,7 +5,6 @@ namespace MediaWiki\Extension\Tei\Api;
 use ApiBase;
 use ApiMain;
 use ApiUsageException;
-use ContentHandler;
 use DOMDocument;
 use MediaWiki\Extension\Tei\Converter\HtmlToTeiConverter;
 use MediaWiki\Extension\Tei\Converter\TeiToHtmlConverter;
@@ -156,8 +155,8 @@ class ApiTeiConvert extends ApiBase {
 			if ( isset( $params['revid'] ) ) {
 				if ( $params['revid'] === 0 ) {
 					// Default content
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
-					return [ $title, ContentHandler::getForTitle( $title )->makeEmptyContent() ];
+					$factory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+					return [ $title, $factory->getContentHandler( $title->getContentModel() )->makeEmptyContent() ];
 				} else {
 					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 					$revision = $this->revisionLookup->getRevisionByTitle( $title, $params['revid'] );
