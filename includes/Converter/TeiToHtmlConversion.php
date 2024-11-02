@@ -217,7 +217,7 @@ class TeiToHtmlConversion {
 	 * @param Title|null $pageTitle
 	 */
 	public function __construct(
-		FileLookup $fileLookup, DOMDocument $teiDocument, Title $pageTitle = null ) {
+		FileLookup $fileLookup, DOMDocument $teiDocument, ?Title $pageTitle = null ) {
 		$this->fileLookup = $fileLookup;
 
 		$this->teiDocument = $teiDocument;

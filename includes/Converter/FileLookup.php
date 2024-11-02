@@ -38,7 +38,7 @@ class FileLookup {
 	 * @param Title|null $pageTitle
 	 * @return File|null
 	 */
-	public function getFileForPage( $fileName, Title $pageTitle = null ) {
+	public function getFileForPage( $fileName, ?Title $pageTitle = null ) {
 		$file = $this->repoGroup->findFile( $fileName );
 		if (
 			$file === false ||
