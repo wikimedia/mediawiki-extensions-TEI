@@ -30,7 +30,7 @@
 	"tei-validation-multiple-too-many-values": "Vrednost <code>$2</code> sme vsebovati največ {{PLURAL:$3|en element|$3 elementa|$3 elemente|$3 elementov}}; najdeno je bilo <code>$1</code>, ki vsebuje {{PLURAL:$4|en element|$4 elementa|$4 elemente|$4 elementov}}.",
 	"tei-parser-file-not-found": "Datoteka z imenom $1 ne obstaja.",
 	"tei-parser-error": "Napaka pretvorbe: $1",
-	"apihelp-teiconvert-summary": "API-modul za pretvarjanje vsebine med TEI in HTML",
+	"apihelp-teiconvert-summary": "Modul API-ja za pretvarjanje vsebine med TEI in HTML",
 	"apihelp-teiconvert-param-title": "Če <var>$1text</var> ni nastavljeno, vsebina te strani. Če je <var>$1text</var> nastavljeno, uporabi kot naslov strani pri pretvorbi. Če ni nastavljeno, bo kot naslov uporabljen [[API]].",
 	"apihelp-teiconvert-param-pageid": "Pretvori vsebino te strani.",
 	"apihelp-teiconvert-param-revid": "Pretvori vsebino te redakcije.",
@@ -40,6 +40,6 @@
 	"apihelp-teiconvert-param-slot": "Če <var>$1text</var> ni nastavljeno, za katero režo naj bodo vrnjeni podatki.",
 	"apihelp-teiconvert-param-normalize": "Če je nastavljeno, normalizira vsebino TEI",
 	"apihelp-teiconvert-example-from-title-to-html": "Vsebino [[TEI]] pretvori v HTML",
-	"apihelp-teivalidate-summary": "API-modul za validacijo TEI-dokumenta",
+	"apihelp-teivalidate-summary": "Modul API-ja za validacijo dokumenta TEI",
 	"apihelp-teivalidate-param-text": "Besedilo za validiranje."
 }
