@@ -110,14 +110,14 @@ class GenerateTeiJsonDefinition extends Maintenance {
 		}
 	}
 
-	private function importModule( $moduleIdent, array $include = null, array $except = [] ) {
+	private function importModule( $moduleIdent, ?array $include = null, array $except = [] ) {
 		foreach ( $this->getElementsWithIdent( 'moduleSpec', $moduleIdent ) as $moduleSpec ) {
 			$this->importModuleSpec( $moduleSpec, $include, $except );
 		}
 	}
 
 	private function importModuleSpec(
-		DOMElement $moduleSpec, array $include = null, array $except = []
+		DOMElement $moduleSpec, ?array $include = null, array $except = []
 	) {
 		$moduleIdent = $moduleSpec->getAttribute( 'ident' );
 

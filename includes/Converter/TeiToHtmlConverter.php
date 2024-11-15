@@ -29,7 +29,7 @@ class TeiToHtmlConverter {
 	 * @param Title|null $pageTitle
 	 * @return TeiToHtmlConversion
 	 */
-	public function convert( DOMDocument $teiDocument, Title $pageTitle = null ) {
+	public function convert( DOMDocument $teiDocument, ?Title $pageTitle = null ) {
 		return new TeiToHtmlConversion( $this->fileLookup, $teiDocument, $pageTitle );
 	}
 }
