@@ -8,11 +8,11 @@ use DOMElement;
 use DOMNode;
 use DOMText;
 use File;
-use Linker;
+use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use Message;
 use Sanitizer;
-use Title;
 use Wikimedia\RemexHtml\HTMLData;
 use Wikimedia\RemexHtml\Serializer\HtmlFormatter;
 
@@ -444,9 +444,16 @@ class TeiToHtmlConversion {
 
 		$dom = new DOMDocument();
 		$dom->loadXML( $thumbnail->toHtml() );
-		/** @var DOMNode $attribute */
-		foreach ( $dom->documentElement->attributes as $attribute ) {
-			$htmlElement->setAttribute( $attribute->nodeName, $attribute->nodeValue );
+		$img = $dom->documentElement;
+		if ( strcasecmp( $img->nodeName, 'img' ) !== 0 ) {
+			// Images are wrapped in a span now
+			$img = $img->firstChild;
+		}
+		if ( $img ) {
+			/** @var DOMNode $attribute */
+			foreach ( $img->attributes as $attribute ) {
+				$htmlElement->setAttribute( $attribute->nodeName, $attribute->nodeValue );
+			}
 		}
 	}
 

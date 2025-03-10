@@ -3,7 +3,7 @@
 namespace MediaWiki\Extension\Tei\Converter;
 
 use DOMDocument;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @license GPL-2.0-or-later
