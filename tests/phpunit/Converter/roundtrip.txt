@@ -475,16 +475,7 @@ LaTeX <formula>
 !! wikitext
 <p xmlns="http://www.tei-c.org/ns/1.0"><formula notation="tex">C</formula></p>
 !! html/php
-<p data-tei-tag="p"><span data-tei-tag="formula" data-tei-notation="tex" data-tei-content="C"><span class="mwe-math-element"><span class="mwe-math-mathml-inline mwe-math-mathml-a11y" style="display: none;"><math alttext="{\displaystyle C}">
-  <semantics>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mstyle displaystyle="true" scriptlevel="0">
-        <mi>C</mi>
-      </mstyle>
-    </mrow>
-    <annotation encoding="application/x-tex">{\displaystyle C}</annotation>
-  </semantics>
-</math></span><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/4fc55753007cd3c18576f7933f6f089196732029" class="mwe-math-fallback-image-inline" aria-hidden="true" style="vertical-align: -0.338ex; width:1.766ex; height:2.176ex;" alt="{\displaystyle C}"></img></span></span></p>
+<p data-tei-tag="p"><span data-tei-tag="formula" data-tei-notation="tex" data-tei-content="C"><math class="mwe-math-element"><mrow data-mjx-texclass="ORD"><mstyle displaystyle="true" scriptlevel="0"><mi>C</mi></mstyle></mrow></math></span></p>
 !!end
 
 !! test
@@ -496,7 +487,7 @@ LaTeX <formula>
 </figure>
 !! html/php
 <figure data-tei-tag="figure">
-	<img data-tei-tag="graphic" data-tei-url="FooBar.jpg" alt="" src="http://example.com/file/FooBar.jpg" decoding="async" width="100" height="100">
+	<img data-tei-tag="graphic" data-tei-url="FooBar.jpg" src="http://example.com/file/FooBar.jpg" decoding="async" width="100" height="100">
 	<figcaption data-tei-tag="figDesc">Foo</figcaption>
 </figure>
 !!end

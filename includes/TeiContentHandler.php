@@ -3,16 +3,16 @@
 namespace MediaWiki\Extension\Tei;
 
 use Content;
-use Html;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Content\ValidationParams;
+use MediaWiki\Html\Html;
+use MediaWiki\Title\Title;
 use MWException;
 use ParserOutput;
 use Status;
 use StatusValue;
 use TextContentHandler;
-use Title;
 
 /**
  * @license GPL-2.0-or-later

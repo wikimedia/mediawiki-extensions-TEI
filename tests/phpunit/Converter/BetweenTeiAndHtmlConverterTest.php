@@ -107,7 +107,7 @@ class BetweenTeiAndHtmlConverterTest extends TestCase {
 	/**
 	 * @dataProvider roundtripTestProvider
 	 */
-	public function testRountripConversion( $testDesc, $tei, $html ) {
+	public function testRoundtripConversion( $testDesc, $tei, $html ) {
 		$this->assertTeiToHtmlConversionTest( $testDesc, $tei, $html );
 		$this->assertHtmlToTeiConversionTest( $testDesc, $tei, $html );
 	}

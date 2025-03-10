@@ -3,9 +3,9 @@
 namespace MediaWiki\Extension\Tei\Converter;
 
 use File;
-use MediaWiki\BadFileLookup;
+use MediaWiki\Page\File\BadFileLookup;
+use MediaWiki\Title\Title;
 use RepoGroup;
-use Title;
 
 /**
  * @license GPL-2.0-or-later

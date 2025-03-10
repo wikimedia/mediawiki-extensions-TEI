@@ -87,7 +87,9 @@ class ContentValidatorFactory {
 			$startState = $newState;
 
 			$minOccurs--;
-			$maxOccurs--;
+			if ( $maxOccurs !== null ) {
+				$maxOccurs--;
+			}
 		}
 
 		// The $minOccurs is 0
