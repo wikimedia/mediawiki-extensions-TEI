@@ -11,6 +11,7 @@
 	},
 	"rules": {
 		"no-var": "off",
-		"max-len": "off"
+		"max-len": "off",
+		"no-jquery/no-done-fail": "warn"
 	}
 }
