@@ -75,7 +75,7 @@ class Validator {
 		try {
 			$definition = $this->registry->getElementSpecFromIdent( $node->nodeName );
 			$this->validateElementUsingDefinition( $node, $definition, $status );
-		} catch ( OutOfBoundsException $e ) {
+		} catch ( OutOfBoundsException ) {
 			$status->fatal(
 				'tei-validation-unknown-tag', $node->nodeName
 			);

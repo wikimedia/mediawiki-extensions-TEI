@@ -207,7 +207,7 @@ class ApiTeiConvert extends ApiBase {
 			case CONTENT_FORMAT_TEI_XML:
 				return $this->convertFromTei( $text, $title, $to, $normalize );
 			case CONTENT_FORMAT_HTML:
-				return $this->convertFromHtml( $text, $title, $to, $normalize );
+				return $this->convertFromHtml( $text, $to, $normalize );
 			default:
 				$this->dieWithError( [ 'apierror-teiconvert-invalid-fromto', $from, $to ] );
 		}
@@ -228,7 +228,7 @@ class ApiTeiConvert extends ApiBase {
 		}
 	}
 
-	private function convertFromHtml( $text, Title $title, $to, $normalize ) {
+	private function convertFromHtml( $text, $to, $normalize ) {
 		switch ( $to ) {
 			case CONTENT_FORMAT_TEI_XML:
 				$text = $this->htmlToTeiConverter->convert( $this->parseHtml( $text ) )->getXml();

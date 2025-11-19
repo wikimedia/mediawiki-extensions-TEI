@@ -519,7 +519,7 @@ class TeiToHtmlConversion {
 	}
 
 	private function warning( string $msgKey, ...$params ) {
-		$this->warnings[] = func_get_args();
+		$this->warnings[] = [ $msgKey, ...$params ];
 	}
 
 	private function importHtml( $html ) {
