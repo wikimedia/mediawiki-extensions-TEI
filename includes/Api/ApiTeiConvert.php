@@ -158,11 +158,9 @@ class ApiTeiConvert extends ApiBase {
 					$factory = MediaWikiServices::getInstance()->getContentHandlerFactory();
 					return [ $title, $factory->getContentHandler( $title->getContentModel() )->makeEmptyContent() ];
 				} else {
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 					$revision = $this->revisionLookup->getRevisionByTitle( $title, $params['revid'] );
 				}
 			} else {
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 				$revision = $this->revisionLookup->getRevisionByTitle( $title );
 			}
 			if ( $revision === null ) {

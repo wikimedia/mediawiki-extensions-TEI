@@ -198,10 +198,8 @@ class HtmlToTeiConversion {
 		if ( $htmlElement->hasAttribute( self::TEI_TAG_NAME ) ) {
 			$teiElement = $this->createTeiElement( $htmlElement->getAttribute( self::TEI_TAG_NAME ) );
 		} elseif ( $htmlElement->localName !== null &&
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal
 			array_key_exists( $htmlElement->localName, self::$tagsMapping )
 		) {
-			// @phan-suppress-next-line PhanTypeMismatchDimFetchNullable
 			$teiTagData = self::$tagsMapping[$htmlElement->localName];
 			if ( $teiTagData === null ) {
 				return $this->teiDocument->createTextNode( '' );
