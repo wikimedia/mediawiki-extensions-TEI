@@ -119,7 +119,6 @@ class ApiTeiConvert extends ApiBase {
 			$text = $content->serialize( $from );
 		}
 
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 		$output = $this->convert( $text, $title, $from, $to, $params['normalize'] );
 
 		$this->getResult()->addValue( null, 'convert', [
@@ -149,6 +148,8 @@ class ApiTeiConvert extends ApiBase {
 	}
 
 	private function getTitleAndContent( array $params ) {
+		$this->requireAtLeastOneParameter( $params, 'title', 'pageid', 'revid' );
+
 		if ( isset( $params['title'] ) ) {
 			$title = $this->parseTitle( $params['title'] );
 
@@ -174,29 +175,26 @@ class ApiTeiConvert extends ApiBase {
 			if ( $revision === null ) {
 				$this->dieWithError( [ 'apierror-missingrev-pageid', $params['pageid'] ], 'missingrev' );
 			}
-			$title = Title::newFromID( $revision->getPageId() );
+			$title = Title::newFromPageIdentity( $revision->getPage() );
 		} elseif ( isset( $params['revid'] ) ) {
 			$revision = $this->revisionLookup->getRevisionById( $params['revid'] );
 			if ( $revision === null ) {
 				$this->dieWithError( [ 'apierror-missingcontent-revid', $params['revid'] ] );
 			}
-			$title = Title::newFromID( $revision->getPageId() );
+			$title = Title::newFromPageIdentity( $revision->getPage() );
 		} else {
-			$this->requireAtLeastOneParameter( $params, 'title', 'pageid', 'revid' );
+			self::dieDebug( __METHOD__, ' Unknown parameter' );
 		}
 
-		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable T240141
 		$content = $revision->getContent(
 			$params['slot'],
 			RevisionRecord::FOR_THIS_USER,
 			$this->getUser()
 		);
 		if ( $content === null ) {
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable T240141
 			$this->dieWithError( [ 'apierror-missingcontent-revid', $revision->getId() ] );
 		}
 
-		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable T240141
 		return [ $title, $content ];
 	}
 
