@@ -1,11 +1,27 @@
 {
 	"@metadata": {
 		"authors": [
+			"Tensama0415",
 			"Ykhwong"
 		]
 	},
 	"tei-desc": "TEI 콘텐츠 모델 정의",
 	"tei-libxml-empty-document": "XML 문서가 비어 있습니다.",
+	"tei-libxml-error-message": "줄 $2에 $1.",
+	"tei-remex-error-message": "위치 $2에 $1.",
+	"tei-validation-element-content-unexpected-text": "$2 줄의 <code>$1</code>에는 텍스트가 포함되어서는 안 됩니다.",
+	"tei-validation-no-root": "TEI XML 콘텐츠에 루트 태그가 없습니다.",
+	"tei-validation-unexpected-root": "TEI XML 콘텐츠 루트 태그는 <code>text</code> 또는 <code>body</code>이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-wrong-namespace": "TEI XML 콘텐츠 루트 태그는 <code>http://www.tei-c.org/ns/1.0</code>이어야 합니다만, $2에서 <code>$1</code>이었습니다.",
+	"tei-validation-language-invalid-value": "<code>$2</code>의 값은 유효한 언어 태그이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-numeric-invalid-value": "<code>$2</code>의 값은 유효한 숫자 값이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-output-measurement-invalid-value": "<code>$2</code>의 값은 유효한 양수 정수이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-pointer-invalid-value": "<code>$2</code>의 값은 유효한 URI이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-temporal-w3c-invalid-value": "<code>$2</code>의 값은 유효한 ISO 8601 값이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-truth-value-invalid-value": "<code>$2</code>의 값은 <code>true</code>나 <code>false</code> 같은 유효한 불리언 값이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-word-invalid-value": "<code>$2</code>의 값은 유효한 단어이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-multiple-too-few-values": "<code>$2</code>의 값은 적어도 {{PLURAL:$3|$3개의 요소}}를 포함해야 합니다만, <code>$1</code>에는 {{PLURAL:$4|$4개 요소}}가 포함되어 있었습니다.",
+	"tei-validation-multiple-too-many-values": "<code>$2</code>의 값은 많아야 {{PLURAL:$3|$3개의 요소}}를 포함해야 합니다만, <code>$1</code>에는 {{PLURAL:$4|$4개 요소}}가 포함되어 있었습니다.",
 	"tei-parser-file-not-found": "$1 파일이 존재하지 않습니다.",
 	"tei-parser-error": "변환 오류: $1",
 	"apihelp-teiconvert-param-pageid": "이 문서의 내용을 변환합니다."
