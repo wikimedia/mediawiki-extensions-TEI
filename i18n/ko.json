@@ -1,12 +1,46 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ykhwong"
+			"Ykhwong",
+			"Tensama0415"
 		]
 	},
 	"tei-desc": "TEI 콘텐츠 모델 정의",
 	"tei-libxml-empty-document": "XML 문서가 비어 있습니다.",
+	"tei-libxml-error-message": "줄 $2에 $1.",
+	"tei-remex-error-message": "위치 $2에 $1.",
+	"tei-validation-element-content-unexpected-node": "<code>$1</code>은(는) $3번째 줄에서 <code lang=\"en\">$2</code>의 하위 요소로 허용되지 않습니다.",
+	"tei-validation-element-content-unexpected-text": "$2 줄의 <code>$1</code>에는 텍스트가 포함되어서는 안 됩니다.",
+	"tei-validation-element-content-too-short": "$1 같은 태그가 $3번째 줄에서 <code>$2</code>의 하위 요소로써 누락되었습니다.",
+	"tei-validation-no-root": "TEI XML 콘텐츠에 루트 태그가 없습니다.",
+	"tei-validation-unexpected-root": "TEI XML 콘텐츠 루트 태그는 <code>text</code> 또는 <code>body</code>이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-wrong-namespace": "TEI XML 콘텐츠 루트 태그는 <code>http://www.tei-c.org/ns/1.0</code>이어야 합니다만, $2에서 <code>$1</code>이었습니다.",
+	"tei-validation-unknown-tag": "<code>$1</code>은(는) $2번째 줄에서 지원되는 TEI 태그가 아닙니다.",
+	"tei-validation-unknown-attribute": "<code>$1</code>은(는) $3번째 줄에서 태그 <code>$2</code>의 지원되는 속성이 아닙니다.",
+	"tei-validation-missing-mandatory-attribute": "태그 <code>$2</code>의 <code>$1</code> 속성이 $3번째 줄에서 누락되었습니다.",
+	"tei-validation-count-invalid-value": "<code>$2</code>의 값은 양수 정수이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-enumeration-unknown-value": "<code>$1</code>은(는) <code>$2</code>의 지원되는 값이 아닙니다. 가능한 값은 다음과 같습니다: $3.",
+	"tei-validation-language-invalid-value": "<code>$2</code>의 값은 유효한 언어 태그이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-numeric-invalid-value": "<code>$2</code>의 값은 유효한 숫자 값이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-output-measurement-invalid-value": "<code>$2</code>의 값은 유효한 양수 정수이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-pointer-invalid-value": "<code>$2</code>의 값은 유효한 URI이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-temporal-w3c-invalid-value": "<code>$2</code>의 값은 유효한 ISO 8601 값이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-truth-value-invalid-value": "<code>$2</code>의 값은 <code>true</code>나 <code>false</code> 같은 유효한 불리언 값이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-word-invalid-value": "<code>$2</code>의 값은 유효한 단어이어야 합니다만, <code>$1</code>이었습니다.",
+	"tei-validation-multiple-too-few-values": "<code>$2</code>의 값은 적어도 {{PLURAL:$3|$3개의 요소}}를 포함해야 합니다만, <code>$1</code>에는 {{PLURAL:$4|$4개 요소}}가 포함되어 있었습니다.",
+	"tei-validation-multiple-too-many-values": "<code>$2</code>의 값은 많아야 {{PLURAL:$3|$3개의 요소}}를 포함해야 합니다만, <code>$1</code>에는 {{PLURAL:$4|$4개 요소}}가 포함되어 있었습니다.",
 	"tei-parser-file-not-found": "$1 파일이 존재하지 않습니다.",
 	"tei-parser-error": "변환 오류: $1",
-	"apihelp-teiconvert-param-pageid": "이 문서의 내용을 변환합니다."
+	"apihelp-teiconvert-summary": "TEI와 HTML 사이에서 콘텐츠를 변환하는 API 모듈",
+	"apihelp-teiconvert-param-title": "<var>$1text</var>가 설정되지 않은 경우 이 문서의 내용입니다. <var>$1text</var>가 설정된 경우 변환 중 문서 제목으로 사용합니다. 설정되지 않은 경우 [[API]]가 제목으로 사용됩니다.",
+	"apihelp-teiconvert-param-pageid": "이 문서의 내용을 변환합니다.",
+	"apihelp-teiconvert-param-revid": "이 판의 내용을 변환합니다.",
+	"apihelp-teiconvert-param-text": "구문 분석할 텍스트입니다. 콘텐츠 형식을 제어하려면 <var>$1from</var>을 사용하세요.",
+	"apihelp-teiconvert-param-from": "<var>$1text</var>의 내용 형식입니다.",
+	"apihelp-teiconvert-param-to": "변환할 내용 형식입니다.",
+	"apihelp-teiconvert-param-slot": "<var>$1text</var>가 설정되지 않은 경우 데이터를 반환할 슬롯입니다.",
+	"apihelp-teiconvert-param-normalize": "설정하면 TEI 내용을 정규화합니다",
+	"apihelp-teiconvert-example-from-title-to-html": "[[TEI]]의 내용을 HTML로 변환합니다",
+	"apihelp-teivalidate-summary": "TEI 문서를 검증하는 API 모듈",
+	"apihelp-teivalidate-param-text": "검증할 텍스트입니다."
 }
